@@ -1,0 +1,462 @@
+/* ===================== [TOKIMO] ALL FEATURES PRESERVED ===================== */
+
+.header .logo a {
+    color: #ffffff !important;
+}
+
+/* 1. 기본 배경 및 가독성 (기존 유지 + 블랙 강화) */
+.work-detail-page, body {
+  background-color: #000000 !important;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 텍스트가 안 보이는 문제를 해결하기 위한 강제 화이트 설정 */
+.hero-title, .story-title, .section-title, .info-item p, .related-info h3, .text-quote p {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* 2. HERO SECTION */
+.hero-minimal {
+  padding: 180px 5vw 100px;
+}
+
+.hero-label {
+  font-size: 12px;
+  color: var(--accent, #c5a358);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.hero-title {
+  font-size: clamp(42px, 8vw, 110px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.hero-image-vessel {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-top: 60px;
+  overflow: hidden;
+}
+
+.hero-image-vessel img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+/* 3. PROJECT INFO */
+.project-info {
+  padding: 80px 5vw;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.info-item .label {
+  font-size: 11px;
+  color: var(--accent, #c5a358);
+  letter-spacing: 0.2em;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* ===================== 4. CINEMATIC STATEMENT ===================== */
+
+.visual-statement {
+  height: 90vh; /* 화면의 대부분을 차지하는 압도적 높이 */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  margin: 100px 0; /* 상하 여백으로 섹션 구분 */
+}
+
+.statement-bg {
+  position: absolute;
+  top: -10%; /* 패럴랙스 가동 범위를 위해 위아래 여유 확보 */
+  left: 0;
+  width: 100%;
+  height: 120%; 
+  opacity: 0.4; /* 이미지가 너무 밝지 않게 */
+  filter: grayscale(100%) contrast(1.2); /* 흑백으로 무드 통일 */
+}
+
+.statement-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 텍스트 스타일링 */
+.statement-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.parallax-text {
+  font-size: clamp(48px, 8vw, 90px);
+  font-weight: 200;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #ffffff !important;
+  margin-bottom: 20px;
+}
+
+.parallax-text span { display: block; }
+
+.parallax-text .line-2 {
+  padding-left: 80px; /* 비대칭 레이아웃 */
+}
+
+.parallax-text i {
+  font-family: serif; /* 이탤릭체 서리프 폰트로 우아함 강조 */
+  font-style: italic;
+  color: var(--accent, #c5a358);
+}
+
+.statement-sub {
+  font-size: 12px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5) !important;
+  margin-top: 30px;
+}
+
+/* ===================== [TOKIMO] TECHNICAL GUIDE & SIZE CHART ===================== */
+
+.technical-guide {
+  padding: 120px 5vw;
+  background-color: #000;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.guide-title {
+  font-size: 32px;
+  margin: 20px 0;
+  font-weight: 600;
+}
+
+.guide-text {
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.7) !important;
+  margin-bottom: 30px;
+}
+
+.care-list {
+  list-style: none;
+  padding: 0;
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+/* 사이즈 표 스타일링 */
+.size-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 25px;
+}
+
+.size-table th, .size-table td {
+  padding: 20px 0;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 15px;
+}
+
+.size-table th {
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.size-table td {
+  color: #ffffff !important;
+}
+
+.size-note {
+  margin-top: 20px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-style: italic;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+  .guide-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+}
+
+/* 5. STORY SECTION */
+.project-story {
+  padding: 150px 5vw;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.story-visual img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.story-content {
+  position: relative;
+  padding-left: 40px;
+}
+
+.vertical-label {
+  writing-mode: vertical-rl;
+  font-size: 10px;
+  letter-spacing: 0.5em;
+  color: var(--accent, #c5a358);
+  position: absolute;
+  left: 0;
+  top: 5px;
+}
+
+.story-text {
+  color: #e5e5e5 !important;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+/* 6. PROJECT GALLERY (리디자인 버전) */
+.project-gallery {
+  padding: 150px 5vw;
+}
+
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.gallery-item.large {
+  grid-column: 1 / 8;
+  z-index: 1;
+}
+
+.gallery-item.large img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.gallery-group {
+  grid-column: 8 / 13;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding-left: 40px;
+}
+
+.gallery-item.small {
+  width: 90%;
+  align-self: flex-end;
+}
+
+.gallery-item.small img {
+  aspect-ratio: 1 / 1;
+  box-shadow: 20px 20px 60px rgba(0,0,0,0.8);
+}
+
+.text-quote {
+  border-left: 2px solid var(--accent);
+  padding-left: 25px;
+}
+
+.text-quote p {
+  font-size: 1.4rem;
+  font-style: italic;
+}
+
+/* ===================== [TOKIMO] BRAND BRIDGE & BUTTONS ===================== */
+
+/* ===================== [TOKIMO] BRAND BRIDGE - REFINED VERSION ===================== */
+
+.brand-bridge {
+  padding: 200px 5vw; /* 여백을 아주 넓게 써서 고급스러움을 강조 */
+  background-color: #000;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bridge-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr; /* 비대칭 레이아웃 */
+  gap: 100px;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: flex-end;
+}
+
+/* 왼쪽: 타이포그래피 */
+.bridge-tag {
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 30px;
+}
+
+.bridge-heading {
+  font-size: clamp(40px, 5vw, 70px);
+  font-weight: 200;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: #fff !important;
+}
+
+.bridge-heading i {
+  font-family: serif;
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* 오른쪽: 설명 및 링크 */
+.bridge-desc {
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.5) !important;
+  margin-bottom: 60px;
+  word-break: keep-all;
+}
+
+.bridge-action-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* 느좋 포인트: 미니멀 링크 디자인 */
+.minimal-link {
+  font-size: 18px;
+  color: #fff !important;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: fit-content;
+  padding-bottom: 8px;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+/* 호버 시 밑줄 애니메이션 */
+.minimal-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--accent);
+  transform: scaleX(0.2); /* 평소에는 짧게 */
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.minimal-link:hover::after {
+  transform: scaleX(1); /* 호버 시 길어짐 */
+}
+
+.minimal-link .arrow {
+  font-size: 20px;
+  transition: transform 0.4s ease;
+}
+
+.minimal-link:hover .arrow {
+  transform: translateX(10px); /* 화살표 이동 */
+}
+
+/* 모바일 대응 */
+@media (max-width: 1024px) {
+  .bridge-layout {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  .bridge-heading { font-size: 48px; }
+}
+
+/* 7. RELATED ARCHIVE */
+.related-archive {
+  padding: 150px 5vw;
+  background-color: #050505;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.related-img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.related-img img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+/* 8. FOOTER 가시성 보정 (복구 및 강화) */
+.footer {
+  background-color: #000000 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 100px 5vw;
+}
+
+.copyright, .footer-social a {
+  color: #ffffff !important;
+  opacity: 0.8 !important;
+}
+
+/* [RESPONSIVE] */
+@media (max-width: 1024px) {
+  .story-grid { grid-template-columns: 1fr; }
+  .gallery-container { display: flex; flex-direction: column; gap: 50px; }
+  .gallery-group { padding-left: 0; }
+  .gallery-item.small { width: 100%; }
+}

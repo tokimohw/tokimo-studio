@@ -1,0 +1,561 @@
+/* ==========================================================================
+   FURNITURE ARCHIVE - MID-CENTURY MODERN LANDING PAGE (Optimized)
+   ========================================================================= */
+
+/* 0. MCM 컬러 변수 선언 */
+:root {
+    --fn-bg: #fdfaf2;
+    --fn-text: #1a1a1a;
+    --fn-accent-mustard: #ffb300;
+    --fn-accent-orange: #ff5722;
+    --fn-accent-teal: #00796b;
+    --fn-border: rgba(0, 0, 0, 0.1);
+}
+
+/* 1. Base & Reset */
+.fn-body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--fn-bg) !important;
+    color: var(--fn-text);
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    transition: background-color 0.8s ease, color 0.8s ease;
+}
+
+.fn-fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* 2. MCM Background Shapes */
+.fn-mcm-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.mcm-shape {
+    position: absolute;
+    opacity: 0.1;
+}
+
+.mcm-boomerang {
+    width: 300px;
+    height: 100px;
+    background-color: var(--fn-accent-mustard);
+    clip-path: polygon(10% 0, 100% 30%, 90% 100%, 0% 70%);
+    top: 20%;
+    right: -50px;
+}
+
+.mcm-circle {
+    width: 150px;
+    height: 150px;
+    background-color: var(--fn-accent-teal);
+    border-radius: 50%;
+    bottom: 15%;
+    left: 25%;
+}
+
+.mcm-atomic {
+    width: 80px;
+    height: 80px;
+    background-color: var(--fn-accent-orange);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    top: 10%;
+    left: 40%;
+}
+
+/* 3. Layout Structure */
+.fn-viewport {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    z-index: 2;
+    transition: all 0.5s ease;
+}
+
+/* Sidebar: 너비를 vw 단위와 min/max로 조절하여 유연하게 대응 */
+.fn-sidebar {
+    width: clamp(200px, 15vw, 250px); 
+    height: 100%;
+    background: white;
+    border-right: 1px solid var(--fn-border);
+    display: flex;
+    flex-direction: column;
+    padding: clamp(20px, 3vw, 40px);
+    box-sizing: border-box;
+    transition: all 0.5s ease;
+    flex-shrink: 0;
+}
+
+.fn-logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--fn-accent-teal);
+    margin-bottom: 80px;
+}
+
+.fn-nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fn-nav-links li {
+    margin-bottom: 25px;
+}
+
+.fn-nav-links a {
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: #777;
+    transition: color 0.3s;
+}
+
+.fn-nav-links li.active a,
+.fn-nav-links a:hover {
+    color: var(--fn-text);
+}
+
+.fn-back {
+    margin-top: auto;
+    font-size: 11px;
+    color: #aaa;
+    text-decoration: none;
+}
+
+/* Main Content Grid */
+.fn-main-content {
+    flex: 1;
+    display: grid;
+    /* 1200px 이상일 때는 1fr 400px, 그 이하는 1fr 300px 등으로 유연하게 변경됨 */
+    grid-template-columns: 1fr minmax(280px, 22vw);
+    grid-template-rows: auto 1fr;
+    gap: clamp(20px, 4vw, 60px);
+    padding: clamp(30px, 5vw, 80px);
+    box-sizing: border-box;
+    position: relative;
+    height: 100vh;
+}
+.fn-header {
+    grid-column: 1 / -1;
+}
+
+/* 타이틀 크기를 화면 너비에 맞게 유동적으로 조절 (Fluid Typography) */
+.fn-title {
+    font-size: clamp(32px, 5vw, 90px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin: 10px 0 0 0;
+}
+
+.fn-title em {
+    font-style: normal;
+    font-weight: 300;
+    color: #555;
+}
+
+.vogue-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--fn-accent-orange);
+}
+
+/* 4. Interactive Viewer */
+.fn-chair-viewer {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: white;
+    border: 1px solid var(--fn-border);
+    border-radius: 4px;
+    overflow: hidden;
+    width: 100%;
+    height: 100%; /* 부모 그리드 높이에 맞춤 */
+}
+
+.fn-chair-img-wrap {
+    position: relative;
+    width: 60%;
+    transition: transform 0.1s ease-out;
+}
+
+.fn-main-chair {
+    width: 100%;
+    height: auto;
+    transition: filter 0.8s ease;
+}
+
+.fn-blueprint-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.fn-chair-viewer:hover .fn-blueprint-overlay {
+    opacity: 0.3;
+}
+
+/* 5. Info Panel & Swatches */
+.fn-info-panel {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    align-self: start; /* 위쪽 정렬하여 내용이 적어도 레이아웃 유지 */
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--fn-border);
+    padding: clamp(20px, 3vw, 40px);
+    box-sizing: border-box;
+    z-index: 10;
+    max-height: 100%; /* 그리드 셀 높이를 넘지 않음 */
+    overflow-y: auto;
+    transition: all 0.5s ease;
+}
+
+.fn-material-swatches h4 {
+    font-size: 11px;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+.swatch-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.swatch {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.swatch.active,
+.swatch:hover {
+    background: rgba(0, 121, 107, 0.05);
+    border-color: rgba(0, 121, 107, 0.1);
+}
+
+.color-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+.color-dot.walnut {
+    background-color: #6d4c41;
+}
+
+.color-dot.concrete {
+    background-color: #bdbdbd;
+}
+
+.swatch-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: inherit;
+}
+
+.fn-description {
+    margin-top: 40px;
+    border-top: 1px solid var(--fn-border);
+    padding-top: 30px;
+}
+
+.fn-description p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #555;
+}
+
+/* 6. Mode Transitions & Specific Styles */
+
+/* EXPLORE MODE */
+.mode-explore .fn-info-panel {
+    color: #1a1a1a;
+}
+
+.mode-explore .swatch-label {
+    color: #333;
+}
+
+.mode-explore .fn-main-chair {
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.15));
+}
+
+/* MATERIALS MODE (Dark Theme) */
+.mode-materials {
+    background-color: #1a1a1a !important;
+    color: #fff;
+}
+
+.mode-materials .fn-main-chair {
+    filter: saturate(1.2) contrast(1.1);
+}
+
+.mode-materials .fn-sidebar {
+    background: #222;
+    border-right: 1px solid #333;
+}
+
+.mode-materials .fn-nav-links a {
+    color: #555;
+}
+
+.mode-materials .fn-nav-links li.active a {
+    color: var(--fn-accent-teal);
+}
+
+.mode-materials .fn-info-panel {
+    background: rgba(34, 34, 34, 0.9);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* BLUEPRINT MODE (Technical) */
+.mode-blueprint {
+    background-color: #f0f4f8 !important;
+}
+
+.mode-blueprint .fn-chair-viewer {
+    cursor: crosshair;
+}
+
+.mode-blueprint .fn-main-chair {
+    opacity: 0.2;
+    filter: grayscale(1);
+}
+
+.mode-blueprint .fn-blueprint-overlay {
+    opacity: 0.8 !important;
+}
+
+.mode-blueprint::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(#e0e6ed 1px, transparent 1px), linear-gradient(90deg, #e0e6ed 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Blueprint Labels */
+.fn-spec-label {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 2px 6px;
+    border: 1px solid var(--fn-accent-teal);
+    pointer-events: none;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+    color: var(--fn-accent-teal);
+}
+
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE (Max-width: 768px)
+   ========================================================================= */
+
+@media screen and (max-width: 768px) {
+    /* 1. Base: 고정된 높이를 풀고 전체 스크롤 허용 */
+    .fn-body {
+        overflow-y: auto !important;
+        height: auto;
+        width: 100%;
+    }
+
+    /* 2. Layout: 세로 정렬로 전환 */
+    .fn-viewport {
+        flex-direction: column;
+        height: auto;
+    }
+
+    /* 3. Sidebar: 상단 네비게이션으로 변신 */
+    .fn-sidebar {
+        width: 100%;
+        height: auto;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        padding: 20px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-right: none;
+        border-bottom: 1px solid var(--fn-border);
+    }
+
+    .fn-logo {
+        margin-bottom: 0;
+        font-size: 20px;
+    }
+
+    .fn-nav-links {
+        display: flex;
+        gap: 15px;
+    }
+
+    .fn-nav-links li {
+        margin-bottom: 0;
+    }
+
+    .fn-nav-links a {
+        font-size: 10px;
+        letter-spacing: 0.1em;
+    }
+
+    .fn-back {
+        display: none; /* 공간 확보를 위해 모바일은 숨김 */
+    }
+
+    /* 4. Main Content: 그리드 해제 */
+    .fn-main-content {
+        display: block; /* 그리드 대신 블록 레이아웃 */
+        padding: 20px;
+        height: auto;
+    }
+
+    /* 헤더 및 타이틀 */
+    .fn-header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding-top: 20px;
+    }
+
+    .fn-title {
+        font-size: 38px;
+        line-height: 1.1;
+    }
+
+    /* 5. Chair Viewer: 중앙 배치 및 높이 최적화 */
+    .fn-chair-viewer {
+        width: 100%;
+        height: 350px; /* 모바일 적정 높이 */
+        margin-bottom: 20px;
+    }
+
+    .fn-chair-img-wrap {
+        width: 80%;
+    }
+
+    /* 6. Info Panel: 스크롤 가두기를 풀고 자연스럽게 나열 */
+    .fn-info-panel {
+        width: 100%;
+        max-height: none; /* 높이 제한 해제 */
+        overflow-y: visible; /* 내부 스크롤 해제 */
+        padding: 30px 20px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 8px;
+    }
+
+    /* 소재 스와치 가로 배치 */
+    .swatch-group {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .swatch {
+        flex: 1;
+        min-width: 130px;
+        justify-content: center;
+        padding: 12px 10px;
+    }
+
+    .fn-description {
+        margin-top: 30px;
+    }
+
+    /* 배경 도형 조정 (모바일에서 너무 방해되지 않게) */
+    .mcm-boomerang { width: 150px; height: 50px; top: 10%; right: -20px; }
+    .mcm-circle { width: 80px; height: 80px; bottom: 5%; left: 10%; }
+    .mcm-atomic { width: 50px; height: 50px; top: 5%; left: 20%; }
+}
+
+/* 초소형 모바일 대응 (iPhone SE 등) */
+@media screen and (max-width: 380px) {
+    .fn-title { font-size: 32px; }
+    .fn-nav-links { gap: 8px; }
+    .swatch { min-width: 100%; }
+}
+/* ==========================================================================
+   [추가] 중대형 태블릿 및 작은 노트북 (769px ~ 1100px)
+   ========================================================================= */
+@media screen and (max-width: 1100px) {
+    .fn-main-content {
+        /* 패널 너비를 조금 줄여서 의자 공간 확보 */
+        grid-template-columns: 1fr 280px;
+        padding: 40px;
+    }
+}
+
+/* ==========================================================================
+   [추가] 소형 태블릿 및 모바일 가로 (481px ~ 768px)
+   ========================================================================= */
+@media screen and (max-width: 768px) {
+    .fn-body { overflow-y: auto; height: auto; }
+    .fn-viewport { flex-direction: column; height: auto; }
+    
+    .fn-sidebar {
+        width: 100%; height: auto;
+        position: sticky; top: 0;
+        flex-direction: row; justify-content: space-between;
+        padding: 15px 25px;
+        border-right: none; border-bottom: 1px solid var(--fn-border);
+    }
+    .fn-logo { margin-bottom: 0; font-size: 20px; }
+    .fn-nav-links { display: flex; gap: 15px; }
+    .fn-nav-links li { margin-bottom: 0; }
+    .fn-back { display: none; }
+
+    .fn-main-content {
+        display: block; /* 그리드 해제 */
+        padding: 40px 20px;
+        height: auto;
+    }
+    .fn-header { text-align: center; margin-bottom: 30px; }
+    .fn-chair-viewer { height: 400px; margin-bottom: 30px; }
+    .fn-info-panel { width: 100%; max-height: none; }
+    
+    .swatch-group { flex-direction: row; flex-wrap: wrap; }
+    .swatch { flex: 1; min-width: 140px; }
+}
+
+/* ==========================================================================
+   [추가] 모바일 세로 (480px 이하)
+   ========================================================================= */
+@media screen and (max-width: 480px) {
+    .fn-title { font-size: 36px; }
+    .fn-chair-viewer { height: 300px; }
+    .swatch { min-width: 100%; }
+    .fn-nav-links { gap: 10px; }
+    .fn-nav-links a { font-size: 9px; }
+}

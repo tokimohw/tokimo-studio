@@ -1,0 +1,382 @@
+/* ==========================================================================
+   [TOKIMO] INTEGRATED STYLE - REFINED VOGUE
+   ========================================================================= */
+
+:root {
+  /* 글로벌 변수 설정 */
+  --font-main: 'Times New Roman', serif;
+  --font-sub: 'Georgia', serif;
+  --transition-vogue: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vogue-index { padding-top: 100px; }
+
+/* --------------------------------------------------------------------------
+   01. HERO COVER
+   -------------------------------------------------------------------------- */
+.hero-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 4%;
+  position: relative;
+}
+
+.hero-main-img {
+  width: 100%;
+  height: 95vh;
+  position: relative;
+  overflow: hidden;
+  background-color: #111;
+}
+
+.hero-bg-text {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-main);
+  font-size: 22vw;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.03);
+  letter-spacing: -0.07em;
+  z-index: 0;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
+.hero-main-img img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.9) contrast(1.05);
+  transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cover-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  font-family: var(--font-main);
+  font-size: clamp(100px, 18vw, 260px);
+  color: #fff;
+  line-height: 0.75;
+  text-align: center;
+  pointer-events: none;
+  mix-blend-mode: difference; 
+  letter-spacing: -0.05em;
+}
+
+.cover-title em {
+  font-style: italic;
+  font-family: var(--font-sub);
+  display: block;
+  font-weight: 400;
+  margin-top: -10px;
+}
+
+/* 01-1. HERO SIDE META */
+.hero-side-meta {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.meta-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  writing-mode: vertical-rl;
+  text-transform: uppercase;
+}
+
+.meta-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 15px;
+}
+
+.meta-value {
+  font-family: var(--font-main);
+  font-size: 11px;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 01-2. HERO FOOTER */
+.hero-footer-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 60px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* 1. 섹션 헤더 - 압도적인 존재감 */
+.vogue-label {
+  font-family: var(--font-mono); /* 고정폭 폰트로 '관리번호' 같은 느낌 */
+  font-size: 9px;
+  letter-spacing: 0.4em; /* 자간을 아주 넓게 벌려 하이엔드 무드 형성 */
+  text-transform: uppercase;
+  color: #888;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.hero-footer-info p {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  line-height: 1.8;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   02. GRID SYSTEM (ARCHIVE & PROJECT SHARED)
+   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   [TOKIMO] PROJECT GRID - CLEAN MINIMALIST (NO HEADER)
+   ========================================================================= */
+
+.project-grid-section {
+  padding: 120px 0; /* 제목이 없으므로 상단 여백을 살짝 줄여 긴장감 유지 */
+  background-color: #fff;
+}
+
+.project-grid-section .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4%;
+  box-sizing: border-box;
+}
+
+/* 01. GRID SYSTEM */
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2열 구조 유지 */
+  gap: 120px 60px;
+}
+
+.archive-item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  /* 프로젝트가 하나일 때 왼쪽 정렬을 유지하며 우아한 여백 형성 */
+}
+
+/* 02. IMAGE BLOCK (Matte & Raw) */
+.archive-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  background-color: #1a1a1a;
+  margin-bottom: 40px;
+}
+
+.archive-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) brightness(0.9);
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), filter 1s ease;
+}
+
+.archive-item:hover img {
+  transform: scale(1.04);
+  filter: grayscale(0) brightness(1);
+}
+
+/* Overlay Details */
+.project-overlay-info {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  backdrop-filter: blur(5px);
+}
+
+.archive-item:hover .project-overlay-info {
+  opacity: 1;
+}
+
+.project-overlay-info span {
+  color: #fff;
+  font-family: var(--font-label);
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 10px 20px;
+}
+
+/* Archive Status Label */
+.archive-status {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: #111;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 5px 10px;
+  letter-spacing: 0.2em;
+}
+
+/* 03. INFO AREA (High-End Typography) */
+.p-meta {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.5em; /* 자간을 더 넓혀 정교함 강조 */
+  color: #999;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.archive-info h3 {
+  font-family: 'Times New Roman', serif;
+  font-size: 26px; /* 크기를 살짝 줄여 더 단단한 느낌 */
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 15px;
+  color: #111;
+}
+
+.archive-info p {
+  font-size: 13.5px; /* 본문 폰트 크기 하향 조정으로 감도 향상 */
+  line-height: 1.9;
+  color: #666;
+  max-width: 340px; /* 줄길이를 짧게 끊어 전문 서적 같은 느낌 */
+  word-break: keep-all;
+  margin-bottom: 25px;
+  font-weight: 300;
+}
+
+/* Tech Tags */
+.p-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.p-tech-tags span {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: #222;
+  opacity: 0.6;
+  letter-spacing: 0.05em;
+  position: relative;
+}
+
+/* 태그 사이에 미세한 점 추가 (디테일) */
+.p-tech-tags span:not(:last-child)::after {
+  content: '•';
+  margin-left: 12px;
+  opacity: 0.3;
+}
+
+/* [Mobile] */
+@media (max-width: 768px) {
+  .archive-grid { grid-template-columns: 1fr; gap: 80px; }
+  .archive-img-wrap { aspect-ratio: 4 / 3; }
+  .project-grid-section { padding: 80px 0; }
+}
+
+   /* --------------------------------------------------------------------------
+   03. PHILOSOPHY
+   -------------------------------------------------------------------------- */
+.index-philosophy {
+  padding: 120px 0; background: #fff;
+  position: relative; overflow: hidden;
+}
+
+.bg-archive-number {
+  position: absolute; top: 0%; right: -8%;
+  font-family: var(--font-main); font-size: 28vw;
+  font-weight: 800; color: #f0f0f0; 
+  line-height: 0.8; z-index: 0;
+  pointer-events: none; text-transform: uppercase;
+  letter-spacing: -0.06em; user-select: none;
+}
+
+.philosophy-layout {
+  display: flex; align-items: flex-end;
+  justify-content: flex-start; position: relative; z-index: 1;
+}
+
+.philosophy-img-container { width: 55%; position: relative; }
+.philosophy-img-wrap {
+  width: 100%; height: 65vh; overflow: hidden; background: #1a1a1a;
+}
+.philosophy-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(1) contrast(1.1) brightness(0.9);
+}
+
+.philosophy-text {
+  width: 50%; margin-left: -15%; margin-bottom: -50px; 
+  padding: 80px; background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px); position: relative; z-index: 10;
+  box-shadow: 20px 20px 60px rgba(0,0,0,0.05);
+}
+
+.philosophy-text h2 {
+  font-family: var(--font-main); font-size: clamp(45px, 6vw, 90px);
+  line-height: 0.85; letter-spacing: -0.05em; margin: 20px 0 40px;
+}
+
+.philosophy-text h2 em {
+  font-style: italic; font-weight: 400;
+  display: inline-block; transform: translateX(-10px);
+}
+
+.vogue-btn-link {
+  display: inline-block; font-family: var(--font-label);
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em;
+  border-bottom: 1.5px solid var(--text-main);
+  padding-bottom: 8px; color: var(--text-main);
+  transition: var(--transition-vogue);
+}
+
+/* --------------------------------------------------------------------------
+   [ 통합 RESPONSIVE ]
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .archive-grid, .philosophy-layout {
+    grid-template-columns: 1fr; gap: 80px;
+  }
+  .archive-grid {grid-column: 1 / 2; /* 1열만 차지하게 고정 */}
+  .philosophy-img-container { width: 100%; }
+  .philosophy-text { width: 100%; margin: 0; padding: 40px 20px; }
+  .philosophy-img-wrap { height: 400px; }
+  .index-philosophy { padding: 80px 0; }
+}
+
+@media (max-width: 768px) {
+  .vogue-index { padding-top: 80px; }
+  .hero-main-img { height: 75vh; }
+  .cover-title { font-size: 70px; }
+  .hero-bg-text { font-size: 30vw; }
+  .hero-side-meta { display: none; }
+  .hero-footer-info { flex-direction: column; gap: 20px; align-items: flex-start; }
+  .vogue-sub-title { font-size: 45px; }
+  .footer { padding-top: 20px !important; }
+}

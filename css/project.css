@@ -1,0 +1,214 @@
+/* ==========================================================================
+   [TOKIMO] PROJECT REPOSITORY STYLE
+   ========================================================================= */
+
+.project-archive {
+  padding-top: 120px;
+  background-color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   01. ARCHIVE HEADER
+   -------------------------------------------------------------------------- */
+.archive-header {
+  padding: 100px 0 60px;
+}
+
+.section-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.hero-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #999;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.archive-title {
+  font-family: 'Times New Roman', serif;
+  font-size: clamp(40px, 8vw, 100px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: #111;
+  margin-bottom: 60px;
+}
+
+/* 필터 버튼 - 아주 미니멀하게 */
+.archive-filter {
+  display: flex;
+  gap: 30px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+}
+
+.filter-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-label);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #bbb;
+  cursor: pointer;
+  transition: color 0.4s ease;
+  padding: 0;
+}
+
+.filter-btn.active, .filter-btn:hover {
+  color: #111;
+}
+
+/* --------------------------------------------------------------------------
+   02. PROJECT GRID
+   -------------------------------------------------------------------------- */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2열 유지 */
+  gap: 120px 60px;
+  padding-top: 80px;
+  padding-bottom: 50px;
+}
+
+.project-card {
+  position: relative;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* 썸네일 영역 - Matte & Raw */
+.card-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: #f7f7f7;
+  margin-bottom: 30px;
+}
+
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) brightness(0.95);
+  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), filter 1s ease;
+}
+
+.project-card:hover .card-thumb img {
+  transform: scale(1.05);
+  filter: grayscale(0) brightness(1);
+}
+
+.card-status {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 6px 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* 정보 영역 */
+.card-info {
+  position: relative;
+}
+
+.info-top {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.p-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #111;
+  font-weight: 600;
+}
+
+.p-tech {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #999;
+}
+
+.p-title {
+  font-family: 'Times New Roman', serif;
+  font-size: 28px;
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 15px;
+  letter-spacing: -0.01em;
+}
+
+.p-title small {
+  display: block;
+  font-size: 12px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-style: normal;
+  color: #bbb;
+  margin-top: 5px;
+  letter-spacing: 0.05em;
+}
+
+.p-summary {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #666;
+  max-width: 90%;
+  margin-bottom: 20px;
+  word-break: keep-all;
+  font-weight: 300;
+}
+
+/* 테크 태그 (사장님이 추가하신 부분 고감도화) */
+.p-tech-tags {
+  display: flex;
+  gap: 15px;
+}
+
+.p-tech-tags span {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: #222;
+  opacity: 0.4;
+  text-transform: uppercase;
+}
+
+.p-tech-tags span::before {
+  content: '#';
+  margin-right: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   03. MOBILE RESPONSIVE
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .project-grid {
+    gap: 80px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .archive-title { font-size: 60px; }
+  .archive-filter { gap: 15px; overflow-x: auto; padding-bottom: 15px; }
+  .filter-btn { white-space: nowrap; }
+  .project-grid { grid-template-columns: 1fr; gap: 60px; }
+  .p-title { font-size: 24px; }
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03. MONOLITH CHAIR | MCM ARCHIVE</title>
+  
+  <link rel="stylesheet" href="css/work-detail-furniture.css">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body class="fn-body">
+  
+  <div class="fn-mcm-bg">
+    <div class="mcm-shape mcm-boomerang mustard"></div>
+    <div class="mcm-shape mcm-circle teal"></div>
+    <div class="mcm-shape mcm-atomic orange"></div>
+  </div>
+
+  <div class="fn-viewport">
+    
+    <nav class="fn-sidebar">
+    <div class="fn-logo">tokimo</div>
+    <ul class="fn-nav-links">
+        <li class="active"><a href="#explore">EXPLORE</a></li>
+        <li><a href="#materials">MATERIALS</a></li>
+        <li><a href="#blueprint">BLUEPRINT</a></li>
+    </ul>
+    <a href="project.html" class="fn-back">← INDEX</a>
+    </nav>
+
+    <main class="fn-main-content">
+        <header class="fn-header fn-fade-up">
+            <span class="vogue-label">Archive / 03</span>
+            <h1 class="fn-title">Monolith <br><em>Walnut & Concrete</em></h1>
+        </header>
+
+        <div class="fn-chair-viewer fn-fade-up">
+            <img src="images/furniture/fn-02-form-side.png" alt="Blueprint overlay" class="fn-blueprint-overlay">
+            
+            <div class="fn-chair-img-wrap">
+            <img src="images/furniture/fn-01-hero-walnut.png" alt="Monolith Mid-century Chair" class="fn-main-chair">
+            </div>
+        </div>
+
+        <aside class="fn-info-panel fn-fade-up">
+            <div class="fn-material-swatches">
+            <h4>MATERIALS</h4>
+            <div class="swatch-group">
+                <div class="swatch active" data-material="walnut" data-texture="images/fn/fn-texture-walnut.png">
+                <span class="color-dot walnut"></span>
+                <span class="swatch-label">Walnut Wood</span>
+                </div>
+                <div class="swatch" data-material="concrete" data-texture="images/fn/fn-texture-concrete.png">
+                <span class="color-dot concrete"></span>
+                <span class="swatch-label">Cast Concrete</span>
+                </div>
+            </div>
+            </div>
+            
+            <div class="fn-description">
+                <p id="fn-desc-text">묵직한 콘크리트 베이스와 따뜻한 월넛 우드의 만남. 차가움과 따뜻함의 대화입니다.</p>
+            </div>
+        </aside>
+    </main>
+  </div>
+
+  <script src="js/furniture-detail.js"></script>
+</body>
+</html>
