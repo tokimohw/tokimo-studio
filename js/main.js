@@ -1,10 +1,9 @@
 /**
- * TOKIMO ARCHIVE - Core JavaScript
- * 정리: 부드러운 스크롤, 애니메이션, 시간, 메뉴, 페이지 전환
+ * TOKIMO ARCHIVE - Core JavaScript (Optimized)
+ * 수정사항: 페이지 전환 지연(Fade-out) 삭제, 즉각적인 로딩 구현
  */
 
-// ===================== 1. 부드러운 스크롤 (Lenis) =====================
-// 웹사이트 전체에 고급스러운 스크롤 감도를 부여합니다.
+// ===================== 1. 부동 스크롤 (Lenis) =====================
 const lenis = new Lenis({
   duration: 1.2,
   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
@@ -20,7 +19,6 @@ function raf(time) {
 requestAnimationFrame(raf);
 
 // ===================== 2. 스크롤 등장 애니메이션 (Observer) =====================
-// 요소가 화면에 10% 정도 보일 때 '.visible' 클래스를 추가하여 나타나게 합니다.
 const observerOptions = {
   threshold: 0.1,
   rootMargin: '0px 0px -50px 0px'
@@ -31,7 +29,6 @@ const observer = new IntersectionObserver((entries) => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
 
-      // 하위 요소들이 시간차를 두고 등장하게 설정 (Stagger 효과)
       const children = entry.target.querySelectorAll('.hero-label, .display-title, .description, .work-item, .service-item, .display-text, .border-text, .vogue-title, .editorial-content');
       
       children.forEach((child, index) => {
@@ -39,27 +36,24 @@ const observer = new IntersectionObserver((entries) => {
         child.classList.add('visible');
       });
       
-      observer.unobserve(entry.target); // 성능을 위해 관찰 중단
+      observer.unobserve(entry.target); 
     }
   });
 }, observerOptions);
 
-// ===================== 3. 패럴랙스 & 헤더 (Scroll Event) =====================
-// 스크롤 시 이미지들이 미세하게 움직여 공간감을 줍니다.
+// ===================== 3. 패럴랙스 & 헤더 제어 =====================
 const header = document.querySelector(".header");
 const parallaxImages = document.querySelectorAll(".work-bg, .work-card img, .repo-item img, .gallery-item img, .editorial-image img, .vision-item img");
 
 lenis.on('scroll', (e) => {
   const scrollY = e.animatedScroll;
 
-  // 헤더 변화 (50px 스크롤 시 배경 생김 등)
   if (scrollY > 50) {
     header?.classList.add("scrolled");
   } else {
     header?.classList.remove("scrolled");
   }
 
-  // 패럴랙스 로직
   parallaxImages.forEach(img => {
     const rect = img.getBoundingClientRect();
     const windowHeight = window.innerHeight;
@@ -73,7 +67,6 @@ lenis.on('scroll', (e) => {
 });
 
 // ===================== 4. 시간 업데이트 (Seoul/Tokyo) =====================
-// 푸터 등에 위치한 시간을 실시간으로 갱신합니다.
 function updateTime() {
   const timeElements = document.querySelectorAll('#local-time, #local-time-hero');
   if (timeElements.length === 0) return;
@@ -91,32 +84,23 @@ function updateTime() {
   });
 }
 
-// ===================== 5. DOM 실행 시 활성화 (초기화) =====================
+// ===================== 5. 초기화 및 이벤트 연결 =====================
 document.addEventListener('DOMContentLoaded', () => {
   
-  // 5-1. 페이지 로드 시 페이드 인 애니메이션
+  // 5-1. 페이지 로드 즉시 페이드 인 (기존 로직 유지)
   document.body.classList.add('fade-in');
 
-  // 5-2. 스크롤 애니메이션 관찰 시작
+  // 5-2. 애니메이션 관찰 시작
   document.querySelectorAll('.fade-up').forEach(section => observer.observe(section));
 
   // 5-3. 시간 업데이트 시작
   setInterval(updateTime, 1000);
   updateTime();
 
-  // 5-4. 페이지 전환 로직 (모든 내부 링크 클릭 시 페이드 아웃)
-  const links = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"])');
-  links.forEach(link => {
-    link.addEventListener('click', (e) => {
-      // 메뉴 링크 등 특수 상황 제외 로직 (필요시 추가)
-      if (link.closest('#mobile-menu')) return; 
-
-      e.preventDefault();
-      const targetUrl = link.href;
-      document.body.classList.add('fade-out');
-      setTimeout(() => { window.location.href = targetUrl; }, 600);
-    });
-  });
+  /* [삭제됨] 5-4. 기존의 페이지 전환(Fade-out) 로직을 삭제했습니다.
+     브라우저가 기본적으로 제공하는 빠른 페이지 이동을 사용하도록 하여 
+     클릭 시 멈춤 현상을 해결했습니다.
+  */
 
   // 5-5. 모바일 메뉴 제어
   const trigger = document.getElementById('menu-trigger');
@@ -141,19 +125,16 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleMenu();
     });
 
-    // 메뉴 내 링크 클릭 시 닫고 이동
+    // 메뉴 내 링크 클릭 시 즉시 닫고 이동 (지연 시간 삭제)
     menu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetUrl = link.href;
+      link.addEventListener('click', () => {
         toggleMenu(false);
-        document.body.classList.add('fade-out');
-        setTimeout(() => { window.location.href = targetUrl; }, 600);
+        // 여기서 더 이상 e.preventDefault()와 setTimeout을 사용하지 않습니다.
       });
     });
   }
 
-  // 5-6. 일본어 텍스트 호버 (이벤트 위임)
+  // 5-6. 일본어 텍스트 호버 (이벤트 위임 최적화)
   document.addEventListener('mouseover', (e) => {
     const target = e.target.closest('.service-card, .repo-item, .story-content, .work-item, .vision-item');
     if (target) {
