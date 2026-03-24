@@ -120,7 +120,7 @@ if (trigger && menu) {
     } else {
       // 메뉴 닫힘: 스크롤 재개
       document.body.classList.remove('menu-open');
-      trigger.classList.remove('is-active');
+      trigger.classList.remove('is-active'); // 링크 클릭 시 X 버튼 초기화
       lenis.start(); // Lenis 스크롤 시작
     }
   };
@@ -130,16 +130,24 @@ if (trigger && menu) {
     toggleMenu();
   });
 
-  // 메뉴 내 링크 클릭 시 즉시 닫기
-  menu.querySelectorAll('a').forEach((link, index) => {
-    // CSS 변수로 애니메이션 순서 부여 (선택사항)
-    link.style.setProperty('--i', index);
-    
+  // 메뉴 내 링크 클릭 시 즉시 닫기 (지연 시간 삭제)
+  menu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       toggleMenu(false);
     });
   });
 }
+
+// [추가] 아이폰 BFCache(뒤로가기) 대응
+window.addEventListener("pageshow", (event) => {
+  // 캐시된 페이지라면 메뉴를 강제로 닫음 (X 버튼 및 오버레이 초기화)
+  if (event.persisted) {
+    document.body.classList.remove('menu-open');
+    if(trigger) trigger.classList.remove('is-active');
+    if(menu) menu.classList.remove('is-active');
+  }
+});
+
   // 5-6. 일본어 텍스트 호버 (이벤트 위임 최적화)
   document.addEventListener('mouseover', (e) => {
     const target = e.target.closest('.service-card, .repo-item, .story-content, .work-item, .vision-item');
