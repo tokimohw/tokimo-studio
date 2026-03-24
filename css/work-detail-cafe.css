@@ -342,6 +342,10 @@ body.cafe-detail-page {
     border-top: 0;
 }
 
+.photo-frame .card-text {
+    margin-top: 10px;
+}
+
 /* 5. VIBE SECTION */
 .cafe-vibe-section {
     padding: 120px 0;
