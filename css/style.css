@@ -243,7 +243,7 @@ h1, h2, h3, h4 {
    ========================================================================== */
 /* Menu Trigger (Hamburger) */
 .menu-trigger {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
@@ -344,7 +344,25 @@ body.menu-open {
 
 @media (max-width: 768px) {
   .header .nav { display: none; }
-  .menu-trigger { display: flex; }
+  .menu-trigger {
+    display: flex !important; /* 모바일에서만 강제로 보여줌 */
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 7px;
+    
+    position: fixed !important;
+    /* 노치 영역을 계산하여 안전하게 배치 */
+    top: calc(25px + env(safe-area-inset-top)) !important;
+    right: 8% !important;
+    
+    width: 30px; 
+    height: 30px;
+    cursor: pointer;
+    
+    /* 오버레이(999999)보다 무조건 위에 있도록 설정 */
+    z-index: 1000001 !important; 
+  }
   
   .header { padding: 25px 8%; }
   .section { padding: 100px 0; }
