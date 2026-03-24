@@ -457,67 +457,56 @@
 @media (max-width: 1024px) {
   .story-grid { grid-template-columns: 1fr; }
 
-  .project-gallery {
-    padding: 80px 5% 50px; /* 상하 여백 조정 */
-  }
-
+}
+@media (max-width: 1024px) {
+  /* 1. 컨테이너: 그리드 해제 및 세로 정렬 */
   .gallery-container {
-    display: flex;
-    flex-direction: column;
-    gap: 40px; /* 아이템 간 간격 축소 */
-    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 60px !important;
+    padding: 0 5%; /* 양옆 여백 확보 */
   }
 
-  /* 1. 메인 큰 이미지 최적화 */
+  /* 2. 큰 이미지: 화면 폭에 맞춤 */
   .gallery-item.large {
-    grid-column: auto; /* 그리드 설정 해제 */
-    width: 100%;
+    width: 100% !important;
+    margin: 0 !important;
   }
-
+  
   .gallery-item.large img {
-    aspect-ratio: auto; /* 이미지 본래 비율 유지 혹은 3/4 추천 */
-    height: auto;
-    max-height: 70vh; /* 너무 길어지지 않게 방지 */
+    height: auto !important;
+    aspect-ratio: auto !important;
   }
 
-  /* 2. 작은 이미지와 텍스트 그룹 */
+  /* 3. 그룹 섹션 (작은 이미지 + 텍스트): 오른쪽 치우침 해제 */
   .gallery-group {
-    grid-column: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    padding-left: 0; /* 데스크톱 여백 제거 */
-    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 60px !important;
+    padding-left: 0 !important; /* 데스크탑의 40px 여백 제거 */
+    width: 100% !important;
   }
 
+  /* 4. 개별 아이템: 90% 너비 및 우측 정렬 해제 */
   .gallery-item.small {
-    width: 100% !important; /* 화면에 꽉 차게 */
-    align-self: flex-start; /* 왼쪽 정렬 */
+    width: 100% !important;
+    max-width: 100% !important;
+    align-self: flex-start !important; /* 오른쪽 정렬 강제 해제 */
   }
 
-  .gallery-item.small img {
-    aspect-ratio: 1 / 1;
-    width: 100%;
-    /* 모바일에서는 그림자를 조금 연하게 조정하여 깔끔하게 보임 */
-    box-shadow: 10px 10px 30px rgba(0,0,0,0.3);
-  }
-
-  /* 3. 텍스트 쿼트(인용구) 최적화 */
+  /* 5. 문제의 텍스트 박스: 가독성 중심 리터칭 */
   .text-quote {
-    border-left: 2px solid var(--accent);
-    padding-left: 20px;
-    margin: 20px 0;
+    border-left: 2px solid var(--accent) !important;
+    padding: 10px 0 10px 25px !important; /* 상하 여백 추가 */
+    margin: 20px 0 !important;
+    width: auto !important;
   }
 
   .text-quote p {
-    font-size: 1.1rem; /* 모바일 가독성을 위해 크기 축소 */
-    line-height: 1.6;
-    word-break: keep-all; /* 한글 단어가 어색하게 끊기지 않게 함 */
-    font-style: italic;
-  }
-  
-  /* 텍스트 줄바꿈 강제 방지 (화면이 너무 좁을 때 대비) */
-  .text-quote br {
-    display: block; /* 텍스트 구조에 따라 유지하거나 숨김 */
+    font-size: 1.25rem !important; /* 모바일에서 너무 크지 않게 */
+    line-height: 1.6 !important;
+    word-break: keep-all !important; /* 단어 단위 줄바꿈으로 깔끔하게 */
+    text-align: left !important;
+    margin: 0 !important;
   }
 }
