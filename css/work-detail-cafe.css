@@ -520,6 +520,7 @@ body.cafe-detail-page {
         line-height: 1.5 !important;
         margin-bottom: 25px;
         max-width: 100%; /* 텍스트가 잘리지 않게 전체 너비 사용 */
+        letter-spacing: 0.3px;
     }
 
     /* 5. 제목 섹션 간격 조정 */
@@ -612,6 +613,7 @@ body.cafe-detail-page {
         line-height: 1.5 !important;
         margin-bottom: 25px;
         max-width: 100%; /* 텍스트가 잘리지 않게 전체 너비 사용 */
+        letter-spacing: 0.3px;
     }
 
     /* 5. 제목 섹션 간격 조정 */
