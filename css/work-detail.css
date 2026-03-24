@@ -496,7 +496,7 @@
 
   /* gallery-group 내의 첫 번째 아이템(두 번째 이미지)만 타겟팅 */
   .gallery-group .gallery-item.small:first-child {
-    width: 75% !important; /* 원하시는 사이즈로 조절 (예: 70%, 80% 등) */
+    width: 100% !important; /* 원하시는 사이즈로 조절 (예: 70%, 80% 등) */
     margin-left: auto;     /* 오른쪽 정렬 (중앙은 margin: 0 auto) */
     margin-right: auto;    /* 중앙 정렬을 원하시면 이 줄을 활성화하세요 */
     align-self: center !important; /* 부모가 flex일 경우 중앙 배치 */
