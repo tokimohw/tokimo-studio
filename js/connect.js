@@ -43,11 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
      * 토스트 메시지를 화면에 띄우고 자동으로 숨기는 헬퍼 함수
      */
     function showToast(element) {
-        element.classList.add('show');
+        element.classList.add('active');
         
         // 3.5초 후 제거 (CSS 트랜지션 시간 고려)
         setTimeout(() => {
-            element.classList.remove('show');
+            element.classList.remove('active');
         }, 3500);
     }
 });

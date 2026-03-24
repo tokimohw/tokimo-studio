@@ -119,7 +119,7 @@
   bottom: 40px;
   left: 50%;
   /* 수치를 100px에서 200px 정도로 늘려 확실히 숨깁니다 */
-  transform: translateX(-50%) translateY(200px); 
+  transform: translateX(-50%) translateY(200px); /* 숨겨진 상태 */
   background: #111;
   color: #fff;
   padding: 15px 30px;
