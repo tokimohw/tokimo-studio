@@ -103,37 +103,43 @@ document.addEventListener('DOMContentLoaded', () => {
   */
 
   // 5-5. 모바일 메뉴 제어
-  const trigger = document.getElementById('menu-trigger');
-  const menu = document.getElementById('mobile-menu');
+// 5-5. 모바일 메뉴 제어 (보강 버전)
+const trigger = document.getElementById('menu-trigger');
+const menu = document.getElementById('mobile-menu');
 
-  if (trigger && menu) {
-    const toggleMenu = (state) => {
-      const isActive = state !== undefined ? state : trigger.classList.toggle('is-active');
-      menu.classList.toggle('is-active', isActive);
-      
-      if (isActive) {
-        document.body.style.overflow = 'hidden';
-        lenis.stop();
-      } else {
-        document.body.style.overflow = '';
-        lenis.start();
-      }
-    };
+if (trigger && menu) {
+  const toggleMenu = (state) => {
+    // 상태 파악
+    const isActive = state !== undefined ? state : trigger.classList.toggle('is-active');
+    menu.classList.toggle('is-active', isActive);
+    
+    if (isActive) {
+      // 메뉴 열림: 스크롤 차단 및 클래스 부여
+      document.body.classList.add('menu-open');
+      lenis.stop(); // Lenis 스크롤 중지
+    } else {
+      // 메뉴 닫힘: 스크롤 재개
+      document.body.classList.remove('menu-open');
+      trigger.classList.remove('is-active');
+      lenis.start(); // Lenis 스크롤 시작
+    }
+  };
 
-    trigger.addEventListener('click', (e) => {
-      e.preventDefault();
-      toggleMenu();
+  trigger.addEventListener('click', (e) => {
+    e.preventDefault();
+    toggleMenu();
+  });
+
+  // 메뉴 내 링크 클릭 시 즉시 닫기
+  menu.querySelectorAll('a').forEach((link, index) => {
+    // CSS 변수로 애니메이션 순서 부여 (선택사항)
+    link.style.setProperty('--i', index);
+    
+    link.addEventListener('click', () => {
+      toggleMenu(false);
     });
-
-    // 메뉴 내 링크 클릭 시 즉시 닫고 이동 (지연 시간 삭제)
-    menu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        toggleMenu(false);
-        // 여기서 더 이상 e.preventDefault()와 setTimeout을 사용하지 않습니다.
-      });
-    });
-  }
-
+  });
+}
   // 5-6. 일본어 텍스트 호버 (이벤트 위임 최적화)
   document.addEventListener('mouseover', (e) => {
     const target = e.target.closest('.service-card, .repo-item, .story-content, .work-item, .vision-item');
