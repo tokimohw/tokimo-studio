@@ -113,23 +113,32 @@
 }
 
 /* 토스트 메시지 스타일 */
+/* 토스트 메시지 스타일 수정 */
 .toast-message {
   position: fixed;
   bottom: 40px;
   left: 50%;
-  transform: translateX(-50%) translateY(100px);
+  /* 수치를 100px에서 200px 정도로 늘려 확실히 숨깁니다 */
+  transform: translateX(-50%) translateY(200px); 
   background: #111;
   color: #fff;
   padding: 15px 30px;
   font-size: 13px;
   display: flex;
   gap: 15px;
-  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.4s;
   z-index: 1000;
+  
+  /* [추가] 평소에는 아예 안 보이도록 투명도 처리 */
+  opacity: 0;
+  pointer-events: none; /* 숨겨져 있을 때 클릭 방해 금지 */
 }
 
+/* 활성화 시에만 보이도록 수정 */
 .toast-message.active {
   transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* 반응형 모바일 */
