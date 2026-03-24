@@ -494,6 +494,20 @@
     align-self: flex-start !important; /* 오른쪽 정렬 강제 해제 */
   }
 
+  /* gallery-group 내의 첫 번째 아이템(두 번째 이미지)만 타겟팅 */
+  .gallery-group .gallery-item.small:first-child {
+    width: 75% !important; /* 원하시는 사이즈로 조절 (예: 70%, 80% 등) */
+    margin-left: auto;     /* 오른쪽 정렬 (중앙은 margin: 0 auto) */
+    margin-right: auto;    /* 중앙 정렬을 원하시면 이 줄을 활성화하세요 */
+    align-self: center !important; /* 부모가 flex일 경우 중앙 배치 */
+  }
+
+  .gallery-group .gallery-item.small:first-child img {
+    aspect-ratio: 1 / 1;   /* 정사각형 비율 유지 */
+    object-fit: cover;
+    width: 100%;           /* 부모(75%) 너비에 꽉 채움 */
+  }
+
   /* 5. 문제의 텍스트 박스: 가독성 중심 리터칭 */
   .text-quote {
     border-left: 2px solid var(--accent) !important;
