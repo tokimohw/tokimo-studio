@@ -461,6 +461,73 @@ body.cafe-detail-page {
     .cafe-hero {
         padding: 0;
     }
+    .description {
+        margin-bottom: 10px;
+    }
+    .bar-area .card-text p {
+        letter-spacing: -0.3px;
+        margin-top: 3px;
+        margin-bottom: 10px;
+    }
+    .photo-area .card-text h3 {
+        margin-top: 10px;
+    }
+    .photo-area .card-text p {
+        letter-spacing: -0.7px;
+    } 
+
+    /* 맨 밑 하단 next-chapter 부분 */
+    /* 1. 컨테이너: 가로 그리드를 세로 플렉스로 변경 */
+    .brand-link-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important; /* 카드 사이의 간격 */
+        width: 100% !important;
+    }
+
+    /* 2. 개별 카드 설정 */
+    .brand-card {
+        width: 100% !important;
+        min-height: 220px !important; /* 카드가 너무 납작해지지 않도록 높이 확보 */
+        padding: 40px 30px !important;
+        overflow: hidden; /* 배경 글자가 삐져나가지 않게 */
+    }
+
+    /* 3. 카드 내부 배경 글자(INSTAGRAM 등) 조정 */
+    .card-bg-text {
+        font-size: 4rem !important; /* 모바일 화면에 맞춰 크기 조정 */
+        bottom: -10px !important;
+        right: -10px !important;
+        opacity: 0.05 !important; /* 너무 튀지 않게 투명도 조절 */
+    }
+
+    /* 4. 카드 내 텍스트 및 레이아웃 */
+    .card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        z-index: 2;
+    }
+
+    .brand-card .num {
+        font-size: 12px !important;
+        margin-bottom: 15px;
+    }
+
+    .brand-card p {
+        font-size: 16px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 25px;
+        max-width: 100%; /* 텍스트가 잘리지 않게 전체 너비 사용 */
+    }
+
+    /* 5. 제목 섹션 간격 조정 */
+    .closing-title {
+        font-size: clamp(32px, 8vw, 48px) !important;
+        margin-bottom: 50px !important;
+    }
+
 }
 
 @media (max-width: 768px) {
@@ -483,5 +550,73 @@ body.cafe-detail-page {
     }
     .cafe-hero {
         padding: 0;
+    }
+    .description {
+        margin-bottom: 10px;
+    }
+
+    .bar-area .card-text p {
+        letter-spacing: -0.3px;
+        margin-top: 3px;
+        margin-bottom: 10px;
+    }  
+
+    .photo-area .card-text h3 {
+        margin-top: 10px;
+    }
+    .photo-area .card-text p {
+        letter-spacing: -0.7px;
+    } 
+
+    /* 맨 밑 하단 next-chapter 부분 */
+    /* 1. 컨테이너: 가로 그리드를 세로 플렉스로 변경 */
+    .brand-link-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important; /* 카드 사이의 간격 */
+        width: 100% !important;
+    }
+
+    /* 2. 개별 카드 설정 */
+    .brand-card {
+        width: 100% !important;
+        min-height: 220px !important; /* 카드가 너무 납작해지지 않도록 높이 확보 */
+        padding: 40px 30px !important;
+        overflow: hidden; /* 배경 글자가 삐져나가지 않게 */
+    }
+
+    /* 3. 카드 내부 배경 글자(INSTAGRAM 등) 조정 */
+    .card-bg-text {
+        font-size: 4rem !important; /* 모바일 화면에 맞춰 크기 조정 */
+        bottom: -10px !important;
+        right: -10px !important;
+        opacity: 0.05 !important; /* 너무 튀지 않게 투명도 조절 */
+    }
+
+    /* 4. 카드 내 텍스트 및 레이아웃 */
+    .card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        z-index: 2;
+    }
+
+    .brand-card .num {
+        font-size: 12px !important;
+        margin-bottom: 15px;
+    }
+
+    .brand-card p {
+        font-size: 16px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 25px;
+        max-width: 100%; /* 텍스트가 잘리지 않게 전체 너비 사용 */
+    }
+
+    /* 5. 제목 섹션 간격 조정 */
+    .closing-title {
+        font-size: clamp(32px, 8vw, 48px) !important;
+        margin-bottom: 50px !important;
     }
 }
