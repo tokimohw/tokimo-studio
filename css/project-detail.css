@@ -1,0 +1,316 @@
+/* ==========================================================================
+   TOKIMO ARCHIVE - QUIET RADICALISM (Deep Black #000)
+   ========================================================================== */
+:root {
+  --bg-color: #000000;
+  --text-color: #F4F4F4;
+  --text-muted: #888888;
+  --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* 모바일 터치 하이라이트 제거 */
+  -webkit-tap-highlight-color: transparent; 
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  word-break: keep-all; /* 모바일 텍스트 끊김 방지 */
+  overflow-x: hidden;
+}
+
+/* Body Scroll Lock Class (JS에서 제어) */
+body.no-scroll {
+  overflow: hidden;
+  height: 100dvh;
+}
+
+/* --------------------------------------------------------------------------
+   HEADER & MENU (Minimalism)
+   -------------------------------------------------------------------------- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: calc(20px + env(safe-area-inset-top)) 5vw 20px;
+  z-index: 10000; /* 메뉴 오버레이보다 높거나 같게 */
+  mix-blend-mode: difference; /* 배경에 따라 로고/버튼 색상 반전 */
+}
+
+.logo {
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--text-color);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.menu-trigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 30px;
+  z-index: 10001;
+}
+
+.menu-trigger span {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--text-color);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Menu Active State (X 아이콘 전환) */
+.menu-trigger.is-active span:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
+.menu-trigger.is-active span:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
+
+/* Menu Overlay */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh; /* 모바일 주소창 대응 완벽 차단 */
+  background-color: var(--bg-color);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 5vw;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.menu-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.menu-link {
+  font-size: clamp(40px, 8vw, 80px);
+  text-decoration: none;
+  color: var(--text-color);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  transition: opacity 0.3s;
+}
+
+.menu-link:hover, .menu-link:active { opacity: 0.5; }
+
+/* --------------------------------------------------------------------------
+   HERO SECTION (Full-width, 100dvh)
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 5vw calc(40px + env(safe-area-inset-bottom));
+}
+
+.hero-image-wrap {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+}
+
+.hero-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.6; /* 딥 블랙 무드를 위한 이미지 밝기 낮춤 */
+}
+
+.hero-metadata {
+  position: absolute;
+  top: calc(80px + env(safe-area-inset-top));
+  right: 5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: right;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-item .label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+}
+
+.meta-item .value {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.hero-title {
+  font-size: clamp(40px, 10vw, 120px);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   PROJECT SECTION (Rhythmic Layout)
+   -------------------------------------------------------------------------- */
+.projects {
+  padding: 15vh 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20vh;
+}
+
+.project-item { padding: 0 5vw; }
+
+.project-item.full { padding: 0; } /* 모바일에서 꽉 차게 */
+
+.project-figure {
+  overflow: hidden;
+  background-color: #111;
+}
+
+.project-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-item.full .project-figure img { aspect-ratio: 4 / 5; }
+.project-item.split .project-figure img { aspect-ratio: 3 / 4; }
+
+/* 터치/호버 피드백 */
+.project-figure:hover img,
+.project-figure:active img {
+  transform: scale(1.04);
+}
+
+.project-info {
+  padding: 20px 5vw;
+}
+
+.project-info h2, .text-col h2 {
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.project-info p, .text-col p {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+/* --------------------------------------------------------------------------
+   DIGITAL CARE LABEL
+   -------------------------------------------------------------------------- */
+.care-label {
+  padding: 10vh 5vw 20vh;
+  border-top: 1px solid #222;
+  margin-top: 10vh;
+}
+
+.label-content {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.label-header {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 30px;
+}
+
+.label-title {
+  font-size: 24px;
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
+}
+
+.label-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
+
+.label-barcode {
+  font-family: monospace;
+  font-size: 24px;
+  letter-spacing: 5px;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+.footer {
+  padding: 40px 5vw calc(40px + env(safe-area-inset-bottom));
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   ANIMATIONS & RESPONSIVE
+   -------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (min-width: 768px) {
+  .project-item.full { padding: 0 5vw; } /* PC에서는 여백 부여 */
+  .project-item.full .project-figure img { aspect-ratio: 16 / 9; }
+  .split { grid-template-columns: 1fr 1fr; align-items: center; }
+  .text-col { padding-right: 5vw; }
+}
