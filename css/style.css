@@ -288,7 +288,7 @@ body.menu-open {
   width: 100% !important;
   height: 100dvh !important;
   background-color: #f2f2f2 !important;
-  z-index: 100000 !important; /* 버튼보다는 아래, 본문보다는 위 */
+  z-index: 1000 !important; /* 버튼보다는 아래, 본문보다는 위 */
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.4s ease, visibility 0.4s;
