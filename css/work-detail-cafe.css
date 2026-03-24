@@ -458,6 +458,9 @@ body.cafe-detail-page {
     .spatial-grid {
         gap: 50px;
     }
+    .cafe-hero {
+        padding: 0;
+    }
 }
 
 @media (max-width: 768px) {
@@ -477,5 +480,8 @@ body.cafe-detail-page {
 
     .hero-img-box {
         height: 50vh;
+    }
+    .cafe-hero {
+        padding: 0;
     }
 }
