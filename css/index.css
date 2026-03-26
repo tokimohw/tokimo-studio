@@ -656,7 +656,644 @@
   letter-spacing: 0.05em;
   position: relative;
 }
+/* ==========================================================================
+   TOKIMO BRAND IDENTITY - INDEX.CSS
+   Design Philosophy: Japanese Editorial, Quiet Radicalism, Digital Craftsmanship
+   ========================================================================== */
 
+/* =========================
+   01. Reset & Base
+   - 프로젝트의 근간이 되는 전역 변수와 기본 스타일
+   - 하이엔드 무드를 위한 서체 및 트랜지션 정의
+========================= */
+
+:root {
+  /* 글로벌 변수: 브랜드 시그니처 컬러 및 폰트 */
+  --font-main: 'Times New Roman', serif;
+  --font-sub: 'Georgia', serif;
+  --font-mono: 'Courier New', monospace; /* 고정폭 폰트로 아카이브 느낌 강조 */
+  --transition-vogue: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  background-color: #fff;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased; /* 폰트 렌더링 최적화 */
+}
+
+.vogue-index { 
+  padding-top: 100px; 
+}
+
+/* 디자인 의도: 
+   - 가독성보다는 '무드'를 우선시하는 서체 레이어링
+   - 부드러운 트랜지션을 통해 디지털 공예(Digital Craft) 느낌 전달
+*/
+
+
+/* =========================
+   02. Layout (공통 구조)
+   - 섹션 간의 여백과 컨테이너 가이드라인
+   - 브랜드의 일관된 여백(Whitespace) 관리
+========================= */
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4%;
+  box-sizing: border-box;
+}
+
+/* vogue-label: 섹션 상단에 붙는 관리 번호 형식의 작은 라벨 */
+.vogue-label {
+  display: block;
+  margin-bottom: 20px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #888;
+}
+
+/* 디자인 의도:
+   - 1400px의 넓은 캔버스를 활용하여 매거진 같은 시각적 깊이 확보
+*/
+
+
+/* =========================
+   03. Hero Section
+   - 사이트의 첫인상을 결정하는 풀스크린 이미지 슬라이더
+   - 정적인 이미지 위에 동적인 텍스트 레이어링
+========================= */
+
+.hero-container.full-width {
+  max-width: 100%;
+  padding: 0;
+}
+
+.hero-main-img {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* 텍스트 가독성을 위한 상단/하단 그라데이션 */
+.hero-main-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
+  z-index: 2;
+}
+
+.hero-slider {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+}
+
+.hero-slider .slide {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1), transform 2s ease;
+  filter: brightness(0.8) contrast(1.1);
+}
+
+.hero-slider .slide.active {
+  opacity: 1;
+  transform: scale(1.05); /* 미세한 확대 효과 */
+}
+
+/* cover-title: 메인 슬로건 (중앙 배치) */
+.cover-title {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* hero-dots: 슬라이더 컨트롤러 (미니멀한 도트 스타일) */
+.hero-dots {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 15px;
+}
+
+.dot {
+  width: 6px; height: 6px;
+  background-color: #fff;
+  border-radius: 50%;
+  opacity: 0.3;
+  cursor: pointer;
+  transition: all 0.4s var(--transition-vogue);
+}
+
+.dot.active {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* hero-side-meta: 우측 세로 텍스트 (아카이브 정보) */
+.hero-side-meta {
+  position: absolute;
+  right: 40px; top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  pointer-events: none;
+}
+
+.meta-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  writing-mode: vertical-rl;
+  text-transform: uppercase;
+}
+
+.meta-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 15px;
+}
+
+.meta-value {
+  font-family: var(--font-main);
+  font-size: 11px;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 디자인 의도:
+   - 전체 화면을 활용하여 브랜드의 시각적 언어를 강하게 전달
+   - 메타 데이터의 세로 배치를 통해 스트릿/일본 잡지 감성 구현
+*/
+
+
+/* =========================
+   04. Mood Archive Section
+   - 브랜드 감성을 보여주는 핵심 영역
+   - 비대칭 이미지 배치 및 종이가 겹친 듯한 레이어 구조
+========================= */
+
+.mood-archive-wrap {
+  padding: 180px 0;
+  background-color: #f8f8f8;
+  overflow: hidden;
+}
+
+.archive-container {
+  position: relative;
+  max-width: 1400px;
+  height: 1200px; /* 비대칭 요소를 가두기 위한 기준 높이 */
+  margin: 0 auto;
+}
+
+/* mood-archive-item: 개별 아카이브 이미지 카드 */
+.mood-archive-item {
+  position: absolute;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06); 
+  /* --base-x/y/rot 변수를 활용한 정교한 위치 제어 */
+  transform: translate(var(--base-x), var(--base-y)) rotate(var(--base-rot));
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), z-index 0s, box-shadow 0.7s ease;
+}
+
+.mood-archive-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.15) contrast(1.05);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+}
+
+.mood-archive-item:hover {
+  transform: translate(var(--base-x), calc(var(--base-y) - 5px)) rotate(var(--base-rot));
+  z-index: 20 !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+}
+
+.mood-archive-item:hover img {
+  transform: scale(1.03);
+  filter: grayscale(0) contrast(1.1);
+}
+
+/* 인쇄물 질감을 위한 Grain 노이즈 오버레이 */
+.mood-archive-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.03);
+  background-image: repeating-radial-gradient(circle at 50% 50%, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0) 1px, transparent 2px);
+  background-size: 3px 3px;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* img-meta: 이미지 하단에 붙는 캡션 정보 */
+.img-meta {
+  position: absolute;
+  bottom: -30px; left: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: #111;
+  text-transform: uppercase;
+  opacity: 0.6;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.mood-archive-item:hover .img-meta {
+  opacity: 1;
+}
+
+/* 개별 아이템 위치 할당 */
+.item-lg { width: 42%; height: 650px; top: 5%; left: 3%; z-index: 1; --base-y: 20px; }
+.item-sm { width: 22%; height: 320px; top: 35%; right: 28%; z-index: 4; --base-x: -30px; --base-y: 40px; --base-rot: -1.2deg; }
+.item-md { width: 32%; height: 480px; bottom: 5%; right: 2%; z-index: 2; --base-x: -20px; --base-y: -30px; }
+.item-sm-square { width: 280px; height: 280px; bottom: 15%; left: 18%; z-index: 5; --base-x: 40px; --base-y: 20px; --base-rot: 1.5deg; }
+.item-tall { width: 26%; height: 720px; top: 15%; left: 42%; z-index: 3; --base-x: 10px; --base-y: -40px; --base-rot: -0.5deg; }
+
+/* 디자인 의도:
+   - 완벽한 그리드 정렬이 아닌, 흩어진 사진들 사이의 자연스러운 흐름(Flow) 강조
+   - 미세한 회전값(Rotation)을 통해 아날로그적 텐션 부여
+*/
+
+
+/* =========================
+   05. Lookbook Section
+   - 스트릿 에디토리얼 무드의 대형 비주얼 영역
+   - 텍스트와 이미지의 과감한 오버랩(Overlap)
+========================= */
+
+.lookbook-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4%;
+}
+
+.lookbook-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 80px 0;
+}
+
+.visual-img-wrap {
+  width: 65%;
+  height: 85vh;
+  position: relative;
+  overflow: hidden;
+  margin-left: -2%;
+}
+
+.visual-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+  filter: grayscale(0.1);
+}
+
+.visual-img-wrap:hover img {
+  transform: scale(1.08);
+  filter: grayscale(0);
+}
+
+.visual-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.45) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* editorial-text-wrap: 이미지와 겹치게 배치된 우측 텍스트 그룹 */
+.editorial-text-wrap {
+  position: absolute;
+  right: 5%; bottom: 15%;
+  z-index: 10;
+  text-align: right;
+}
+
+.editorial-title {
+  font-family: var(--font-main);
+  font-size: clamp(70px, 10vw, 150px);
+  line-height: 0.85;
+  color: #f8f8f8;
+  transform: rotate(-1.5deg) translate(10px, 20px); 
+  text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  margin-bottom: 30px;
+}
+
+.editorial-title em {
+  display: inline-block;
+  font-family: var(--font-sub);
+  font-style: italic;
+  font-weight: 300;
+  opacity: 0.4;
+  transform: translateX(-15px);
+}
+
+.editorial-desc {
+  max-width: 380px;
+  margin-left: auto;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: #fff;
+  opacity: 0.6;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.lookbook-meta-info {
+  position: absolute;
+  top: 50%; left: 2%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: left center;
+  display: flex;
+  gap: 20px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #888;
+  letter-spacing: 0.2em;
+}
+
+/* 디자인 의도:
+   - 'Quiet Radicalism' 컨셉에 맞춰 정갈한 폰트와 파격적인 배치의 조화
+*/
+
+
+/* =========================
+   06. Typography / Statement Section
+   - 브랜드의 철학을 텍스트만으로 표현하는 영역
+   - 압도적인 크기와 자간 조절을 통한 시각적 압력
+========================= */
+
+.statement-section {
+  position: relative;
+  padding: 220px 0;
+  background-color: #f8f8f8;
+  overflow: hidden;
+}
+
+/* 섹션 상단 인더스트리얼 세로 라인 */
+.statement-section::before {
+  content: '';
+  position: absolute;
+  top: 15%; left: 50%;
+  transform: translateX(-50%);
+  width: 1px; height: 80px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.2));
+}
+
+.statement-container {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.statement-text {
+  display: inline-block;
+  font-family: var(--font-main);
+  font-size: clamp(80px, 14vw, 200px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: #1a1a1a;
+  transform: rotate(-0.8deg); 
+  text-align: left;
+  margin-bottom: 100px;
+}
+
+/* dimmed: 텍스트 레이어 안에서 투명도가 낮은 보조 텍스트 */
+.statement-text .dimmed {
+  display: block;
+  font-family: var(--font-sub);
+  font-weight: 200;
+  font-style: italic;
+  opacity: 0.35;
+  letter-spacing: 0.02em;
+  transform: translateY(15px) rotate(0.8deg); 
+}
+
+.statement-caption {
+  max-width: 480px;
+  margin-left: auto;
+  text-align: right;
+  border-right: 1px solid rgba(0,0,0,0.1);
+  padding-right: 30px;
+}
+
+.statement-caption p {
+  font-size: 14px;
+  line-height: 2.2;
+  color: #444;
+  opacity: 0.8;
+  word-break: keep-all;
+}
+
+.catalog-num {
+  display: block;
+  margin-top: 40px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: #111;
+  opacity: 0.4;
+  text-transform: uppercase;
+}
+
+.large-typography-wrap::after {
+  content: "TOKIMO ARCHIVE / TYPE SPECIMEN";
+  position: absolute;
+  bottom: -40px; left: 0;
+  font-size: 9px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.5em;
+  opacity: 0.2;
+}
+
+
+/* =========================
+   07. Project Section
+   - 포트폴리오 혹은 아카이브 리스트 영역
+   - 정갈한 2열 그리드와 상세 정보 배치
+========================= */
+
+.project-grid-section {
+  padding: 120px 0;
+  background-color: #fff;
+}
+
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 120px 60px;
+}
+
+.archive-item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.archive-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  background-color: #1a1a1a;
+  margin-bottom: 40px;
+}
+
+.archive-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) brightness(0.9);
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), filter 1s ease;
+}
+
+.archive-item:hover img {
+  transform: scale(1.04);
+  filter: grayscale(0) brightness(1);
+}
+
+.project-overlay-info {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  backdrop-filter: blur(5px);
+  transition: opacity 0.6s ease;
+}
+
+.archive-item:hover .project-overlay-info { opacity: 1; }
+
+.archive-info h3 {
+  font-family: var(--font-main);
+  font-size: 26px;
+  font-style: italic;
+  font-weight: 400;
+  color: #111;
+  margin-bottom: 15px;
+}
+
+.archive-info p {
+  max-width: 340px;
+  font-size: 13.5px;
+  line-height: 1.9;
+  color: #666;
+  font-weight: 300;
+  word-break: keep-all;
+}
+
+
+/* =========================
+   08. Utility / Animation
+   - 레이아웃 보조 클래스 및 재사용 가능한 애니메이션
+========================= */
+
+/* offset: 미세한 위치 어긋남을 주어 정적인 정렬을 파괴 */
+.offset-up { transform: translateY(-30px); }
+.offset-down { transform: translateY(60px); }
+
+/* 디자인 의도:
+   - 기계적인 완벽함보다는 휴먼 에러가 가미된 듯한 자연스러운 배치를 지향
+*/
+
+
+/* =========================
+   09. Responsive (Mobile)
+   - 모바일 환경을 위한 레이아웃 최적화
+   - 터치 UX 및 세로 흐름 강화
+========================= */
+
+/* [1] Tablet (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .vogue-index { padding-top: 80px; }
+  .container { padding: 0 6%; }
+  .index-hero { height: 80vh; }
+  .cover-title { font-size: 12vw; }
+  .archive-grid { grid-template-columns: 1fr; gap: 80px; }
+}
+
+/* [2] Smartphone (max-width: 768px) */
+@media (max-width: 768px) {
+  section { padding: 80px 0 !important; }
+  
+  /* Hero Mobile */
+  .index-hero {
+    width: 100vw; height: 65vh; min-height: 450px;
+    margin-left: -50vw; margin-right: -50vw; left: 50%; right: 50%;
+    position: relative; overflow: hidden;
+  }
+  .cover-title { font-size: 14vw; bottom: 15%; top: auto; transform: translateX(-50%); width: 90%; }
+  .hero-side-meta { display: none; }
+
+  /* Mood Archive Mobile (Grid 2열 전환) */
+  .mood-archive-wrap { padding: 80px 20px !important; }
+  .archive-container {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    height: auto !important;
+  }
+  .mood-archive-item {
+    position: relative !important;
+    width: 100% !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  .item-lg { grid-column: span 2; }
+  .img-meta { position: relative !important; bottom: auto; margin-top: 6px; font-size: 11px !important; }
+
+  /* Lookbook Mobile (수직 정렬) */
+  .lookbook-section { padding: 80px 20px !important; }
+  .lookbook-visual { flex-direction: column; }
+  .visual-img-wrap { width: 100% !important; height: auto !important; aspect-ratio: 4/5; margin-left: 0 !important; }
+  .editorial-text-wrap { position: relative !important; right: auto; bottom: auto; text-align: center !important; padding-top: 40px; }
+  .editorial-title { font-size: 38px !important; transform: none !important; color: #1a1a1a !important; text-shadow: none !important; }
+  .editorial-desc { color: #666 !important; text-shadow: none !important; }
+  .lookbook-meta-info { position: relative !important; transform: none !important; left: auto; top: auto; justify-content: center; margin-top: 30px; }
+
+  /* Statement Mobile */
+  .statement-section { padding: 80px 20px !important; text-align: center !important; }
+  .statement-text { font-size: 42px !important; transform: none !important; }
+  .statement-text .dimmed { transform: none !important; font-size: 32px; }
+  .statement-caption { text-align: center !important; border: none !important; padding: 0 !important; }
+  
+  /* Project Mobile */
+  .archive-grid { display: flex; flex-direction: column; gap: 70px; }
+  .archive-img-wrap { aspect-ratio: 1/1; }
+}
+
+/* 디자인 의도:
+   - 모바일에서는 시각적 복잡도를 낮추고 가독성과 수직적 흐름에 집중
+   - PC의 '감성적 겹침'을 '정제된 리스트'로 전환하여 사용자 편의성 제공
+*/
 /* 태그 사이에 미세한 점 추가 (디테일) */
 .p-tech-tags span:not(:last-child)::after {
   content: '•';
