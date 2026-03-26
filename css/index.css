@@ -411,9 +411,10 @@ html, body {
   .container { padding: 0 7%; }
 
   /* --- Hero Section Full-Width (중복 코드 제거 및 정리) --- */
-  .index-hero {
+.index-hero {
     width: 100vw;
-    height: 100dvh; /* 모바일 주소창 대응 */
+    height: 65vh; /* 가로 이미지를 고려한 최적의 비율 */
+    min-height: 450px;
     margin: 0;
     padding: 0;
     position: relative;
@@ -421,52 +422,48 @@ html, body {
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
+    overflow: hidden; /* 이미지가 삐져나오지 않게 방어 */
   }
 
-  .hero-container.full-width {
-    width: 100%;
-    height: 100%;
-  }
-
-  .hero-main-img {
-    width: 100%;
-    height: 100%;
-  }
-
-  /* 이미지 확대 방지 핵심: scale 값 확인 및 object-fit 조정 */
   .hero-main-img img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 영역을 꽉 채우되 비율 유지 */
-    transform: scale(1) !important; /* JS에서 주는 scale값이 있다면 여기서 제어 */
+    object-fit: cover; 
+    object-position: center 20%; /* 피사체가 위에 있다면 20%, 중앙이면 center */
+    transform: scale(1) !important; 
   }
 
-  /* 타이포그래피: 가독성 중심 */
   .cover-title {
     width: 90%;
     font-size: 14vw;
-    line-height: 0.8;
-    top: 48%; /* 살짝 위쪽 */
+    line-height: 0.85; /* 너무 붙지 않게 살짝 여유 */
+    top: auto;         /* 이전 top 값 제거 */
+    bottom: 15%;       /* 하단 배치로 이미지 주인공 보호 */
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     text-align: center;
+    word-break: keep-all; /* 단어 단위 줄바꿈 (가독성 향상) */
   }
 
   .cover-title em {
-    font-size: 8vw;
-    margin-top: 8px;
+    font-size: 7vw;    /* 6vw보다 살짝 키워도 임팩트 있음 */
+    margin-top: 10px;
   }
 
-  /* 배경 텍스트 최적화 */
   .hero-bg-text {
-    font-size: 30vw;
-    top: 42%;
-    opacity: 0.02;
+    font-size: 22vw; 
+    top: 15%; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    opacity: 0.03;   /* 2 대신 0.03~0.05 정도로 은은하게 깔기 */
+    pointer-events: none; /* 텍스트 때문에 클릭 방해 금지 */
   }
 
   /* 인터랙션 요소 */
   .hero-dots {
-    bottom: 40px;
+    bottom: 20px;
     gap: 15px;
   }
 
