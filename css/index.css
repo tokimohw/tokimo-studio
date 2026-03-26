@@ -405,33 +405,92 @@ html, body {
 
   /* [핵심 수정] Hero 섹션 Full-width 구현 */
 /* [핵심 수정] 부모 패딩을 무시하고 양옆으로 100% 꽉 채우기 */
+/* 1. Hero 전체 높이 확보 (주소창 제외 실질 높이) */
   .index-hero {
-    width: 100vw;               /* 화면 전체 너비 */
-    position: relative;
-    left: 50%;                  /* 화면 중앙으로 이동 */
-    right: 50%;                 /* 화면 중앙으로 이동 */
-    margin-left: -50vw;         /* 화면 너비의 절반만큼 왼쪽으로 당김 */
-    margin-right: -50vw;        /* 화면 너비의 절반만큼 오른쪽으로 당김 */
-  }
-
-  .hero-container {
-    padding: 0 !important;      /* 내부 여백 완전 제거 */
-    margin: 0 !important;
-    max-width: none !important; /* 최대 너비 제한 해제 */
-  }
-
-  .hero-main-img {
-    width: 100vw;               /* 이미지 컨테이너 너비 100% */
-    height: 75vh;               /* 높이는 취향껏 조절 가능 */
+    width: 100vw;
+    height: 100vh; /* 혹은 85vh로 조절 가능 */
     margin: 0;
     padding: 0;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
   }
 
-  .hero-main-img img {
+  .hero-container.full-width {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    display: block;             /* 하단 미세한 공백 방지 */
+  }
+
+  /* 2. 메인 이미지 컨테이너 (여백 0) */
+  .hero-main-img {
+    width: 100vw;
+    height: 100%;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* 3. 모바일용 타이틀 레이아웃 (중앙 집중) */
+  .cover-title {
+    width: 90%;
+    font-size: 14vw; /* 화면 너비에 맞게 유동적 조절 */
+    line-height: 0.85;
+    top: 45%; /* 살짝 위로 배치하여 시각적 안정감 */
+    transform: translate(-50%, -50%);
+    letter-spacing: -0.06em;
+  }
+
+  .cover-title em {
+    font-size: 7vw;
+    margin-top: 10px;
+    letter-spacing: 0.02em;
+  }
+
+  /* 4. 배경 텍스트 (스트릿 무드 극대화) */
+  .hero-bg-text {
+    font-size: 35vw; /* 모바일에서 더 과감하게 크게 */
+    top: 40%;
+    opacity: 0.03; /* 아주 미세하게 배치 */
+    letter-spacing: -0.08em;
+  }
+
+  /* 5. 도트 인디케이터 (터치하기 쉽게 간격 조정) */
+  .hero-dots {
+    bottom: 30px;
+    gap: 20px; /* 터치 미스를 방지하기 위해 간격 확장 */
+  }
+
+  .dot {
+    width: 8px; /* 모바일 가시성을 위해 소폭 확대 */
+    height: 8px;
+  }
+
+  /* 6. 메타 정보 (모바일에서는 불필요할 경우 숨기거나 하단 배치) */
+  .hero-side-meta {
+    display: none; /* 화면이 복잡해 보이면 숨기는 것을 권장 */
+    /* 만약 보여주고 싶다면 아래 주석 해제하여 하단 가로 배치 */
+    /*
+    position: absolute;
+    bottom: 80px;
+    right: auto;
+    left: 20px;
+    top: auto;
+    transform: none;
+    flex-direction: row;
+    gap: 20px;
+    writing-mode: horizontal-tb;
+    */
+  }
+
+  /* 7. 오버레이 강제 밀착 (여백 박멸) */
+  .hero-main-img::after {
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to bottom, 
+      rgba(0,0,0,0.4) 0%, 
+      rgba(0,0,0,0.1) 40%, 
+      rgba(0,0,0,0.5) 100%);
   }
 
   /* 텍스트가 화면 끝에 너무 붙지 않도록 안쪽 여백 다시 주기 */

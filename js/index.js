@@ -1,36 +1,59 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
-    // 1. 등장 애니메이션 감지 (fade-up과 image-mask 모두 감지)
+    initRevealAnimation();
+    initSplitText();
+    initHoverReveal();
+    initTime();
+    initMaterialHover();
+    initHeroSlider();
+});
+
+/* ------------------------------
+1. SCROLL REVEAL
+------------------------------ */
+function initRevealAnimation() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // 이미지가 스르륵 나타나게 클래스 추가
                 entry.target.classList.add('reveal');
             }
         });
     }, { threshold: 0.1 });
 
-    // 감지할 대상들 등록
-    document.querySelectorAll('.fade-up, .image-mask, [data-split]').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-up, .image-mask, [data-split]')
+        .forEach(el => observer.observe(el));
+}
 
-    // 2. 텍스트 스플릿 로직 (기존 유지)
+/* ------------------------------
+2. TEXT SPLIT
+------------------------------ */
+function initSplitText() {
     const splitTexts = document.querySelectorAll('[data-split]');
+
     splitTexts.forEach(txt => {
         const content = txt.textContent;
         txt.textContent = '';
+
         [...content].forEach(char => {
             const parent = document.createElement('span');
             parent.className = 'split-parent';
+
             const child = document.createElement('span');
             child.className = 'split-char';
             child.textContent = char === ' ' ? '\u00A0' : char;
+
             parent.appendChild(child);
             txt.appendChild(parent);
         });
     });
+}
 
-    // 3. 리스트 호버 이미지 (index.html의 data-img 속성과 연결)
+/* ------------------------------
+3. HOVER IMAGE (LIST)
+------------------------------ */
+function initHoverReveal() {
     const listItems = document.querySelectorAll('.list-item');
+    if (listItems.length === 0) return;
+
     const hoverReveal = document.createElement('div');
     hoverReveal.className = 'hover-reveal';
     document.body.appendChild(hoverReveal);
@@ -38,96 +61,100 @@ document.addEventListener("DOMContentLoaded", () => {
     listItems.forEach(item => {
         item.addEventListener('mousemove', (e) => {
             const imgPath = item.getAttribute('data-img');
+            if (!imgPath) return;
+
             hoverReveal.style.backgroundImage = `url(${imgPath})`;
             hoverReveal.style.opacity = '1';
             hoverReveal.style.transform = `translate(${e.clientX + 20}px, ${e.clientY - 100}px)`;
         });
+
         item.addEventListener('mouseleave', () => {
             hoverReveal.style.opacity = '0';
         });
     });
-});
-
-function updateIndexTime() {
-    const options = {
-        timeZone: 'Asia/Tokyo',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-    };
-    const formatter = new Intl.DateTimeFormat('en-GB', options);
-    const tokyoTime = formatter.format(new Date());
-
-    const timeElement = document.getElementById('current-time');
-    if (timeElement) {
-        timeElement.textContent = `TOKYO / SEOUL — ${tokyoTime}`;
-    }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+/* ------------------------------
+4. TIME (TOKYO / SEOUL)
+------------------------------ */
+function initTime() {
+    function updateIndexTime() {
+        const formatter = new Intl.DateTimeFormat('en-GB', {
+            timeZone: 'Asia/Tokyo',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        });
+
+        const timeElement = document.getElementById('current-time');
+        if (timeElement) {
+            timeElement.textContent = `TOKYO / SEOUL — ${formatter.format(new Date())}`;
+        }
+    }
+
     updateIndexTime();
     setInterval(updateIndexTime, 1000);
-});
-
-/* --- [index.js] MATERIAL HOVER EFFECT --- */
-const materialItem = document.querySelector('.item-material');
-const materialLists = document.querySelectorAll('.material-list li');
-
-if (materialItem) {
-  materialItem.addEventListener('mouseenter', () => {
-    materialLists.forEach((li, index) => {
-      li.style.transitionDelay = `${index * 0.1}s`;
-      li.style.transform = 'translateX(10px)';
-    });
-  });
-
-  materialItem.addEventListener('mouseleave', () => {
-    materialLists.forEach((li) => {
-      li.style.transitionDelay = '0s';
-      li.style.transform = 'translateX(0)';
-    });
-  });
 }
 
+/* ------------------------------
+5. MATERIAL HOVER
+------------------------------ */
+function initMaterialHover() {
+    const materialItem = document.querySelector('.item-material');
+    const materialLists = document.querySelectorAll('.material-list li');
+
+    if (!materialItem) return;
+
+    materialItem.addEventListener('mouseenter', () => {
+        materialLists.forEach((li, index) => {
+            li.style.transitionDelay = `${index * 0.1}s`;
+            li.style.transform = 'translateX(10px)';
+        });
+    });
+
+    materialItem.addEventListener('mouseleave', () => {
+        materialLists.forEach((li) => {
+            li.style.transitionDelay = '0s';
+            li.style.transform = 'translateX(0)';
+        });
+    });
+}
+
+/* ------------------------------
+6. HERO SLIDER
+------------------------------ */
 function initHeroSlider() {
     const slides = document.querySelectorAll('.hero-slider .slide');
     const dots = document.querySelectorAll('.hero-dots .dot');
+
     if (slides.length === 0) return;
 
     let currentIndex = 0;
     const intervalTime = 4000;
 
     function updateSlider(index) {
-        // 모든 슬라이드와 도트 초기화
         slides.forEach(s => s.classList.remove('active'));
         dots.forEach(d => d.classList.remove('active'));
 
-        // 선택된 인덱스 활성화
         slides[index].classList.add('active');
         dots[index].classList.add('active');
+
         currentIndex = index;
     }
 
-    // 자동 재생 기능
     let slideInterval = setInterval(() => {
-        let next = (currentIndex + 1) % slides.length;
-        updateSlider(next);
+        updateSlider((currentIndex + 1) % slides.length);
     }, intervalTime);
 
-    // [추가] 도트 클릭 시 해당 슬라이드로 이동
     dots.forEach((dot, idx) => {
         dot.addEventListener('click', () => {
             updateSlider(idx);
-            
-            // 클릭 시 자동 재생 타이머 초기화 (사용자 경험 향상)
+
             clearInterval(slideInterval);
             slideInterval = setInterval(() => {
-                let next = (currentIndex + 1) % slides.length;
-                updateSlider(next);
+                updateSlider((currentIndex + 1) % slides.length);
             }, intervalTime);
         });
     });
 }
-
-document.addEventListener('DOMContentLoaded', initHeroSlider);
