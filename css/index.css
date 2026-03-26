@@ -602,7 +602,11 @@ body {
   }
   .hero-side-meta { display: none; }
 
-.mood-archive-wrap { 
+  .hero-dots, .hero-img-dots {
+    bottom: 100px;
+  }
+
+  .mood-archive-wrap { 
     padding: 80px 20px !important; 
     background-color: #f8f8f8; /* 배경색 유지 */
   }
