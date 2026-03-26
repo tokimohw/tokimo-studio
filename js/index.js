@@ -89,3 +89,45 @@ if (materialItem) {
     });
   });
 }
+
+function initHeroSlider() {
+    const slides = document.querySelectorAll('.hero-slider .slide');
+    const dots = document.querySelectorAll('.hero-dots .dot');
+    if (slides.length === 0) return;
+
+    let currentIndex = 0;
+    const intervalTime = 4000;
+
+    function updateSlider(index) {
+        // 모든 슬라이드와 도트 초기화
+        slides.forEach(s => s.classList.remove('active'));
+        dots.forEach(d => d.classList.remove('active'));
+
+        // 선택된 인덱스 활성화
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+        currentIndex = index;
+    }
+
+    // 자동 재생 기능
+    let slideInterval = setInterval(() => {
+        let next = (currentIndex + 1) % slides.length;
+        updateSlider(next);
+    }, intervalTime);
+
+    // [추가] 도트 클릭 시 해당 슬라이드로 이동
+    dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+            updateSlider(idx);
+            
+            // 클릭 시 자동 재생 타이머 초기화 (사용자 경험 향상)
+            clearInterval(slideInterval);
+            slideInterval = setInterval(() => {
+                let next = (currentIndex + 1) % slides.length;
+                updateSlider(next);
+            }, intervalTime);
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initHeroSlider);

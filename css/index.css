@@ -14,68 +14,86 @@
 /* --------------------------------------------------------------------------
    01. HERO COVER
    -------------------------------------------------------------------------- */
-.hero-container {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 4%;
-  position: relative;
+.hero-container.full-width {
+  max-width: 100%; /* 너비 제한 해제 */
+  padding: 0;      /* 좌우 여백 제거 */
 }
 
 .hero-main-img {
-  width: 100%;
-  height: 95vh;
-  position: relative;
-  overflow: hidden;
-  background-color: #111;
+  width: 100vw;    /* 화면 너비 100% */
+  height: 100vh;   /* 하이엔드 무드를 위해 전체 높이 권장 */
+  margin: 0;
 }
 
-.hero-bg-text {
+/* Slider 기초 설계 */
+.hero-slider {
   position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--font-main);
-  font-size: 22vw;
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.03);
-  letter-spacing: -0.07em;
-  z-index: 0;
-  pointer-events: none;
-  text-transform: uppercase;
-}
-
-.hero-main-img img {
-  position: relative;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   z-index: 1;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.9) contrast(1.05);
-  transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.cover-title {
+.hero-slider .slide {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  font-family: var(--font-main);
-  font-size: clamp(100px, 18vw, 260px);
-  color: #fff;
-  line-height: 0.75;
-  text-align: center;
-  pointer-events: none;
-  mix-blend-mode: difference; 
-  letter-spacing: -0.05em;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0; /* 기본적으로 숨김 */
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1), transform 2s ease;
+  filter: brightness(0.8) contrast(1.1); /* 스트릿/하이엔드 톤 조절 */
 }
 
-.cover-title em {
-  font-style: italic;
-  font-family: var(--font-sub);
-  display: block;
-  font-weight: 400;
-  margin-top: -10px;
+/* 활성화된 슬라이드 */
+.hero-slider .slide.active {
+  opacity: 1;
+  transform: scale(1.05); /* 미세한 줌 효과로 생동감 부여 */
+}
+
+/* 텍스트 가독성을 위해 overlay 강화 */
+.hero-main-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
+  z-index: 2;
+}
+
+/* 기존 타이틀 위치 조정 (슬라이드 위로) */
+.cover-title {
+  z-index: 5;
+  mix-blend-mode: normal; /* 슬라이드 이미지에 따라 difference보다 normal이 깔끔할 수 있음 */
+  text-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+
+/* --- Hero Slider Dots --- */
+.hero-dots {
+  position: absolute;
+  bottom: 40px; /* 하단 여백 */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10; /* 타이틀보다 위 혹은 아래로 취향껏 조절 */
+  display: flex;
+  gap: 15px; /* 점 사이 간격 */
+}
+
+.dot {
+  width: 6px;  /* 아주 작게 설정 (힙한 포인트) */
+  height: 6px;
+  background-color: #fff;
+  border-radius: 50%;
+  opacity: 0.3;
+  cursor: pointer;
+  transition: all 0.4s var(--transition-vogue);
+}
+
+.dot.active {
+  opacity: 1;
+  transform: scale(1.2); /* 활성화 시 미세하게 강조 */
+}
+
+.dot:hover {
+  opacity: 0.6;
 }
 
 /* 01-1. HERO SIDE META */
@@ -115,15 +133,6 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
-/* 01-2. HERO FOOTER */
-.hero-footer-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 60px 0;
-  border-bottom: 1px solid var(--border-soft);
-}
-
 /* 1. 섹션 헤더 - 압도적인 존재감 */
 .vogue-label {
   font-family: var(--font-mono); /* 고정폭 폰트로 '관리번호' 같은 느낌 */
@@ -133,14 +142,6 @@
   color: #888;
   display: block;
   margin-bottom: 20px;
-}
-
-.hero-footer-info p {
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  line-height: 1.8;
-  font-weight: 300;
-  text-transform: uppercase;
 }
 
 /* --------------------------------------------------------------------------
@@ -354,33 +355,6 @@
   padding-bottom: 8px; color: var(--text-main);
   transition: var(--transition-vogue);
 }
-
-/* --------------------------------------------------------------------------
-   [ 통합 RESPONSIVE ]
-   -------------------------------------------------------------------------- */
-
-/* @media (max-width: 1024px) {
-  .archive-grid, .philosophy-layout {
-    grid-template-columns: 1fr; gap: 80px;
-  }
-  .archive-grid {grid-column: 1 / 2; 1열만 차지하게 고정}
-  .philosophy-img-container { width: 100%; }
-  .philosophy-text { width: 100%; margin: 0; padding: 40px 20px; }
-  .philosophy-img-wrap { height: 400px; }
-  .index-philosophy { padding: 80px 0; }
-}
-
-@media (max-width: 768px) {
-  .vogue-index { padding-top: 80px; }
-  .hero-main-img { height: 75vh; }
-  .cover-title { font-size: 70px; }
-  .hero-bg-text { font-size: 30vw; }
-  .hero-side-meta { display: none; }
-  .hero-footer-info { flex-direction: column; gap: 20px; align-items: flex-start; }
-  .vogue-sub-title { font-size: 45px; }
-  .footer { padding-top: 20px !important; }
-} */
-
 
 /* ==========================================================================
    [TOKIMO] MOBILE RESPONSIVE OPTIMIZATION

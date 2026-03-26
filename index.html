@@ -46,10 +46,21 @@
 
   <main class="vogue-index">
     <section class="index-hero fade-up">
-      <div class="hero-container">
-        <div class="hero-main-img parallax-wrap">
+      <div class="hero-container full-width"> <div class="hero-main-img parallax-wrap">
           <div class="hero-bg-text">CRAFTSMANSHIP</div>
-          <img src="images/index/hero-cover.png" alt="TOKIMO Cover" class="parallax-img">
+          
+          <div class="hero-slider">
+            <img src="images/index/hero-cover1.png" alt="TOKIMO Cover 1" class="parallax-img slide active">
+            <img src="images/index/hero-cover2.png" alt="TOKIMO Cover 2" class="parallax-img slide">
+            <img src="images/index/hero-cover3.png" alt="TOKIMO Cover 3" class="parallax-img slide">
+          </div>
+          <!-- 슬라이드 점-->
+          <div class="hero-dots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+          </div>
+
           <h1 class="cover-title">TOKIMO <br><em>Archive.</em></h1>
 
           <div class="hero-side-meta">
@@ -67,8 +78,7 @@
             </div>
           </div>
         </div>
-        
-        </div>
+      </div>
     </section>
 
     <section class="project-grid-section fade-up">
