@@ -79,6 +79,32 @@
   text-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
+/* 이미지 안 투명 텍스트 */
+.hero-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  /* 1. 레이어 순위 격상: 슬라이드(1)와 오버레이(2)보다 위로 배치 */
+  z-index: 3; 
+  
+  /* 2. 타이포그래피 스타일 */
+  font-family: var(--font-main); /* 혹은 강조하고 싶은 폰트 */
+  font-size: 15vw; /* 화면 너비에 맞춘 압도적 크기 */
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+  
+  /* 3. 시각적 조절: 배경 이미지와 자연스럽게 섞이도록 설정 */
+  color: #fff;
+  opacity: 0.08; /* 0.03에서 0.08~0.1 정도로 살짝 올려 가독성 확보 */
+  pointer-events: none; /* 텍스트가 클릭이나 드래그를 방해하지 않도록 */
+  
+  /* 4. 스트릿 감성을 위한 혼합 모드 (선택 사항) */
+  mix-blend-mode: overlay; /* 배경 이미지와 대비를 이루며 겹쳐 보이게 함 */
+}
 
 /* --- Hero Slider Dots --- */
 .hero-dots {
@@ -869,7 +895,7 @@ body {
 }
 
 /* hero-dots: 슬라이더 컨트롤러 (미니멀한 도트 스타일) */
-.hero-dots {
+.hero-img-dots {
   position: absolute;
   bottom: 40px;
   left: 50%;
@@ -1417,7 +1443,7 @@ body {
   /* Hero Mobile */
   .index-hero {
     width: 100vw;
-    height: 65vh;
+    height: 100vh;
     min-height: 450px;
     margin-left: -50vw;
     margin-right: -50vw;
@@ -1616,9 +1642,9 @@ body {
   /* --- Hero Section Full-Width (중복 코드 제거 및 정리) --- */
   .index-hero {
     width: 100vw;
-    height: 65vh;
+    height: 100vh;
     /* 가로 이미지를 고려한 최적의 비율 */
-    min-height: 450px;
+    /* min-height: 450px; */
     margin: 0;
     padding: 0;
     position: relative;
@@ -1646,7 +1672,7 @@ body {
     /* 너무 붙지 않게 살짝 여유 */
     top: auto;
     /* 이전 top 값 제거 */
-    bottom: 15%;
+    bottom: 20%;
     /* 하단 배치로 이미지 주인공 보호 */
     left: 50%;
     transform: translateX(-50%);
@@ -1661,22 +1687,38 @@ body {
     margin-top: 10px;
   }
 
-  .hero-bg-text {
-    font-size: 22vw;
-    top: 15%;
+/* hero 이미지 가운데 투명 큰 텍스트 */
+.hero-bg-text {
+    position: absolute; /* 절대 위치 고정 */
+    top: 25% !important; /* 15%에서 살짝 내려 시야 확보 */
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
     text-align: center;
-    opacity: 0.03;
-    /* 2 대신 0.03~0.05 정도로 은은하게 깔기 */
+    
+    /* [핵심] Z-INDEX 부여 */
+    /* 슬라이더(1)보다 높고, 타이틀(5)보다는 낮게 설정 */
+    z-index: 2 !important; 
+    
+    /* [핵심] 투명도 보정 */
+    /* 0.03은 배경 이미지에 따라 아예 안 보일 수 있으므로 0.06~0.1 추천 */
+    opacity: 0.08 !important; 
+    
+    font-size: 22vw;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: #fff;
+    
+    /* 배경과 섞여서 고급스럽게 보이게 하는 속성 */
+    mix-blend-mode: overlay; 
     pointer-events: none;
-    /* 텍스트 때문에 클릭 방해 금지 */
+    white-space: nowrap; /* 줄바꿈 방지 */
   }
 
   /* 인터랙션 요소 */
-  .hero-dots {
-    bottom: 20px;
+  .hero-img-dots {
+    bottom: 88px;
     gap: 15px;
   }
 
