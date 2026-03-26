@@ -165,3 +165,19 @@ window.addEventListener("pageshow", (event) => {
     }
   });
 });
+
+
+/**
+ * [TOKIMO] PAGE REFRESH TO TOP
+ * 새로고침 시 스크롤 위치를 초기화하고 최상단으로 이동시킵니다.
+ */
+
+// 1. 브라우저의 기본 스크롤 복원 동작을 '수동'으로 설정
+if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+}
+
+// 2. 페이지 로드 시 즉시 맨 위로 스크롤
+window.onload = function() {
+    window.scrollTo(0, 0);
+};
