@@ -886,102 +886,176 @@ html, body {
   }
 
   /* [3. Lookbook Section - 에디토리얼 레이아웃 재구성] */
-  .lookbook-visual {
-    flex-direction: column; /* 이미지-텍스트 수직 배치 */
-    align-items: flex-start;
+
+  .lookbook-section {
+    padding: 80px 20px !important;
+    background-color: #f8f8f8;
   }
 
+  .lookbook-container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  /* 2. 레이아웃: 이미지-텍스트 수직 정렬 */
+  .lookbook-visual {
+    display: flex;
+    flex-direction: column; /* 세로 배치 */
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* 3. 이미지 최적화: 전폭 배치 및 높이 자동화 */
   .visual-img-wrap {
     width: 100% !important;
-    height: 60vh !important; /* 화면의 60% 정도만 차지 */
-    margin-left: 0 !important;
+    height: auto !important; /* 고정 높이 해제 */
+    aspect-ratio: 4 / 5; /* 모바일에서 가장 힙해 보이는 세로 비율 */
+    margin: 0 0 40px 0 !important; /* PC 오프셋 제거 및 하단 마진 */
+    overflow: hidden;
   }
 
   .visual-img-wrap img {
-    transform: scale(1) !important; /* 이미지 잘림 방지 */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1) !important; /* 모바일 과도한 확대 방지 */
   }
 
+  /* 4. 오버레이: 무드 유지를 위한 아주 약한 틴트 */
+  .visual-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0.15) 100%
+    ) !important;
+    opacity: 0.6;
+  }
+
+  /* 5. 텍스트 레이아웃: 이미지 아래 중앙 정렬 */
   .editorial-text-wrap {
-    position: relative !important; /* 이미지 위 겹침 해제 */
+    position: relative !important; /* absolute 해제 */
     right: auto !important;
     bottom: auto !important;
-    text-align: left !important; /* 모바일 기본 가독성 */
-    padding: 40px 6% 0;
     width: 100%;
+    text-align: center !important; /* 중앙 정렬 */
+    padding: 0 10px;
+    z-index: 5;
   }
 
+  /* 6. 타이틀: 가독성 중심의 리사이징 (32~40px) */
   .editorial-title {
-    font-size: 14vw !important; /* 화면 너비 기준 유동적 크기 */
-    transform: none !important; /* 회전 제거하여 가독성 확보 */
-    color: #1a1a1a !important; /* 배경이 화이트로 바뀌므로 텍스트 컬러 반전 */
-    text-shadow: none !important;
+    font-size: 38px !important; /* 32~40px 사이 최적값 */
+    line-height: 1.1;
+    color: #1a1a1a !important; /* 배경색에 맞춰 텍스트 반전 */
+    transform: none !important; /* rotate 및 translate 제거로 가독성 확보 */
     margin-bottom: 20px;
+    text-shadow: none !important;
   }
 
   .editorial-title em {
-    display: inline; /* 줄바꿈 해제 */
-    transform: none !important;
+    display: block; /* 줄바꿈을 통해 모바일 좁은 폭 대응 */
+    font-size: 24px;
     opacity: 0.4;
+    transform: none !important;
   }
 
+  /* 7. 설명문: 가벼운 가독성 (Line-height 1.8) */
   .editorial-desc {
-    max-width: 100% !important;
-    color: #555 !important;
     font-size: 14px;
-    line-height: 2.0 !important; /* 텍스트 호흡 확장 */
-    opacity: 0.7 !important;
+    line-height: 1.9 !important;
+    color: #666 !important;
+    opacity: 0.8 !important; /* 가독성을 위해 살짝 올림 */
+    max-width: 100% !important;
+    margin: 0 auto;
+    text-shadow: none !important;
+    word-break: keep-all;
   }
 
+/* 8. 메타 정보: 하단 배치 및 정렬 (12px) */
   .lookbook-meta-info {
     position: relative !important;
     top: auto !important;
     left: auto !important;
     transform: none !important;
-    margin: 30px 6% 0;
-    flex-direction: row;
-    font-size: 9px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    gap: 15px;
+    font-size: 12px !important;
+    opacity: 0.5;
+    letter-spacing: 0.1em;
   }
 
   /* [4. Typography Section - 모바일 시그니처 정돈] */
+/* 1. 섹션 기본 설정: 중앙 정렬 및 여백 (80px 20px) */
   .statement-section {
-    padding: 100px 6% !important;
-    text-align: left !important;
+    padding: 80px 20px !important;
+    text-align: center !important; /* 모바일 시각적 안정감을 위한 중앙 정렬 */
+    background-color: #f8f8f8;
   }
 
+  /* 장식 요소: 상단 세로 라인 중앙 배치 */
   .statement-section::before {
-    height: 40px; /* 라인 길이 축소 */
-    left: 6%;
-    transform: none;
+    top: 0;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    height: 40px !important;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0));
+  }
+  .statement-container {
+    padding: 0;
   }
 
+/* 2. 메인 타이포그래피: 가독성 중심 (36~44px) */
   .statement-text {
-    font-size: 18vw !important;
-    transform: none !important;
-    margin-bottom: 60px;
-    word-break: break-all;
+    font-size: 42px !important; /* 36~44px 범위 내 최적화 */
+    line-height: 1.3 !important; /* 요구사항 반영 */
+    letter-spacing: -0.02em;
+    transform: none !important; /* PC의 회전 효과 제거로 가독성 확보 */
+    margin-bottom: 40px !important;
+    word-break: keep-all; /* 한글 단어 잘림 방지 */
+    display: block;
   }
 
+  /* 3. Dimmed 텍스트: 자연스러운 흐름 */
   .statement-text .dimmed {
-    transform: none !important;
-    margin-top: 10px;
-    opacity: 0.3;
+    display: block;
+    font-size: 32px; /* 메인보다 살짝 작게 조절 */
+    opacity: 0.4 !important; /* 요구사항 0.3~0.5 반영 */
+    transform: none !important; /* 오프셋 제거 */
+    margin-top: 5px;
   }
 
+/* 4. 캡션 텍스트: 정갈한 마감 (13px) */
   .statement-caption {
-    max-width: 100% !important;
-    text-align: left !important;
-    padding-right: 0 !important;
-    border-right: none !important;
-    border-left: 1px solid rgba(0,0,0,0.1); /* 우측 라인을 좌측으로 이동 */
-    padding-left: 20px;
+    max-width: 100% !important; /* 480px 이하의 화면 대응 */
+    margin: 0 auto !important;
+    text-align: center !important; /* 중앙 정렬 */
+    border: none !important; /* PC의 라인 디테일 제거 */
+    padding: 0 !important;
   }
 
+  .statement-caption p {
+    font-size: 13px !important; /* 요구사항 반영 */
+    line-height: 1.7 !important; /* 요구사항 반영 */
+    color: #444;
+    opacity: 0.8;
+    margin-bottom: 20px;
+  }
+/* 5. 카탈로그 넘버: 아이덴티티 유지 (11px) */
   .catalog-num {
-    margin-top: 30px;
-    letter-spacing: 0.15em !important;
+    font-size: 11px !important; /* 요구사항 반영 */
+    letter-spacing: 0.2em !important; /* 자간 유지 */
+    opacity: 0.5 !important;
+    margin-top: 20px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    padding-top: 15px;
+    display: inline-block;
   }
 
+  /* 6. 기타 장식 요소 제거 */
   .large-typography-wrap::after {
-    display: none; /* 모바일에서 불필요한 장식 요소 제거 */
+    display: none !important;
   }
 }
