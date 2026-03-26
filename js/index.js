@@ -125,36 +125,49 @@ function initMaterialHover() {
 6. HERO SLIDER
 ------------------------------ */
 function initHeroSlider() {
+    // HTML의 클래스명과 정확히 일치시킵니다.
     const slides = document.querySelectorAll('.hero-slider .slide');
     const dots = document.querySelectorAll('.hero-dots .dot');
 
     if (slides.length === 0) return;
 
     let currentIndex = 0;
+    let slideInterval;
     const intervalTime = 4000;
 
     function updateSlider(index) {
+        // 모든 슬라이드와 도트에서 active 제거
         slides.forEach(s => s.classList.remove('active'));
         dots.forEach(d => d.classList.remove('active'));
 
+        // 해당 인덱스 활성화
         slides[index].classList.add('active');
-        dots[index].classList.add('active');
+        if (dots[index]) dots[index].classList.add('active');
 
         currentIndex = index;
     }
 
-    let slideInterval = setInterval(() => {
-        updateSlider((currentIndex + 1) % slides.length);
-    }, intervalTime);
+    function startInterval() {
+        stopInterval(); // 중복 방지
+        slideInterval = setInterval(() => {
+            let nextIndex = (currentIndex + 1) % slides.length;
+            updateSlider(nextIndex);
+        }, intervalTime);
+    }
 
+    function stopInterval() {
+        if (slideInterval) clearInterval(slideInterval);
+    }
+
+    // 1. 초기 상태 설정
+    updateSlider(0);
+    startInterval();
+
+    // 2. 도트 클릭 이벤트 (이 부분이 안됐던 이유는 클래스명 불일치 때문)
     dots.forEach((dot, idx) => {
         dot.addEventListener('click', () => {
             updateSlider(idx);
-
-            clearInterval(slideInterval);
-            slideInterval = setInterval(() => {
-                updateSlider((currentIndex + 1) % slides.length);
-            }, intervalTime);
+            startInterval(); // 클릭 시 시간 초기화 후 다시 시작
         });
     });
 }

@@ -16,141 +16,135 @@
 /* --------------------------------------------------------------------------
    01. HERO COVER
    -------------------------------------------------------------------------- */
+/* ==========================================================================
+   03. Hero Section - Updated with Dot Styles & Classic Title Color
+   ========================================================================== */
+
 .hero-container.full-width {
   max-width: 100%;
-  /* 너비 제한 해제 */
   padding: 0;
-  /* 좌우 여백 제거 */
 }
 
 .hero-main-img {
+  position: relative;
   width: 100vw;
-  /* 화면 너비 100% */
   height: 100vh;
-  /* 하이엔드 무드를 위해 전체 높이 권장 */
   margin: 0;
+  overflow: hidden;
+  background-color: #1a1a1a;
 }
 
-/* Slider 기초 설계 */
+/* 1. 슬라이더 레이어 */
 .hero-slider {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   z-index: 1;
 }
 
 .hero-slider .slide {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  /* 기본적으로 숨김 */
-  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1), transform 2s ease;
-  filter: brightness(0.8) contrast(1.1);
-  /* 스트릿/하이엔드 톤 조절 */
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1), transform 2.5s ease;
+  filter: brightness(0.7) contrast(1.1);
 }
 
-/* 활성화된 슬라이드 */
 .hero-slider .slide.active {
   opacity: 1;
   transform: scale(1.05);
-  /* 미세한 줌 효과로 생동감 부여 */
 }
 
-/* 텍스트 가독성을 위해 overlay 강화 */
+/* 2. 오버레이 그라데이션 */
 .hero-main-img::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5));
   z-index: 2;
+  pointer-events: none;
 }
 
-/* 기존 타이틀 위치 조정 (슬라이드 위로) */
-.cover-title {
-  z-index: 5;
-  mix-blend-mode: normal;
-  /* 슬라이드 이미지에 따라 difference보다 normal이 깔끔할 수 있음 */
-  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-/* 이미지 안 투명 텍스트 */
+/* 3. 배경 대형 텍스트 */
 .hero-bg-text {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  
-  /* 1. 레이어 순위 격상: 슬라이드(1)와 오버레이(2)보다 위로 배치 */
-  z-index: 3; 
-  
-  /* 2. 타이포그래피 스타일 */
-  font-family: var(--font-main); /* 혹은 강조하고 싶은 폰트 */
-  font-size: 15vw; /* 화면 너비에 맞춘 압도적 크기 */
+  z-index: 3;
+  font-family: var(--font-main);
+  font-size: 18vw;
   font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: -0.05em;
-  white-space: nowrap;
-  
-  /* 3. 시각적 조절: 배경 이미지와 자연스럽게 섞이도록 설정 */
   color: #fff;
-  opacity: 0.08; /* 0.03에서 0.08~0.1 정도로 살짝 올려 가독성 확보 */
-  pointer-events: none; /* 텍스트가 클릭이나 드래그를 방해하지 않도록 */
-  
-  /* 4. 스트릿 감성을 위한 혼합 모드 (선택 사항) */
-  mix-blend-mode: overlay; /* 배경 이미지와 대비를 이루며 겹쳐 보이게 함 */
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
-/* --- Hero Slider Dots --- */
+/* 4. 메인 타이틀 (이전의 세련된 색상 복구) */
+.cover-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9); /*순백색보다 살짝 투명한 고급스러운 화이트*/
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+.cover-title em {
+  font-family: var(--font-sub);
+  font-style: italic;
+  font-weight: 300;
+  opacity: 0.7; /* 강조 문구의 깊이감 조절 */
+}
+
+/* 5. 도트 컨트롤러 (클래스 복구 및 레이어 최상단) */
 .hero-dots {
   position: absolute;
-  bottom: 40px;
-  /* 하단 여백 */
+  bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 10;
-  /* 타이틀보다 위 혹은 아래로 취향껏 조절 */
+  z-index: 100; /* 클릭 보장을 위한 최상위 배치 */
   display: flex;
   gap: 15px;
-  /* 점 사이 간격 */
 }
 
 .dot {
   width: 6px;
-  /* 아주 작게 설정 (힙한 포인트) */
   height: 6px;
   background-color: #fff;
   border-radius: 50%;
   opacity: 0.3;
   cursor: pointer;
-  transition: all 0.4s var(--transition-vogue);
+  transition: all 0.4s var(--transition-vogue, ease);
+  pointer-events: auto; /* 클릭 영역 활성화 */
 }
 
 .dot.active {
   opacity: 1;
-  transform: scale(1.2);
-  /* 활성화 시 미세하게 강조 */
+  transform: scale(1.4);
 }
 
 .dot:hover {
   opacity: 0.6;
 }
 
-/* 01-1. HERO SIDE META */
+/* 6. 사이드 메타 정보 */
 .hero-side-meta {
   position: absolute;
   right: 40px;
   top: 50%;
   transform: translateY(-50%);
+  z-index: 10;
   display: flex;
   flex-direction: column;
   gap: 60px;
-  z-index: 3;
   pointer-events: none;
 }
 
