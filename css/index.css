@@ -889,7 +889,7 @@ body {
 }
 
 /* hero-dots: 슬라이더 컨트롤러 (미니멀한 도트 스타일) */
-.hero-img-dots {
+.hero-dots {
   position: absolute;
   bottom: 40px;
   left: 50%;
