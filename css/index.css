@@ -497,7 +497,7 @@ body {
 .archive-item {
   display: block;
   text-decoration: none;
-  color: inherit;
+  color: #f1f1f1;
 }
 
 .archive-img-wrap {
