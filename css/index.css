@@ -602,15 +602,71 @@ body {
   }
   .hero-side-meta { display: none; }
 
-  /* Mood Archive Mobile (Overlap 제거 및 2열 그리드) */
-  .mood-archive-wrap { padding: 80px 20px !important; }
-  .archive-container { display: grid !important; grid-template-columns: repeat(2, 1fr); gap: 24px; height: auto !important; }
-  .mood-archive-item {
-    position: relative !important; width: 100% !important; height: auto !important; transform: none !important; box-shadow: none !important;
+.mood-archive-wrap { 
+    padding: 80px 20px !important; 
+    background-color: #f8f8f8; /* 배경색 유지 */
   }
-  .item-lg { grid-column: span 2; }
-  .img-meta { position: relative !important; margin-top: 6px; font-size: 11px !important; opacity: 0.6; }
 
+  .archive-container { 
+    display: grid !important; 
+    grid-template-columns: repeat(2, 1fr) !important; /* 2열 강제 */
+    gap: 24px !important; 
+    height: auto !important; /* PC의 1200px 고정값 해제 */
+    position: relative;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .mood-archive-item {
+    /* PC에서 적용된 모든 좌표값 및 변수 무력화 */
+    position: relative !important; 
+    top: auto !important; 
+    left: auto !important; 
+    right: auto !important; 
+    bottom: auto !important;
+    width: 100% !important; 
+    height: auto !important; 
+    transform: none !important; 
+    box-shadow: none !important;
+    --base-x: 0px !important;
+    --base-y: 0px !important;
+    --base-rot: 0deg !important;
+  }
+
+  /* item-lg: 가장 큰 메인 이미지는 전폭(2열 차지) 배치하여 시각적 리듬 부여 */
+  .item-lg { 
+    grid-column: span 2 !important; 
+  }
+
+  /* 나머지 아이템들은 1열씩 차지 (자동 배치) */
+  .item-sm, .item-md, .item-sm-square, .item-tall {
+    grid-column: span 1 !important;
+  }
+
+  .mood-archive-item img {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: auto; /* 이미지 본래 비율 유지 혹은 4:5 권장 */
+    display: block;
+    filter: grayscale(0); /* 모바일에서는 가독성을 위해 흑백 해제 */
+  }
+
+  /* img-meta: 이미지 바로 아래 캡션 형태로 배치 */
+  .img-meta { 
+    position: relative !important; 
+    bottom: auto !important;
+    left: auto !important;
+    margin-top: 8px !important; 
+    font-size: 11px !important; 
+    opacity: 0.6;
+    letter-spacing: 0.1em;
+    display: block;
+  }
+
+  /* 터치 시 불필요한 호버 효과 억제 */
+  .mood-archive-item:hover {
+    transform: none !important;
+  }
   /* Lookbook Mobile (수직 정렬) */
   .lookbook-visual { flex-direction: column; }
   .visual-img-wrap { width: 100% !important; height: auto !important; aspect-ratio: 4/5; margin: 0 0 40px 0 !important; }
