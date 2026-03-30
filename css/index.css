@@ -643,7 +643,7 @@ body {
   }
   .hero-main-img img { object-position: center 20%; transform: scale(1) !important; }
   .cover-title {
-    width: 90%; font-size: 14vw; bottom: 20%; top: auto; left: 50%; transform: translateX(-50%); text-align: center;
+    width: 90%; font-size: 4vw; bottom: 50%; top: auto; left: 50%; transform: translateX(-50%); text-align: center;
   }
   .hero-bg-text {
     top: 25% !important; font-size: 22vw !important; opacity: 0.08 !important;
