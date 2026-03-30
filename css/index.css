@@ -204,11 +204,6 @@ body {
   color: rgba(255, 255, 255, 0.8);
 }
 
-/* =========================
-   04. Mood Archive Section
-   - 비대칭 이미지 레이아웃 및 종이 질감 레이어
-   - 개별 아이템의 고유 좌표 및 회전값 적용
-========================= */
 /* ============================================================
    04. Mood Archive Section
    - 구조: 12-Column Grid System
@@ -222,13 +217,14 @@ body {
 }
 
 /* [PC 전용 스타일: 769px 이상] */
+/* [PC 전용 스타일: 769px 이상] */
 @media (min-width: 769px) {
   .archive-container {
     display: grid;
-    /* 12개의 가로 칸과 가변적인 세로 칸 설정 */
     grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: minmax(100px, auto); 
-    gap: 0; /* 정밀한 overlap을 위해 gap은 0으로 설정 */
+    /* 이미지들이 비율(aspect-ratio)에 따라 높이를 스스로 결정하도록 auto 설정 */
+    grid-auto-rows: auto; 
+    gap: 0; 
     max-width: 1400px;
     margin: 0 auto;
     position: relative;
@@ -236,55 +232,62 @@ body {
 
   .mood-archive-item {
     position: relative;
-    margin: 0;
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), z-index 0s, box-shadow 0.7s ease;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.7s ease;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
-    background: #eee; /* 로딩 전 배경색 */
+    /* 이미지가 로딩되기 전에도 틀을 유지 */
+    overflow: hidden; 
   }
 
-  /* 각 아이템별 그리드 영역 할당 (비대칭 배치) */
+  /* 1. Main Editorial (4:5) */
   .item-lg { 
-    grid-column: 1 / 6; 
-    grid-row: 1 / 7; 
+    grid-column: 1 / 7; 
     z-index: 1; 
     transform: translateY(20px); 
   }
   
+  /* 2. Small Mood (4:5) */
   .item-sm { 
     grid-column: 8 / 11; 
-    grid-row: 3 / 6; 
+    align-self: center; /* 그리드 안에서 수직 중앙 정렬 */
     z-index: 4; 
     transform: rotate(-1.2deg) translate(-30px, 40px);
   }
 
+  /* 3. Interior / Wide (4:5로 통합하거나 1:1로 변경 가능) */
   .item-md { 
     grid-column: 9 / 13; 
-    grid-row: 6 / 10; 
     z-index: 2; 
     transform: translate(-20px, -30px);
   }
 
+  /* 4. Detail Square (1:1 강제) */
   .item-sm-square { 
-    grid-column: 3 / 6; 
-    grid-row: 8 / 11; 
+    grid-column: 2 / 5; 
     z-index: 5; 
     transform: translate(40px, 20px) rotate(1.5deg);
-    width: 280px; height: 280px; /* 고유 사이즈 유지 */
+  }
+  .item-sm-square img {
+    aspect-ratio: 1 / 1; /* 이 아이템만 정사각형으로 보여줌 */
   }
 
+  /* 5. Long Editorial (2:3 또는 4:6) */
   .item-tall { 
-    grid-column: 6 / 9; 
-    grid-row: 2 / 9; 
+    grid-column: 6 / 10; 
     z-index: 3; 
     transform: translate(10px, -40px) rotate(-0.5deg);
+  }
+  .item-tall img {
+    aspect-ratio: 2 / 3; /* 더 길쭉한 세로 비율 적용 */
   }
 }
 
 /* [공통 요소 스타일] */
 .mood-archive-item img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  /* 원본 비율에 상관없이 4:5 비율 틀을 강제 생성 */
+  aspect-ratio: 4 / 5; 
+  /* 틀에 맞게 이미지를 꽉 채우되, 찌그러지지 않게 중심부 위주로 자름 */
+  object-fit: cover; 
   display: block;
   filter: grayscale(0.15) contrast(1.05);
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
@@ -653,31 +656,65 @@ body {
 
   .mood-archive-wrap { 
     padding: 80px 20px; 
+    background-color: #f8f8f8;
   }
 
-  .archive-container { 
+.archive-container { 
     display: grid; 
-    grid-template-columns: repeat(2, 1fr); /* 2열 그리드 */
-    gap: 40px 20px; /* 세로 여백을 넉넉히 주어 캡션 공간 확보 */
-    height: auto; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 40px 16px; /* 세로 간격을 늘려 캡션 공간 확보 */
+    padding: 0 24px; /* 양 옆 여백 증가로 답답함 해소 */
   }
 
   .mood-archive-item {
     position: relative;
     width: 100%; 
+    height: auto;
     transform: none !important; /* PC 회전/이동 초기화 */
     box-shadow: none;
   }
 
-  .item-lg { grid-column: span 2; } /* 메인 이미지는 전폭 */
+  .mood-archive-item img {
+    width: 100%;
+    height: auto;
+    /* 모바일에서 이미지가 꽉 차 보이도록 보정 */
+    display: block;
+    object-fit: cover;
+    /* 모바일에서도 모든 이미지를 4:5로 통일하여 정갈한 그리드 유지 */
+    aspect-ratio: 4 / 5 !important;
+  }
+
+  .item-lg { 
+    grid-column: span 2; 
+    margin-bottom: 20px;
+  } /* 메인 이미지는 전폭 */
+  
+.item-lg img {
+  /* [핵심 수정] 
+       이미지가 잘리지 않게 하려면 4:5(세로형)보다 
+       정사각형(1:1)이나 약간 가로형(3:2)이 유리합니다.
+    */
+    /* aspect-ratio: 1 / 1 !important;  전체 구도를 보고 1:1 또는 4:5 중 선택 */
+    
+    /* 이미지 전체가 틀 안에 다 들어오게 하려면 'contain'을 쓰지만, 
+       여백이 생길 수 있으므로 'cover'를 유지하면서 비율만 조정하는 것을 추천합니다. 
+    */
+    object-fit: cover !important; 
+    object-position: center; /* 이미지의 중심을 기준으로 보여줌 */
+    
+    width: 100% !important;
+    height: auto !important;
+  }
+
   .item-sm, .item-md, .item-sm-square, .item-tall { grid-column: span 1; }
 
   .img-meta { 
     position: relative;
     bottom: auto;
-    margin-top: 10px;
+    margin-top: 12px;
     opacity: 0.7;
     font-size: 10px;
+    letter-spacing: 0.1em;
   }
  
   /* Lookbook Mobile (수직 정렬) */
