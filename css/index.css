@@ -581,7 +581,7 @@ body {
 @media (max-width: 1024px) {
   .vogue-index { padding-top: 80px; }
   .container { padding: 0 6%; }
-  .cover-title { font-size: 12vw; }
+  /* .cover-title { font-size: 12vw; } */
   .archive-grid { grid-template-columns: 1fr; gap: 80px; }
 }
 
