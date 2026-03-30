@@ -25,6 +25,26 @@ body.cafe-detail-page {
     /* 비율 유지하며 채움 */
 }
 
+/* =========================
+   Multilingual Typography 일어와 한국어.
+========================= */
+
+.jp.main {
+  font-family: 'Hiragino Mincho ProN', 'Noto Serif JP', serif;
+  font-size: 18px;
+  line-height: 1.8;
+  letter-spacing: 0.12em;
+  color: rgba(0,0,0,0.9);
+}
+
+.kr.sub {
+  font-family: 'Noto Sans KR', 'Inter', sans-serif;
+  font-size: 12px;
+  line-height: 1.8;
+  color: rgba(0,0,0,0.45);
+  margin-top: 10px;
+}
+
 /* 2. HERO SECTION */
 .cafe-hero {
     padding: 0 8% 100px;
@@ -89,6 +109,35 @@ body.cafe-detail-page {
 .img-wrap.shadow-matte img {
     aspect-ratio: 4/5;
     /* 세로형 비율 강제 */
+}
+
+/* 라벨 디테일 */
+.section-label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(0,0,0,0.4);
+  display: block;
+  margin-bottom: 20px;
+}
+
+/* cafe-problem */
+.cafe-problem {
+  max-width: 420px;
+  margin: 100px 0;
+  padding-left: 20px;
+}
+
+.cafe-problem .kr {
+  font-size: 15px;
+  line-height: 1.9;
+  color: rgba(0,0,0,0.75);
+}
+
+.cafe-problem .jp {
+  font-size: 12px;
+  line-height: 1.8;
+  color: rgba(0,0,0,0.45);
+  margin-top: 12px;
 }
 
 /* 4. SPATIAL DESIGN (6가지 요소) */
@@ -346,6 +395,19 @@ body.cafe-detail-page {
     margin-top: 10px;
 }
 
+/* cafe-solution */
+.cafe-solution {
+  max-width: 550px;
+  margin: 100px auto;
+  text-align: center;
+}
+
+.cafe-solution .jp.main {
+  font-size: 20px;
+  letter-spacing: 0.14em;
+}
+
+
 /* 5. VIBE SECTION */
 .cafe-vibe-section {
     padding: 120px 0;
@@ -451,6 +513,18 @@ body.cafe-detail-page {
   font-family: var(--font-label);
   font-size: 10px;
   letter-spacing: 0.2em;
+}
+
+/* cafe-result */
+.cafe-result {
+  max-width: 500px;
+  margin: 100px auto;
+  text-align: center;
+}
+
+.cafe-result .jp.main {
+  font-style: italic;
+  opacity: 0.9;
 }
 
 

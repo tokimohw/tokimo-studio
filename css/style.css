@@ -21,6 +21,21 @@
   --fs-h1: clamp(30px, 4vw, 48px);
 }
 
+/* =========================
+   KR / JP Typography System
+========================= */
+
+.kr {
+  font-family: 'Noto Sans KR', 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+.jp {
+  font-family: 'Hiragino Mincho ProN', 'Noto Serif JP', serif;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+}
+
 /* ==========================================================================
    2. BASE RESET & BODY (Page Transition & Texture)
    ========================================================================== */
@@ -29,6 +44,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 
 body {
   /* [페이지 전환 초기 상태] */
