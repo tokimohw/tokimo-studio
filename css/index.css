@@ -424,7 +424,7 @@ body {
   /* 기존 0.6 설정 주석처리: 최신 선언 0.7 적용 */
   /* opacity: 0.6; */
   opacity: 0.7; 
-  color: #fff; /* 다크 오버레이 위 가독성 확보 */
+  color: #666;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
