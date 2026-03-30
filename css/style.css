@@ -19,6 +19,10 @@
   /* Font Sizes */
   --fs-display: clamp(40px, 6vw, 68px);
   --fs-h1: clamp(30px, 4vw, 48px);
+
+  /* [추가] Safe Area Variables for global use */
+  --sat: env(safe-area-inset-top);
+  --sab: env(safe-area-inset-bottom);
 }
 
 /* =========================
@@ -57,7 +61,13 @@ body {
   font-weight: 300;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  /* overflow-x: hidden; */
+
+  /* [수정] 전역 Safe Area 대응 및 가로 스크롤 방지 */
+  padding-top: var(--sat);
+  padding-bottom: var(--sab);
   overflow-x: hidden;
+  min-height: 100dvh; /* [수정] 100vh -> 100dvh */
 }
 
 /* 전환 효과 활성화 클래스 */
@@ -113,8 +123,9 @@ h1, h2, h3, h4 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 35px 8%;
-  z-index: 10001; 
+/* [수정] 헤더 패딩에 Safe Area Top 합산 */
+  padding: calc(35px + var(--sat)) 8% 35px;
+  z-index: 10001;
 }
 
 .header .logo a {
@@ -303,23 +314,23 @@ body.menu-open {
   left: 0 !important;
   width: 100% !important;
   height: 100dvh !important;
-  background-color: #f2f2f2 !important;
-  z-index: 1000 !important; /* 버튼보다는 아래, 본문보다는 위 */
+  background-color: var(--bg-color) !important;
+  z-index: 1000000 !important; /* 버튼보다는 아래, 본문보다는 위 */
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.4s ease, visibility 0.4s;
   
-  /* 노치 끝까지 배경색 채우기 */
-  padding-top: env(safe-area-inset-top) !important;
+/* [수정] 노치 영역부터 메뉴 시작하도록 패딩 설정 */
+  padding-top: var(--sat) !important;
+  padding-bottom: var(--sab) !important;
   display: flex !important;
   flex-direction: column;
   justify-content: center;
-    align-items: center;
+  align-items: center;
 }
 
 .mobile-menu-overlay.is-active { 
   visibility: visible; 
-  transform: translateX(0); 
   opacity: 1;
 }
 
@@ -343,6 +354,8 @@ body.menu-open {
 
 @media (max-width: 768px) {
   .header .nav { display: none; }
+  .header { padding: calc(25px + var(--sat)) 8% 25px; }
+
   .menu-trigger {
     display: flex !important; /* 모바일에서만 강제로 보여줌 */
     flex-direction: column;
@@ -352,7 +365,7 @@ body.menu-open {
     
     position: fixed !important;
     /* 노치 영역을 계산하여 안전하게 배치 */
-    top: calc(25px + env(safe-area-inset-top)) !important;
+    top: calc(25px + var(--sat)) !important; /* [수정] 햄버거 버튼 위치 Safe Area 대응 */
     right: 8% !important;
     
     width: 30px; 
@@ -370,7 +383,8 @@ body.menu-open {
   .mobile-bottom-nav {
     display: flex;
     position: fixed;
-    bottom: 20px; left: 50%;
+    bottom: calc(20px + var(--sab));
+    left: 50%;
     transform: translateX(-50%);
     background: rgba(26, 26, 26, 0.9);
     backdrop-filter: blur(10px);
