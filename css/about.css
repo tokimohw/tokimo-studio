@@ -1,204 +1,125 @@
-/* ==========================================================================
-   [TOKIMO] ABOUT PAGE - VOGUE EDITORIAL STYLE REFINED
-   ========================================================================= */
+/* ============================================================
+   ABOUT PAGE: BRAND MANIFESTO SYSTEM
+============================================================ */
 
-.vogue-about { 
-  padding-top: 180px; 
+.manifesto-page {
+  background-color: #fff;
+  padding-top: 15vh;
 }
 
-.vogue-inner { 
-  max-width: 1400px; 
-  margin: 0 auto; 
-  padding: 0 8%; 
+/* 01. Headline */
+.manifesto-hero {
+  padding: 100px 5%;
+  text-align: left;
 }
 
-/* 01. COVER SECTION (Minimalist Luxury) */
-.vogue-cover {
-  height: 70vh; 
+.main-headline {
+  font-size: clamp(40px, 8vw, 120px);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.main-headline .jp {
+  display: block;
+  font-family: var(--font-main);
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.main-headline .en {
+  display: block;
+  font-family: var(--font-sub);
+  font-style: italic;
+  opacity: 0.2;
+}
+
+/* 02. Philosophy Blocks */
+.philosophy-grid {
+  padding: 200px 5%;
+}
+
+.philo-block {
   display: flex;
   align-items: center;
+  gap: 10vw;
+  margin-bottom: 30vh;
 }
 
-.vogue-title {
-  font-family: 'Times New Roman', serif;
-  font-size: clamp(50px, 8vw, 100px); /* 너무 크지 않으면서도 묵직하게 조정 */
-  font-weight: 400;
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-  color: var(--text-main);
+.philo-block.reverse {
+  flex-direction: row-reverse;
 }
 
-.vogue-title em {
-  font-style: italic;
-  font-family: 'Georgia', serif; 
-  opacity: 0.8;
-  padding-left: 10px;
-}
-
-/* 02. EDITORIAL SECTION (Image & Text Overlay) */
-.vogue-editorial { 
-  padding: 150px 0; 
-}
-
-.editorial-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr; 
-  align-items: center;
-  position: relative;
-}
-
-.editorial-image {
-  height: 750px;
+.philo-image {
+  width: 50%;
+  aspect-ratio: 4/5;
   overflow: hidden;
-  position: relative;
+  background: #f2f2f2;
 }
 
-.editorial-image img {
-  width: 100%; 
-  height: 100%; 
+.philo-image img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  filter: grayscale(0.1);
+  filter: grayscale(1);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 잡지 화보처럼 이미지 위에 툭 얹어진 텍스트 상자 */
-.editorial-content {
-  background: var(--bg-color); 
-  padding: 80px 60px;
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  max-width: 520px;
-  z-index: 2;
-  border: 1px solid var(--border-soft); 
+.philo-block:hover img {
+  transform: scale(1.05);
 }
 
-.editorial-content h2 {
-  font-family: 'Times New Roman', serif;
-  font-size: clamp(36px, 5vw, 64px);
-  font-weight: 400;
-  line-height: 1.1;
-  margin: 20px 0 35px;
-  letter-spacing: -0.02em;
+.philo-text .jp {
+  font-size: 42px;
+  line-height: 1.2;
+  margin-bottom: 30px;
 }
 
-.editorial-content p {
-  font-size: 15px;
-  line-height: 1.9;
-  color: var(--text-sub);
-  font-weight: 300;
-}
-
-/* 장식용 일본어 세로 텍스트 */
-.jp-vertical {
-  writing-mode: vertical-rl;
-  font-size: 10px;
-  letter-spacing: 0.4em;
-  opacity: 0.3;
-  position: absolute;
-  left: 30px;
-  bottom: 0;
-}
-
-/* 03. VISION GRID SECTION (Editorial Roadmap) */
-.vogue-vision { 
-  padding: 150px 0; 
-  border-top: 1px solid var(--border-soft); 
-}
-
-.vogue-sub-title {
-  font-family: 'Times New Roman', serif;
-  font-size: 32px;
-  font-weight: 400;
-  margin: 25px 0 70px;
-}
-
-.vision-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px; /* 아주 얇은 실선 효과 */
-  background: var(--border-soft); 
-}
-
-.vision-item {
-  position: relative;
-  aspect-ratio: 3 / 4;
-  overflow: hidden;
-  background: #fff;
-}
-
-.vision-item img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  filter: grayscale(0.6);
-}
-
-.vision-item:hover img {
-  transform: scale(1.08);
-  filter: grayscale(0);
-}
-
-.vision-text {
-  position: absolute;
-  bottom: 0; left: 0; width: 100%;
-  padding: 40px 30px;
-  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%); 
-  color: #fff;
-}
-
-.vision-text h3 {
-  font-family: 'Times New Roman', serif;
-  font-size: 22px; 
-  margin-bottom: 8px;
-}
-
-.vision-text p {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
+.philo-text .kr {
+  font-size: 14px;
+  line-height: 2;
+  color: #666;
+  letter-spacing: 0.05em;
   opacity: 0.8;
 }
 
-/* ==========================================================================
-   [VOGUE MODE] RESPONSIVE REFINEMENT
-   ========================================================================== */
-
-/* Tablet & Smaller Desktop */
-@media (max-width: 1024px) {
-  .editorial-grid { 
-    grid-template-columns: 1fr; 
-  }
-  .editorial-content { 
-    position: static; 
-    transform: none; 
-    padding: 60px 40px; 
-    max-width: 100%; 
-    border: none; 
-    border-top: 1px solid var(--border-soft);
-  }
-  .vision-grid { 
-    grid-template-columns: 1fr; 
-    gap: 30px; 
-    background: transparent; 
-  }
-  .vision-item { aspect-ratio: 16/10; }
+/* 03. Director's Note */
+.director-note {
+  padding: 200px 0;
+  background-color: #111;
+  color: #fff;
+  text-align: center;
 }
 
-/* Mobile */
+.note-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.director-note .jp {
+  font-size: 12px;
+  letter-spacing: 0.4em;
+  opacity: 0.5;
+  margin-bottom: 40px;
+}
+
+.signature {
+  margin-top: 60px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  opacity: 0.4;
+}
+
+/* -------------------------
+   반응형 디테일
+------------------------- */
 @media (max-width: 768px) {
-  .vogue-about { padding-top: 120px; }
-  .vogue-inner { padding: 0 6%; }
-
-  .vogue-title {
-    font-size: 44px;
-    letter-spacing: -0.01em;
+  .philo-block, .philo-block.reverse {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
   }
-
-  .editorial-image { height: 450px; }
-  .editorial-content { padding: 40px 0; }
-  
-  .jp-vertical { display: none; }
-  
-  .vogue-vision { padding: 100px 0; }
-  .vogue-sub-title { margin-bottom: 40px; }
+  .philo-image { width: 100%; }
+  .philo-text .jp { font-size: 32px; }
 }
