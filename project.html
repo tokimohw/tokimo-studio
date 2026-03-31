@@ -49,56 +49,50 @@
   <div class="mobile-menu-footer">EST. 2026 SEOUL - TOKYO</div>
 </div>
 
-<main class="project-archive">
-  <div class="archive-texture-layer"></div>
-
-  <section class="project-list-section">
-    <div class="section-inner">
-      <div class="archive-header-wrap reveal">
-        <span class="meta-label">REPOSITORIES / 24-26</span>
-        <h1 class="main-title">Curated <br>Archive.</h1>
+<main class="project-archive collage-mode">
+  <div class="noise-overlay"></div> <section class="collage-container">
+    <header class="collage-header">
+      <div class="meta-box">
+        <span class="code">TYPE: REPOSITORY_V1</span>
+        <span class="status">CURATED_SELECTION</span>
       </div>
+      <h1 class="archive-title">SELECTED <br>& ARCHIVED</h1>
+    </header>
 
-      <div class="project-list" id="project-list">
-        <article class="project-item item-left" data-img="images/index/project-lookbook.png">
-          <a href="work-detail.html" class="item-link">
-            <span class="item-num">01</span>
-            <div class="item-info">
-              <span class="item-cat">BRANDING & WEB</span>
-              <h2 class="item-title">DIGITAL FLAGSHIP V.01</h2>
-              <p class="item-copy">정교한 침묵 속에 담긴 브랜드의 첫 번째 아카이브.</p>
-            </div>
-          </a>
-        </article>
+    <div class="collage-grid">
+      <article class="collage-item size-lg pos-left" data-img="images/index/project-lookbook.png">
+        <a href="work-detail.html" class="collage-link">
+          <div class="item-meta">01 / BRANDING</div>
+          <h2 class="item-name">DIGITAL <br>FLAGSHIP</h2>
+          <p class="item-desc">정교한 침묵 속에 담긴 브랜드의 첫 번째 아카이브.</p>
+        </a>
+      </article>
 
-        <article class="project-item item-right" data-img="images/index/project-cafe.png">
-          <a href="work-detail-cafe.html" class="item-link">
-            <span class="item-num">02</span>
-            <div class="item-info">
-              <span class="item-cat">SPACE ARCHIVE</span>
-              <h2 class="item-title">SLOW COFFEE COLLECTIVE</h2>
-              <p class="item-copy">여백의 미를 통해 전달하는 느린 호흡의 공간.</p>
-            </div>
-          </a>
-        </article>
+      <article class="collage-item size-md pos-right-top" data-img="images/index/project-cafe.png">
+        <a href="work-detail-cafe.html" class="collage-link">
+          <div class="item-meta">02 / INTERIOR</div>
+          <h2 class="item-name">SLOW COFFEE <br>COLLECTIVE</h2>
+          <p class="item-desc">여백의 미를 통해 전달하는 느린 호흡의 공간.</p>
+        </a>
+      </article>
 
-        <article class="project-item item-center" data-img="images/furniture/project_03_p1.png">
-          <a href="work-detail-furniture.html" class="item-link">
-            <span class="item-num">03</span>
-            <div class="item-info">
-              <span class="item-cat">OBJECT STUDY</span>
-              <h2 class="item-title">MONOLITH : CONCRETE</h2>
-              <p class="item-copy">물성의 대비가 만드는 구조적 미학의 기록.</p>
-            </div>
-          </a>
-        </article>
-      </div>
+      <article class="collage-item size-sm pos-center-bottom" data-img="images/furniture/project_03_p1.png">
+        <a href="work-detail-furniture.html" class="collage-link">
+          <div class="item-meta">03 / OBJECT</div>
+          <h2 class="item-name">MONOLITH <br>CONCRETE</h2>
+          <p class="item-desc">물성의 대비가 만드는 구조적 미학.</p>
+        </a>
+      </article>
+      
+      <div class="floating-text t1">TOKYO — SEOUL</div>
+      <div class="floating-text t2">EST. 2026</div>
     </div>
   </section>
 
-  <div class="cursor-follow-img" id="cursor-img">
-    <div class="img-reveal-wrapper">
-      <img src="" alt="Archive Preview" id="target-img">
+  <div class="hover-reveal-cursor" id="hover-cursor">
+    <div class="reveal-inner">
+      <div class="reveal-img-noise"></div>
+      <img src="" alt="" id="reveal-target">
     </div>
   </div>
 </main>

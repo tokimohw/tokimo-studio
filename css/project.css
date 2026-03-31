@@ -1,130 +1,131 @@
-/* ============================================================
-   PROJECT ARCHIVE: STREET EDITORIAL & CURATION
-============================================================ */
+/* =========================
+   PROJECT COLLAGE SYSTEM
+   - Japanese Editorial Style
+========================= */
 
-.project-archive {
-  background-color: #f6f6f6;
+.project-archive.collage-mode {
+  background-color: #f2f2f2;
+  min-height: 200vh; /* 스크롤감을 충분히 줌 */
   position: relative;
-  min-height: 100vh;
-  padding-bottom: 20vh;
+  overflow-x: hidden;
 }
 
-/* 01. 배경 질감: index의 연장선 */
-.archive-texture-layer {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background-image: url('../images/texture/concrete-grain.png');
-  opacity: 0.04;
-  pointer-events: none;
-  z-index: 1;
+.collage-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 100px 4%;
 }
 
-/* 02. 헤더 디자인 */
-.archive-header-wrap {
-  padding: 15vh 0 10vh;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+.collage-header {
+  margin-bottom: 200px;
 }
 
-.main-title {
-  font-size: clamp(60px, 10vw, 100px);
-  line-height: 0.9;
-  letter-spacing: -0.05em;
+.archive-title {
+  font-size: 120px;
   font-weight: 800;
-  margin-top: 20px;
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
 }
 
-/* 03. 불규칙 리스트 레이아웃 (Mood-Archive 무드) */
-.project-list {
-  display: flex;
-  flex-direction: column;
-  padding-top: 100px;
-}
-
-.project-item {
+/* 콜라주 그리드 시스템 */
+.collage-grid {
+  position: relative;
   width: 100%;
-  margin-bottom: 18vh; /* 압도적인 세로 여백 */
+  height: auto;
+}
+
+.collage-item {
   position: relative;
   z-index: 2;
+  margin-bottom: 30vh; /* 아이템 간 간격 파괴 */
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 의도적인 불균형 배치 */
-.item-left { align-self: flex-start; max-width: 800px; }
-.item-right { align-self: flex-end; max-width: 900px; text-align: right; }
-.item-center { align-self: center; max-width: 700px; margin-left: -10%; }
+/* 사이즈 및 포지션 다각화 (불규칙성) */
+.size-lg .item-name { font-size: 80px; width: 60%; }
+.size-md .item-name { font-size: 56px; width: 50%; }
+.size-sm .item-name { font-size: 40px; width: 40%; }
 
-.item-link {
-  display: flex;
-  gap: 40px;
-  text-decoration: none;
-  color: #1a1a1a;
-}
+.pos-left { margin-left: 0; text-align: left; }
+.pos-right-top { margin-left: auto; text-align: right; margin-top: -100px; }
+.pos-center-bottom { margin: 0 auto; text-align: center; width: fit-content; }
 
-.item-right .item-link { flex-direction: row-reverse; }
-
-.item-num {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  opacity: 0.2;
-  margin-top: 10px;
-}
-
-/* 타이포그래피 위계 */
-.item-cat {
-  display: block;
+.item-meta {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.3em;
   opacity: 0.4;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
-.item-title {
-  font-size: 44px; /* 40px 전후의 큰 타이포 */
+.item-name {
+  line-height: 1;
   font-weight: 500;
-  letter-spacing: 0.05em;
-  line-height: 1.1;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.02em;
+  word-break: keep-all;
 }
 
-.item-copy {
+.item-desc {
   font-size: 14px;
-  line-height: 1.8;
   opacity: 0;
-  transform: translateY(10px);
+  margin-top: 20px;
   transition: all 0.5s ease;
-  margin-top: 15px;
+  max-width: 300px;
 }
 
-/* Hover Interaction */
-.project-item:hover .item-title { transform: translateX(15px); }
-.item-right:hover .item-title { transform: translateX(-15px); }
-.project-item:hover .item-copy { opacity: 0.6; transform: translateY(0); }
+.pos-right-top .item-desc { margin-left: auto; }
+.pos-center-bottom .item-desc { margin: 20px auto 0; }
 
-/* 04. Hover Reveal Image (Delayed Follow) */
-.cursor-follow-img {
+/* 호버 시 텍스트 변화 */
+.collage-item:hover .item-name { transform: translateY(-5px); }
+.collage-item:hover .item-desc { opacity: 0.6; transform: translateY(0); }
+
+/* -------------------------
+   REFINED HOVER CURSOR (이미지 최적화)
+------------------------- */
+.hover-reveal-cursor {
   position: fixed;
+  width: 300px; /* 사이즈 축소 (고급감 유지) */
+  height: 400px;
   top: 0; left: 0;
-  width: 320px; height: 440px;
   pointer-events: none;
-  z-index: 100;
+  z-index: 1000;
   opacity: 0;
   transform: scale(0.9);
-  transition: opacity 0.5s ease, transform 0.6s ease;
+  transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.cursor-follow-img.active { opacity: 1; transform: scale(1); }
+.hover-reveal-cursor.active {
+  opacity: 1;
+  transform: scale(1);
+}
 
-.img-reveal-wrapper {
+.reveal-inner {
   width: 100%; height: 100%;
   overflow: hidden;
-  filter: blur(10px); /* 초점 나간 상태로 시작 */
-  transition: filter 0.8s ease;
+  position: relative;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.15); /* Soft cinematic shadow */
 }
 
-.cursor-follow-img.active .img-reveal-wrapper { filter: blur(0); }
-
-.cursor-follow-img img {
+.reveal-inner img {
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: grayscale(1); /* 흑백으로 톤 다운 */
+  filter: blur(15px); /* 등장 시 블러 */
+  transition: filter 1s ease;
 }
+
+.hover-reveal-cursor.active img {
+  filter: blur(0);
+}
+
+/* 부유하는 텍스트 요소 */
+.floating-text {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  opacity: 0.2;
+  white-space: nowrap;
+}
+.t1 { top: -100px; right: 10%; transform: rotate(90deg); }
+.t2 { bottom: 20%; left: -50px; transform: rotate(-90deg); }
