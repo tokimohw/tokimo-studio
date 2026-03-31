@@ -132,14 +132,22 @@ body {
 }
 
 /* cover-title: 메인 슬로건 */
-.cover-title {
+.hero-title-wrap {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 38%;
+  left: 43%;
+  z-index: 5;
+}
+.cover-title {
+  /* transform: translate(-50%, -50%); */
   z-index: 5;
   text-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   color: #f1f1f1;
+  text-align: center;
+}
+.hero-description {
+  color: #f1f1f1;
+  text-align: center;
 }
 
 /* hero-dots: 슬라이더 컨트롤러 */
@@ -656,8 +664,8 @@ body {
     width: 100vw; height: 100vh; position: relative; left: 50%; transform: translateX(-50%); overflow: hidden;
   }
   .hero-main-img img { object-position: center 20%; transform: scale(1) !important; }
-  .cover-title {
-    width: 90%; font-size: 4vw; bottom: 50%; top: auto; left: 50%; transform: translateX(-50%); text-align: center;
+  .hero-title-wrap {
+    width: 90%; font-size: 3vw; bottom: 50%; top: auto; left: 50%; transform: translateX(-50%); text-align: center;
   }
   .hero-bg-text {
     top: 25% !important; font-size: 22vw !important; opacity: 0.08 !important;
