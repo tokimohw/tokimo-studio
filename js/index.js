@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initTime();
     initMaterialHover();
     initHeroSlider();
+    initParallax(); // [추가] 패럴랙스 스크롤 실행
 });
 
 /* ------------------------------
@@ -168,6 +169,28 @@ function initHeroSlider() {
         dot.addEventListener('click', () => {
             updateSlider(idx);
             startInterval(); // 클릭 시 시간 초기화 후 다시 시작
+        });
+    });
+}
+
+/* ------------------------------
+7. PARALLAX SCROLL (data-speed)
+------------------------------ */
+function initParallax() {
+    const parallaxItems = document.querySelectorAll('[data-speed]');
+    if (parallaxItems.length === 0) return;
+
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        
+        // requestAnimationFrame으로 성능 최적화
+        window.requestAnimationFrame(() => {
+            parallaxItems.forEach(item => {
+                const speed = parseFloat(item.getAttribute('data-speed'));
+                // 스크롤 값 * speed 만큼 Y축 이동 (부드러운 깊이감 형성)
+                const yPos = -(scrolled * speed);
+                item.style.transform = `translateY(${yPos}px)`;
+            });
         });
     });
 }
