@@ -1,137 +1,130 @@
-/* =========================
-   Project Archive - Tokyo Editorial
-   - 텍스처 베이스 및 레이아웃 재설계
-========================= */
+/* ============================================================
+   PROJECT ARCHIVE: STREET EDITORIAL & CURATION
+============================================================ */
 
 .project-archive {
+  background-color: #f6f6f6;
   position: relative;
-  background-color: #f6f6f6; /* 완전 흰색 지양 */
   min-height: 100vh;
-  overflow: hidden;
+  padding-bottom: 20vh;
 }
 
-/* 미세한 텍스처 (기존 노이즈 레이어와 중첩되어 깊이감 형성) */
-.archive-bg-texture {
+/* 01. 배경 질감: index의 연장선 */
+.archive-texture-layer {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
-  background-image: url('../images/texture/paper-grain.png'); /* 아주 연한 종이/콘크리트 질감 */
-  opacity: 0.05;
+  background-image: url('../images/texture/concrete-grain.png');
+  opacity: 0.04;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
-/* 프로젝트 아이템 (공간을 차지하는 섹션 구조) */
+/* 02. 헤더 디자인 */
+.archive-header-wrap {
+  padding: 15vh 0 10vh;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.main-title {
+  font-size: clamp(60px, 10vw, 100px);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  font-weight: 800;
+  margin-top: 20px;
+}
+
+/* 03. 불규칙 리스트 레이아웃 (Mood-Archive 무드) */
+.project-list {
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+}
+
 .project-item {
   width: 100%;
-  height: 180px; /* 140~180px 섹션감 부여 */
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid rgba(0,0,0,0.05); /* 얇은 라인 */
-  transition: background-color 0.4s ease;
+  margin-bottom: 18vh; /* 압도적인 세로 여백 */
+  position: relative;
+  z-index: 2;
 }
+
+/* 의도적인 불균형 배치 */
+.item-left { align-self: flex-start; max-width: 800px; }
+.item-right { align-self: flex-end; max-width: 900px; text-align: right; }
+.item-center { align-self: center; max-width: 700px; margin-left: -10%; }
 
 .item-link {
-  width: 100%;
   display: flex;
-  align-items: center;
+  gap: 40px;
   text-decoration: none;
   color: #1a1a1a;
-  gap: 60px;
 }
 
-/* 레이아웃 깨기: 의도적인 불규칙 정렬 */
-.project-item:nth-child(2) { padding-left: 80px; }
-.project-item:nth-child(3) { padding-left: 30px; }
-.project-item:nth-child(even) { background-color: rgba(0,0,0,0.01); }
+.item-right .item-link { flex-direction: row-reverse; }
 
-/* 타이포그래피 */
-.item-category {
-  min-width: 180px;
+.item-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  opacity: 0.2;
+  margin-top: 10px;
+}
+
+/* 타이포그래피 위계 */
+.item-cat {
+  display: block;
   font-family: var(--font-mono);
   font-size: 11px;
+  letter-spacing: 0.3em;
   opacity: 0.4;
-  letter-spacing: 0.2em;
-  transition: opacity 0.4s ease;
+  margin-bottom: 15px;
 }
 
 .item-title {
-  font-family: var(--font-main);
-  font-size: 40px;
+  font-size: 44px; /* 40px 전후의 큰 타이포 */
   font-weight: 500;
-  letter-spacing: 0.08em;
-  line-height: 1;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .item-copy {
-  font-size: 13px;
-  opacity: 0.5;
-  margin-top: 8px;
-  font-weight: 300;
-  transition: opacity 0.4s ease;
+  font-size: 14px;
+  line-height: 1.8;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.5s ease;
+  margin-top: 15px;
 }
 
-/* Hover 인터랙션 */
-.project-item:hover .item-title {
-  transform: translateX(12px);
-}
+/* Hover Interaction */
+.project-item:hover .item-title { transform: translateX(15px); }
+.item-right:hover .item-title { transform: translateX(-15px); }
+.project-item:hover .item-copy { opacity: 0.6; transform: translateY(0); }
 
-.project-item:hover .item-copy {
-  opacity: 0.8;
-}
-
-.project-item:hover .item-category {
-  opacity: 1;
-}
-
-/* -------------------------
-   Hover Reveal Image 연출 (핵심)
-------------------------- */
+/* 04. Hover Reveal Image (Delayed Follow) */
 .cursor-follow-img {
   position: fixed;
   top: 0; left: 0;
-  width: 280px;
-  height: 380px;
+  width: 320px; height: 440px;
   pointer-events: none;
-  z-index: 1000;
+  z-index: 100;
   opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 0.4s ease, transform 0.6s ease;
+  transform: scale(0.9);
+  transition: opacity 0.5s ease, transform 0.6s ease;
+}
+
+.cursor-follow-img.active { opacity: 1; transform: scale(1); }
+
+.img-reveal-wrapper {
+  width: 100%; height: 100%;
   overflow: hidden;
+  filter: blur(10px); /* 초점 나간 상태로 시작 */
+  transition: filter 0.8s ease;
 }
 
-.cursor-follow-img.active {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.img-wrapper {
-  width: 100%;
-  height: 100%;
-  background-color: #eee;
-}
+.cursor-follow-img.active .img-reveal-wrapper { filter: blur(0); }
 
 .cursor-follow-img img {
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   object-fit: cover;
-  filter: blur(8px); /* 최초 블러 */
-  transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.cursor-follow-img.active img {
-  filter: blur(0); /* 호버 시 선명하게 */
-}
-
-/* 모바일 대응 */
-@media (max-width: 768px) {
-  .cursor-follow-img { display: none; }
-  .project-item {
-    height: auto;
-    padding: 60px 0 !important;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .item-link { flex-direction: column; gap: 20px; align-items: flex-start; }
-  .item-title { font-size: 32px; }
+  filter: grayscale(1); /* 흑백으로 톤 다운 */
 }

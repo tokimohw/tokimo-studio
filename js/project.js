@@ -1,43 +1,38 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const cursorImg = document.getElementById("cursor-img");
+  const cursorFollow = document.getElementById("cursor-img");
   const targetImg = document.getElementById("target-img");
   const projectItems = document.querySelectorAll(".project-item");
 
   let mouseX = 0, mouseY = 0;   // 실제 마우스 위치
-  let currentX = 0, currentY = 0; // 이미지가 따라갈 위치
+  let currentX = 0, currentY = 0; // 이미지가 부드럽게 따라갈 위치
 
-  // 1. 부드러운 추적 애니메이션 루프
-  function animate() {
-    // 0.08: 따라오는 속도 (값이 낮을수록 더 묵직하게 따라옴)
-    currentX += (mouseX - currentX) * 0.08;
-    currentY += (mouseY - currentY) * 0.08;
+  const speed = 0.08; // 낮을수록 딜레이가 묵직함 (고급스러운 느낌)
 
-    // 이미지의 정중앙이 커서에 오도록 보정 (-140, -190)
-    cursorImg.style.left = `${currentX - 140}px`;
-    cursorImg.style.top = `${currentY - 190}px`;
+  function lerpAnimate() {
+    currentX += (mouseX - currentX) * speed;
+    currentY += (mouseY - currentY) * speed;
 
-    requestAnimationFrame(animate);
+    // 이미지 센터링 보정 (-160, -220)
+    cursorFollow.style.transform = `translate(${currentX - 160}px, ${currentY - 220}px)`;
+    requestAnimationFrame(lerpAnimate);
   }
-  animate();
+  lerpAnimate();
 
-  // 2. 마우스 좌표 업데이트
   window.addEventListener("mousemove", (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
   });
 
-  // 3. 아이템 호버 이벤트
   projectItems.forEach((item) => {
-    item.onmouseenter = () => {
+    item.addEventListener("mouseenter", () => {
       const imgPath = item.getAttribute("data-img");
       if (imgPath) {
         targetImg.src = imgPath;
-        cursorImg.classList.add("active");
+        cursorFollow.classList.add("active");
       }
-    };
-
-    item.onmouseleave = () => {
-      cursorImg.classList.remove("active");
-    };
+    });
+    item.addEventListener("mouseleave", () => {
+      cursorFollow.classList.remove("active");
+    });
   });
 });
