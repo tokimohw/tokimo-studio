@@ -1,30 +1,43 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const projectList = document.getElementById("project-list");
-  const cursorFollow = document.getElementById("cursor-img");
+  const cursorImg = document.getElementById("cursor-img");
   const targetImg = document.getElementById("target-img");
   const projectItems = document.querySelectorAll(".project-item");
 
-  // 1. 마우스 이동에 따른 이미지 위치 추적
-  window.addEventListener("mousemove", (e) => {
-    const x = e.clientX;
-    const y = e.clientY;
+  let mouseX = 0, mouseY = 0;   // 실제 마우스 위치
+  let currentX = 0, currentY = 0; // 이미지가 따라갈 위치
 
-    // 이미지가 마우스 정중앙에 오도록 좌표 보정
-    cursorFollow.style.transform = `translate(${x - 210}px, ${y - 270}px)`;
+  // 1. 부드러운 추적 애니메이션 루프
+  function animate() {
+    // 0.08: 따라오는 속도 (값이 낮을수록 더 묵직하게 따라옴)
+    currentX += (mouseX - currentX) * 0.08;
+    currentY += (mouseY - currentY) * 0.08;
+
+    // 이미지의 정중앙이 커서에 오도록 보정 (-140, -190)
+    cursorImg.style.left = `${currentX - 140}px`;
+    cursorImg.style.top = `${currentY - 190}px`;
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // 2. 마우스 좌표 업데이트
+  window.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
   });
 
-  // 2. 각 아이템 호버 시 이미지 교체 및 활성화
+  // 3. 아이템 호버 이벤트
   projectItems.forEach((item) => {
-    item.addEventListener("mouseenter", () => {
+    item.onmouseenter = () => {
       const imgPath = item.getAttribute("data-img");
       if (imgPath) {
         targetImg.src = imgPath;
-        cursorFollow.classList.add("active");
+        cursorImg.classList.add("active");
       }
-    });
+    };
 
-    item.addEventListener("mouseleave", () => {
-      cursorFollow.classList.remove("active");
-    });
+    item.onmouseleave = () => {
+      cursorImg.classList.remove("active");
+    };
   });
 });

@@ -1,132 +1,137 @@
 /* =========================
-   Project List Section
-   - 편집샵 큐레이션 레이아웃
-   - Hover Reveal Interaction
+   Project Archive - Tokyo Editorial
+   - 텍스처 베이스 및 레이아웃 재설계
 ========================= */
 
-.project-list-section {
-  padding: 150px 0;
-  background-color: #fff;
+.project-archive {
+  position: relative;
+  background-color: #f6f6f6; /* 완전 흰색 지양 */
+  min-height: 100vh;
+  overflow: hidden;
 }
 
-/* 상단 메타 라벨 */
-.section-meta {
+/* 미세한 텍스처 (기존 노이즈 레이어와 중첩되어 깊이감 형성) */
+.archive-bg-texture {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('../images/texture/paper-grain.png'); /* 아주 연한 종이/콘크리트 질감 */
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 프로젝트 아이템 (공간을 차지하는 섹션 구조) */
+.project-item {
+  width: 100%;
+  height: 180px; /* 140~180px 섹션감 부여 */
   display: flex;
   align-items: center;
-  gap: 30px;
-  margin-bottom: 100px;
-  opacity: 0.3;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.3em;
-}
-
-.section-meta .line {
-  flex: 1;
-  height: 1px;
-  background-color: #000;
-}
-
-/* 프로젝트 아이템 리스트 */
-.project-item {
-  position: relative;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* 극도로 얇은 라인 */
+  border-bottom: 1px solid rgba(0,0,0,0.05); /* 얇은 라인 */
+  transition: background-color 0.4s ease;
 }
 
 .item-link {
-  display: block;
-  padding: 110px 0; /* 프로젝트 간 Spacing (100~140px) */
+  width: 100%;
+  display: flex;
+  align-items: center;
   text-decoration: none;
   color: #1a1a1a;
-  transition: var(--transition-vogue);
+  gap: 60px;
 }
 
+/* 레이아웃 깨기: 의도적인 불규칙 정렬 */
+.project-item:nth-child(2) { padding-left: 80px; }
+.project-item:nth-child(3) { padding-left: 30px; }
+.project-item:nth-child(even) { background-color: rgba(0,0,0,0.01); }
+
+/* 타이포그래피 */
 .item-category {
+  min-width: 180px;
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
+  font-size: 11px;
   opacity: 0.4;
-  margin-bottom: 20px;
-  transition: var(--transition-brand);
+  letter-spacing: 0.2em;
+  transition: opacity 0.4s ease;
 }
 
 .item-title {
-  font-size: clamp(28px, 4vw, 40px); /* 28~40px 요구사항 반영 */
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
+  font-family: var(--font-main);
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .item-copy {
-  margin-top: 15px;
   font-size: 13px;
-  opacity: 0; /* 평소에는 숨김 */
-  transform: translateY(10px);
-  transition: all 0.5s ease;
-  color: #666;
+  opacity: 0.5;
+  margin-top: 8px;
+  font-weight: 300;
+  transition: opacity 0.4s ease;
 }
 
-/* Hover 인터랙션: 텍스트 살짝 이동 및 설명 등장 */
+/* Hover 인터랙션 */
 .project-item:hover .item-title {
-  transform: translateX(15px); /* 텍스트 살짝 이동 */
+  transform: translateX(12px);
+}
+
+.project-item:hover .item-copy {
+  opacity: 0.8;
 }
 
 .project-item:hover .item-category {
   opacity: 1;
-  transform: translateX(10px);
-}
-
-.project-item:hover .item-copy {
-  opacity: 1;
-  transform: translateY(0) translateX(15px);
 }
 
 /* -------------------------
-   Hover Reveal Image (Cursor Follow)
+   Hover Reveal Image 연출 (핵심)
 ------------------------- */
 .cursor-follow-img {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 420px; /* 에디토리얼 비율 */
-  height: 540px;
+  top: 0; left: 0;
+  width: 280px;
+  height: 380px;
   pointer-events: none;
   z-index: 1000;
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s ease, visibility 0.5s, transform 0.1s linear;
+  transform: scale(0.95);
+  transition: opacity 0.4s ease, transform 0.6s ease;
+  overflow: hidden;
 }
 
 .cursor-follow-img.active {
   opacity: 1;
-  visibility: visible;
+  transform: scale(1);
 }
 
 .img-wrapper {
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.1); /* Soft Shadow */
-  transform: scale(0.9);
-  filter: blur(10px); /* 등장 시 Blur */
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
-}
-
-.cursor-follow-img.active .img-wrapper {
-  transform: scale(1); /* Scale 약간 확대 */
-  filter: blur(0);
+  background-color: #eee;
 }
 
 .cursor-follow-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: blur(8px); /* 최초 블러 */
+  transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Mobile 대응: Hover 불가능하므로 이미지 항상 노출 구조로 변경 */
+.cursor-follow-img.active img {
+  filter: blur(0); /* 호버 시 선명하게 */
+}
+
+/* 모바일 대응 */
 @media (max-width: 768px) {
-  .item-link { padding: 60px 0; }
   .cursor-follow-img { display: none; }
-  .item-copy { opacity: 0.6; transform: none; font-size: 12px; }
+  .project-item {
+    height: auto;
+    padding: 60px 0 !important;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .item-link { flex-direction: column; gap: 20px; align-items: flex-start; }
+  .item-title { font-size: 32px; }
 }
