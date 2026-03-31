@@ -452,15 +452,12 @@ body {
 
 .statement-section {
   position: relative;
-  padding: 250px 0;
+  padding: 280px 0; /* 상하 여백을 충분히 주어 텍스트에 집중하게 함 */
   background-color: #fff;
   overflow: hidden;
-/* 부모 요소에서 자식들을 중앙으로 모음 */
   display: flex;
-  flex-direction: column;
-  align-items: center; 
   justify-content: center;
-  text-align: center;
+  align-items: center;
 }
 
 /* 인더스트리얼 느낌의 상단 세로 가이드 라인 */
@@ -476,45 +473,41 @@ body {
 }
 
 .statement-container {
-  position: relative;
-  max-width: 1400px;
-  margin: 0 auto;
-  /* padding: 0 5%; */
-}
-
-.large-typography-wrap {
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
+  /* padding: 0 5%; 를 제거하여 좌우 불균형 해소 */
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.statement-text {
-  display: block;
-  width: fit-content; /* 텍스트 길이에 딱 맞게 너비 설정 */
-  font-family: var(--font-main);
-  font-size: clamp(80px, 15vw, 220px);
-  font-weight: 900;
-  line-height: 0.9;
-  letter-spacing: -0.05em;
-  color: #1a1a1a;
-  /* [교정] 회전축을 중앙으로 고정하여 오른쪽으로 밀림 방지 */
-  transform: rotate(-1deg);
-  transform-origin: center center; 
-  margin: 0 auto 20px auto;
+.large-typography-wrap {
+  text-align: center;
+  /* 텍스트가 화면 너비를 넘지 않도록 안전장치 */
+  width: 100vw; 
+  max-width: 1600px;
 }
 
+.statement-text {
+  display: block;
+  font-family: var(--font-main);
+  /* clamp를 통해 해상도에 따라 유연하게 크기 조절 */
+  font-size: clamp(80px, 15vw, 240px);
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+  color: #111;
+  /* 중앙 정렬 상태에서 미세한 회전 */
+  transform: rotate(-1deg);
+  transform-origin: center center;
+}
 
 .statement-text .dimmed {
   display: block;
   font-family: var(--font-sub);
-  font-weight: 300;
   font-style: italic;
-  opacity: 0.15; /* 0.3~0.5 범위 준수 */
-  transform: rotate(1deg) translateY(10px);
-  transform-origin: center center;
+  font-weight: 300;
+  opacity: 0.1; /* 매우 연하게 처리하여 공간감을 형성 */
+  transform: rotate(1deg) translateY(15px);
 }
 
 .statement-caption {
@@ -534,18 +527,16 @@ body {
 }
 
 .catalog-num {
+  margin-top: 100px;
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.4em;
+  font-size: 10px;
+  letter-spacing: 0.5em;
   color: #111;
-  opacity: 0.3;
-  text-transform: uppercase;
+  opacity: 0.2;
   border-top: 1px solid rgba(0,0,0,0.1);
-  padding-top: 20px;
-  margin: 0 auto;
+  padding-top: 25px;
 }
-
 
 /* =========================
    07. Project Section
@@ -760,9 +751,9 @@ body {
   .lookbook-meta-info { position: relative !important; transform: none !important; justify-content: flex-start; padding: 0 20px; margin-top: 20px; } 
 
   /* Statement Mobile */
-  .statement-section { padding: 150px 20px !important; }
-  .statement-text { font-size: 14vw !important; transform: none !important; width: 100%; }
-  .statement-text .dimmed { transform: none !important; font-size: 12vw !important; opacity: 0.3 !important; }
+  .statement-section { padding: 180px 20px !important; }
+  .statement-text { font-size: 15vw !important; transform: none !important; letter-spacing: -0.3em; }
+  .statement-text .dimmed { transform: none !important; font-size: 12vw !important; margin-top: 5px; }
   .statement-caption { border: none !important; padding: 0 !important; }
 
   /* Project Mobile */
