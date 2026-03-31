@@ -1,214 +1,130 @@
-/* ==========================================================================
-   [TOKIMO] PROJECT REPOSITORY STYLE
-   ========================================================================= */
+/* ============================================================
+   PROJECT LIST SECTION (REFINED)
+   - Editorial List Layout
+   - Cursor Follow Hover Reveal
+============================================================ */
 
-.project-archive {
-  padding-top: 120px;
+.project-grid-section {
+  padding: 100px 0 200px;
   background-color: #fff;
 }
 
-/* --------------------------------------------------------------------------
-   01. ARCHIVE HEADER
-   -------------------------------------------------------------------------- */
-.archive-header {
-  padding: 100px 0 60px;
-}
-
 .section-inner {
-  max-width: 1400px;
+  max-width: 1600px; /* 더 넓은 여백 확보 */
   margin: 0 auto;
   padding: 0 5%;
 }
 
-.hero-label {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: #999;
-  display: block;
-  margin-bottom: 20px;
-}
-
-.archive-title {
-  font-family: 'Times New Roman', serif;
-  font-size: clamp(40px, 8vw, 100px);
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-  color: #111;
-  margin-bottom: 60px;
-}
-
-/* 필터 버튼 - 아주 미니멀하게 */
-.archive-filter {
-  display: flex;
-  gap: 30px;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 20px;
-}
-
-.filter-btn {
-  background: none;
-  border: none;
-  font-family: var(--font-label);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: #bbb;
-  cursor: pointer;
-  transition: color 0.4s ease;
-  padding: 0;
-}
-
-.filter-btn.active, .filter-btn:hover {
-  color: #111;
-}
-
-/* --------------------------------------------------------------------------
-   02. PROJECT GRID
-   -------------------------------------------------------------------------- */
+/* 01. Grid -> List 전환 */
 .project-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2열 유지 */
-  gap: 120px 60px;
-  padding-top: 80px;
-  padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* 간격 대신 패딩으로 조절 */
 }
 
+/* 02. 카드 UI 제거 및 리스트 스타일링 */
 .project-card {
   position: relative;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08); /* 얇은 라인으로 구분 */
+  background: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  transition: var(--transition-vogue);
 }
 
 .card-link {
+  display: flex;
+  align-items: center;
+  padding: 80px 0; /* 압도적인 세로 여백 */
   text-decoration: none;
-  color: inherit;
-  display: block;
+  color: #1a1a1a;
+  cursor: none; /* 마우스 커서 대신 이미지가 따라오게 함 */
 }
 
-/* 썸네일 영역 - Matte & Raw */
+/* 03. 이미지 레이어 (PC에서는 숨김 및 플로팅) */
 .card-thumb {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10;
+  position: fixed; /* 마우스를 따라다니도록 고정 */
+  top: 0;
+  left: 0;
+  width: 400px; /* 에디토리얼한 이미지 크기 */
+  height: 500px;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
-  background-color: #f7f7f7;
-  margin-bottom: 30px;
+}
+
+.project-card:hover .card-thumb {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .card-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(1) brightness(0.95);
-  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), filter 1s ease;
+  filter: grayscale(0.2) contrast(1.1);
 }
 
-.project-card:hover .card-thumb img {
-  transform: scale(1.05);
-  filter: grayscale(0) brightness(1);
-}
-
-.card-status {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-family: var(--font-mono);
-  font-size: 8px;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 6px 12px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-/* 정보 영역 */
+/* 04. 타이포그래피 계층 (JP 메인) */
 .card-info {
-  position: relative;
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+  gap: 40px;
 }
 
 .info-top {
   display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 15px;
-}
-
-.p-num {
+  gap: 20px;
+  min-width: 250px;
+  opacity: 0.4;
   font-family: var(--font-mono);
-  font-size: 10px;
-  color: #111;
-  font-weight: 600;
-}
-
-.p-tech {
-  font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: #999;
+  letter-spacing: 0.2em;
 }
 
 .p-title {
-  font-family: 'Times New Roman', serif;
-  font-size: 28px;
-  font-style: italic;
-  font-weight: 400;
-  margin-bottom: 15px;
-  letter-spacing: -0.01em;
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .p-title small {
-  display: block;
-  font-size: 12px;
-  font-family: "Noto Sans JP", sans-serif;
-  font-style: normal;
-  color: #bbb;
-  margin-top: 5px;
-  letter-spacing: 0.05em;
+  font-family: var(--font-main); /* JP 폰트 적용 가정 */
+  font-size: 18px;
+  margin-top: 10px;
+  opacity: 0.6;
+  font-weight: 400;
 }
 
 .p-summary {
-  font-size: 14px;
+  max-width: 400px;
+  font-size: 13px;
   line-height: 1.8;
-  color: #666;
-  max-width: 90%;
-  margin-bottom: 20px;
-  word-break: keep-all;
-  font-weight: 300;
+  opacity: 0.5;
+  text-align: right;
+  margin-left: auto;
 }
 
-/* 테크 태그 (사장님이 추가하신 부분 고감도화) */
-.p-tech-tags {
-  display: flex;
-  gap: 15px;
+/* Hover 시 텍스트 변화 */
+.project-card:hover .p-title {
+  transform: translateX(20px);
+  opacity: 1;
 }
 
-.p-tech-tags span {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  color: #222;
-  opacity: 0.4;
-  text-transform: uppercase;
-}
-
-.p-tech-tags span::before {
-  content: '#';
-  margin-right: 2px;
-}
-
-/* --------------------------------------------------------------------------
-   03. MOBILE RESPONSIVE
-   -------------------------------------------------------------------------- */
+/* -------------------------
+   반응형 (Mobile)
+------------------------- */
 @media (max-width: 1024px) {
-  .project-grid {
-    gap: 80px 40px;
-  }
-}
-
-@media (max-width: 768px) {
-  .archive-title { font-size: 60px; }
-  .archive-filter { gap: 15px; overflow-x: auto; padding-bottom: 15px; }
-  .filter-btn { white-space: nowrap; }
-  .project-grid { grid-template-columns: 1fr; gap: 60px; }
-  .p-title { font-size: 24px; }
+  .card-link { padding: 60px 0; flex-direction: column; align-items: flex-start; cursor: pointer; }
+  .card-thumb { position: relative; width: 100%; height: auto; aspect-ratio: 16/10; opacity: 1; transform: none; margin-bottom: 30px; }
+  .p-summary { text-align: left; margin-left: 0; margin-top: 20px; }
+  .info-top { margin-bottom: 10px; }
 }
