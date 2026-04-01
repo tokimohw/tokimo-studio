@@ -92,16 +92,14 @@
   content: "";
   position: absolute;
   inset: 0;
+
+  background-image: var(--bg); /* ← 핵심 */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
   transition: transform 1.2s ease, filter 0.8s ease;
   z-index: 0;
-}
-
-/* data-img 연결 */
-.collage-item[data-img]::before {
-  background-image: attr(data-img url);
 }
 
 /* 👉 어두운 레이어 (텍스트 가독성 + 고급감) */
