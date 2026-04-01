@@ -1,3 +1,76 @@
+/* main {
+  margin-top: 100px;
+} */
+
+
+.collage-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 100px;  /* 핵심 */
+}
+
+/* header */
+.collage-header::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: #111;
+  margin-bottom: 24px;
+  opacity: 0.6;
+}
+
+.collage-header {
+  margin-bottom: 140px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  /* 👉 공간 안에 떠 있게 */
+  /* padding-left: 4px; */
+  padding: 0 96px;
+}
+
+/* meta-box 정리 */
+.meta-box {
+  display: flex;
+  gap: 14px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(0,0,0,0.5);
+}
+
+/* 👉 라벨 느낌 추가 */
+.meta-box span {
+  position: relative;
+}
+
+/* subtle divider */
+.meta-box span:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  width: 2px;
+  height: 2px;
+  background: rgba(0,0,0,0.3);
+  transform: translateY(-50%);
+  border-radius: 50%;
+}
+
+/* 타이틀 핵심 */
+.archive-title {
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+
+  /* 👉 위로 붙는 느낌 제거 */
+  margin-top: 10px;
+}
+
+
 /* =========================
    RESET STRUCTURE UPGRADE
 ========================= */
