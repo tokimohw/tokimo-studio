@@ -1,131 +1,192 @@
 /* =========================
-   PROJECT COLLAGE SYSTEM
-   - Japanese Editorial Style
+   RESET STRUCTURE UPGRADE
 ========================= */
 
-.project-archive.collage-mode {
-  background-color: #f2f2f2;
-  min-height: 200vh; /* 스크롤감을 충분히 줌 */
-  position: relative;
-  overflow-x: hidden;
-}
-
-.collage-container {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 100px 4%;
-}
-
-.collage-header {
-  margin-bottom: 200px;
-}
-
-.archive-title {
-  font-size: 120px;
-  font-weight: 800;
-  line-height: 0.85;
-  letter-spacing: -0.06em;
-  text-transform: uppercase;
-}
-
-/* 콜라주 그리드 시스템 */
 .collage-grid {
   position: relative;
-  width: 100%;
-  height: auto;
+  min-height: 900px;
 }
 
+/* 👉 카드 자체를 "이미지 덩어리"로 */
 .collage-item {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* 👉 핵심: 배경 이미지 처리 */
+.collage-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 1.2s ease, filter 0.8s ease;
+  z-index: 0;
+}
+
+/* data-img 연결 */
+.collage-item[data-img]::before {
+  background-image: attr(data-img url);
+}
+
+/* 👉 어두운 레이어 (텍스트 가독성 + 고급감) */
+.collage-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.45),
+    rgba(0,0,0,0.1),
+    rgba(0,0,0,0)
+  );
+  z-index: 1;
+}
+
+/* =========================
+   LINK LAYER
+========================= */
+
+.collage-link {
   position: relative;
   z-index: 2;
-  margin-bottom: 30vh; /* 아이템 간 간격 파괴 */
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  padding: 28px;
+  color: #fff;
+  text-decoration: none;
 }
 
-/* 사이즈 및 포지션 다각화 (불규칙성) */
-.size-lg .item-name { font-size: 80px; width: 60%; }
-.size-md .item-name { font-size: 56px; width: 50%; }
-.size-sm .item-name { font-size: 40px; width: 40%; }
-
-.pos-left { margin-left: 0; text-align: left; }
-.pos-right-top { margin-left: auto; text-align: right; margin-top: -100px; }
-.pos-center-bottom { margin: 0 auto; text-align: center; width: fit-content; }
+/* =========================
+   TEXT STYLE (덩어리 제거)
+========================= */
 
 .item-meta {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.3em;
-  opacity: 0.4;
-  margin-bottom: 20px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  opacity: 0.7;
+  margin-bottom: 8px;
 }
 
 .item-name {
-  line-height: 1;
+  font-size: clamp(20px, 2vw, 30px);
   font-weight: 500;
-  letter-spacing: -0.02em;
-  word-break: keep-all;
+  line-height: 1.2;
+  margin-bottom: 10px;
 }
 
 .item-desc {
-  font-size: 14px;
-  opacity: 0;
-  margin-top: 20px;
-  transition: all 0.5s ease;
-  max-width: 300px;
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0.85;
+  max-width: 260px;
 }
 
-.pos-right-top .item-desc { margin-left: auto; }
-.pos-center-bottom .item-desc { margin: 20px auto 0; }
+/* =========================
+   HOVER (핵심🔥)
+========================= */
 
-/* 호버 시 텍스트 변화 */
-.collage-item:hover .item-name { transform: translateY(-5px); }
-.collage-item:hover .item-desc { opacity: 0.6; transform: translateY(0); }
-
-/* -------------------------
-   REFINED HOVER CURSOR (이미지 최적화)
-------------------------- */
-.hover-reveal-cursor {
-  position: fixed;
-  width: 300px; /* 사이즈 축소 (고급감 유지) */
-  height: 400px;
-  top: 0; left: 0;
-  pointer-events: none;
-  z-index: 1000;
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+/* 👉 이미지만 움직이게 */
+.collage-item:hover::before {
+  transform: scale(1.08);
+  filter: brightness(0.9);
 }
 
-.hover-reveal-cursor.active {
-  opacity: 1;
-  transform: scale(1);
+/* 👉 텍스트는 살짝 떠오르게 */
+.collage-item:hover .collage-link {
+  transform: translateY(-6px);
 }
 
-.reveal-inner {
-  width: 100%; height: 100%;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.15); /* Soft cinematic shadow */
+.collage-link {
+  transition: transform 0.6s ease;
 }
 
-.reveal-inner img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  filter: blur(15px); /* 등장 시 블러 */
-  transition: filter 1s ease;
+/* =========================
+   SIZE & POSITION
+========================= */
+
+.size-lg {
+  width: 460px;
+  height: 580px;
 }
 
-.hover-reveal-cursor.active img {
-  filter: blur(0);
+.size-md {
+  width: 340px;
+  height: 420px;
 }
 
-/* 부유하는 텍스트 요소 */
+.size-sm {
+  width: 260px;
+  height: 320px;
+}
+
+.pos-left {
+  top: 0;
+  left: 0;
+}
+
+.pos-right-top {
+  top: 100px;
+  right: 0;
+}
+
+.pos-center-bottom {
+  bottom: 0;
+  left: 38%;
+}
+
+/* =========================
+   FLOATING TEXT (감성 유지)
+========================= */
+
 .floating-text {
   position: absolute;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  opacity: 0.2;
-  white-space: nowrap;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(0,0,0,0.25);
 }
-.t1 { top: -100px; right: 10%; transform: rotate(90deg); }
-.t2 { bottom: 20%; left: -50px; transform: rotate(-90deg); }
+
+.t1 {
+  top: 45%;
+  left: 52%;
+}
+
+.t2 {
+  bottom: 12%;
+  right: 10%;
+}
+
+/* =========================
+   MOBILE (완전 중요🔥)
+========================= */
+
+@media (max-width: 768px) {
+
+  .collage-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  .collage-item {
+    position: relative !important;
+    width: 100% !important;
+    height: 420px;
+  }
+
+  .collage-link {
+    padding: 20px;
+  }
+
+  .item-name {
+    font-size: 22px;
+  }
+
+  .floating-text {
+    display: none;
+  }
+}
