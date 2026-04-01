@@ -68,6 +68,10 @@ body {
   padding-bottom: var(--sab);
   overflow-x: hidden;
   min-height: 100dvh; /* [수정] 100vh -> 100dvh */
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* 전환 효과 활성화 클래스 */

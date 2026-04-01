@@ -24,12 +24,33 @@ const observerOptions = {
   rootMargin: '0px 0px -50px 0px'
 };
 
+// const observer = new IntersectionObserver((entries) => {
+//   entries.forEach((entry) => {
+//     if (entry.isIntersecting) {
+//       entry.target.classList.add('visible');
+
+//       const children = entry.target.querySelectorAll('.hero-label, .display-title, .description, .work-item, .service-item, .display-text, .border-text, .vogue-title, .editorial-content');
+      
+//       children.forEach((child, index) => {
+//         child.style.transitionDelay = `${index * 0.15}s`;
+//         child.classList.add('visible');
+//       });
+      
+//       observer.unobserve(entry.target); 
+//     }
+//   });
+// }, observerOptions);
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
 
-      const children = entry.target.querySelectorAll('.hero-label, .display-title, .description, .work-item, .service-item, .display-text, .border-text, .vogue-title, .editorial-content');
+      // [중요] About 페이지 요소들(.philo-image, .jp, .kr 등)을 추가했습니다.
+      const children = entry.target.querySelectorAll(`
+        .hero-label, .display-title, .description, .work-item, 
+        .service-item, .display-text, .border-text, .vogue-title, 
+        .editorial-content, .philo-image, .jp, .kr, .hero-sub-text
+      `);
       
       children.forEach((child, index) => {
         child.style.transitionDelay = `${index * 0.15}s`;
@@ -43,7 +64,13 @@ const observer = new IntersectionObserver((entries) => {
 
 // ===================== 3. 패럴랙스 & 헤더 제어 =====================
 const header = document.querySelector(".header");
-const parallaxImages = document.querySelectorAll(".work-bg, .work-card img, .repo-item img, .gallery-item img, .editorial-image img, .vision-item img");
+// const parallaxImages = document.querySelectorAll(".work-bg, .work-card img, .repo-item img, .gallery-item img, .editorial-image img, .vision-item img");
+// .philo-image img 를 추가하여 About 페이지 이미지도 움직이게 만듭니다.
+const parallaxImages = document.querySelectorAll(`
+  .work-bg, .work-card img, .repo-item img, .gallery-item img, 
+  .editorial-image img, .vision-item img, .philo-image img
+`);
+
 
 lenis.on('scroll', (e) => {
   const scrollY = e.animatedScroll;
@@ -91,8 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.classList.add('fade-in');
 
   // 5-2. 애니메이션 관찰 시작
-  document.querySelectorAll('.fade-up').forEach(section => observer.observe(section));
-
+  document.querySelectorAll('.fade-up, .reveal').forEach(section => observer.observe(section));
   // 5-3. 시간 업데이트 시작
   setInterval(updateTime, 1000);
   updateTime();
