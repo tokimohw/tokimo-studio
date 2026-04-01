@@ -769,6 +769,19 @@ body {
   .archive-img-wrap { aspect-ratio: 1/1; }
 }
 
+
+@media (hover: hover) and (pointer: fine) {
+  .mood-archive-item:hover {
+    z-index: 20;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+    transform: translateY(-10px) !important; 
+  }
+  .mood-archive-item:hover img {
+    transform: scale(1.03);
+    filter: grayscale(0) contrast(1.1);
+  }
+}
+
 /* ==========================================================================
    [RESERVED DUPLICATES - BACKUP ONLY]
    - 아래는 최신 사양에 의해 대체된 이전 선언문들입니다. (보관용 주석)

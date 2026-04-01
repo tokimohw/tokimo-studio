@@ -1,196 +1,133 @@
-document.addEventListener("DOMContentLoaded", () => {
-    initRevealAnimation();
-    initSplitText();
-    initHoverReveal();
-    initTime();
-    initMaterialHover();
-    initHeroSlider();
-    initParallax(); // [추가] 패럴랙스 스크롤 실행
+/**
+ * TOKIMO ARCHIVE - Integrated & Optimized Core JS
+ */
+
+// 1. Lenis 초기화 (단일 소스)
+const lenis = new Lenis({
+  duration: 1.2,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  smoothWheel: true,
 });
 
-/* ------------------------------
-1. SCROLL REVEAL
------------------------------- */
-function initRevealAnimation() {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('reveal');
-            }
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-up, .image-mask, [data-split]')
-        .forEach(el => observer.observe(el));
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
 }
+requestAnimationFrame(raf);
 
-/* ------------------------------
-2. TEXT SPLIT
------------------------------- */
-function initSplitText() {
-    const splitTexts = document.querySelectorAll('[data-split]');
-
-    splitTexts.forEach(txt => {
-        const content = txt.textContent;
-        txt.textContent = '';
-
-        [...content].forEach(char => {
-            const parent = document.createElement('span');
-            parent.className = 'split-parent';
-
-            const child = document.createElement('span');
-            child.className = 'split-char';
-            child.textContent = char === ' ' ? '\u00A0' : char;
-
-            parent.appendChild(child);
-            txt.appendChild(parent);
-        });
-    });
-}
-
-/* ------------------------------
-3. HOVER IMAGE (LIST)
------------------------------- */
-function initHoverReveal() {
-    const listItems = document.querySelectorAll('.list-item');
-    if (listItems.length === 0) return;
-
-    const hoverReveal = document.createElement('div');
-    hoverReveal.className = 'hover-reveal';
-    document.body.appendChild(hoverReveal);
-
-    listItems.forEach(item => {
-        item.addEventListener('mousemove', (e) => {
-            const imgPath = item.getAttribute('data-img');
-            if (!imgPath) return;
-
-            hoverReveal.style.backgroundImage = `url(${imgPath})`;
-            hoverReveal.style.opacity = '1';
-            hoverReveal.style.transform = `translate(${e.clientX + 20}px, ${e.clientY - 100}px)`;
-        });
-
-        item.addEventListener('mouseleave', () => {
-            hoverReveal.style.opacity = '0';
-        });
-    });
-}
-
-/* ------------------------------
-4. TIME (TOKYO / SEOUL)
------------------------------- */
-function initTime() {
-    function updateIndexTime() {
-        const formatter = new Intl.DateTimeFormat('en-GB', {
-            timeZone: 'Asia/Tokyo',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: false
-        });
-
-        const timeElement = document.getElementById('current-time');
-        if (timeElement) {
-            timeElement.textContent = `TOKYO / SEOUL — ${formatter.format(new Date())}`;
-        }
+// 2. 통합 IntersectionObserver (하나의 감시자로 모든 애니메이션 처리)
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('reveal', 'visible');
+      
+      // 자식 요소 순차 지연 효과
+      const children = entry.target.querySelectorAll('.split-char, .hero-label, .p-tech-tags span');
+      children.forEach((child, index) => {
+        child.style.transitionDelay = `${index * 0.1}s`;
+        child.classList.add('visible');
+      });
+      revealObserver.unobserve(entry.target);
     }
+  });
+}, { threshold: 0.15 });
 
-    updateIndexTime();
-    setInterval(updateIndexTime, 1000);
+// 3. 통합 스크롤 이벤트 (Lenis 콜백 활용 - 성능 최적화 핵심)
+lenis.on('scroll', ({ scroll, animatedScroll }) => {
+  // 헤더 상태 제어
+  document.querySelector(".header")?.classList.toggle("scrolled", scroll > 50);
+
+  // 패럴랙스 통합 처리 (getBoundingClientRect 호출 금지)
+  // data-speed 속성이 있는 요소들 처리
+  document.querySelectorAll('[data-speed]').forEach(item => {
+    const speed = parseFloat(item.getAttribute('data-speed'));
+    const yPos = -(scroll * speed);
+    item.style.transform = `translate3d(0, ${yPos}px, 0)`;
+  });
+});
+
+// 4. 시간 업데이트 (단일 함수)
+function updateGlobalTime() {
+  const timeElements = document.querySelectorAll('#local-time, #current-time');
+  if (!timeElements.length) return;
+
+  const now = new Date();
+  const timeString = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Asia/Seoul',
+    hour: '2-digit', minute: '2-digit', second: '2-digit',
+    hour12: false
+  }).format(now);
+
+  timeElements.forEach(el => {
+    if (el.textContent !== timeString) el.textContent = `TOKYO / SEOUL — ${timeString}`;
+  });
 }
 
-/* ------------------------------
-5. MATERIAL HOVER
------------------------------- */
-function initMaterialHover() {
-    const materialItem = document.querySelector('.item-material');
-    const materialLists = document.querySelectorAll('.material-list li');
-
-    if (!materialItem) return;
-
-    materialItem.addEventListener('mouseenter', () => {
-        materialLists.forEach((li, index) => {
-            li.style.transitionDelay = `${index * 0.1}s`;
-            li.style.transform = 'translateX(10px)';
+// 5. 초기화
+document.addEventListener('DOMContentLoaded', () => {
+  // SEO 및 초기 로드
+  document.body.classList.add('fade-in');
+  
+  // 요소 감시 시작
+  document.querySelectorAll('.fade-up, .reveal, [data-split]').forEach(el => {
+    // 텍스트 분리 로직 (Split Text)
+    if (el.hasAttribute('data-split')) {
+        const content = el.textContent;
+        el.textContent = '';
+        [...content].forEach(char => {
+            const span = document.createElement('span');
+            span.className = 'split-char';
+            span.textContent = char === ' ' ? '\u00A0' : char;
+            el.appendChild(span);
         });
-    });
+    }
+    revealObserver.observe(el);
+  });
 
-    materialItem.addEventListener('mouseleave', () => {
-        materialLists.forEach((li) => {
-            li.style.transitionDelay = '0s';
-            li.style.transform = 'translateX(0)';
-        });
+  // 슬라이더 및 기타 초기화 함수 호출
+  initHeroSlider();
+  setInterval(updateGlobalTime, 1000);
+  updateGlobalTime();
+  
+  // 모바일 메뉴 (기존 로직 유지하되 lenis와 연동)
+  const trigger = document.getElementById('menu-trigger');
+  const menu = document.getElementById('mobile-menu');
+  if (trigger && menu) {
+    trigger.addEventListener('click', () => {
+      const isOpened = menu.classList.toggle('is-active');
+      trigger.classList.toggle('is-active');
+      document.body.classList.toggle('menu-open', isOpened);
+      isOpened ? lenis.stop() : lenis.start();
     });
-}
+  }
+});
 
-/* ------------------------------
-6. HERO SLIDER
------------------------------- */
+// 6. 히어로 슬라이더 (메모리 효율화)
 function initHeroSlider() {
-    // HTML의 클래스명과 정확히 일치시킵니다.
     const slides = document.querySelectorAll('.hero-slider .slide');
     const dots = document.querySelectorAll('.hero-dots .dot');
+    if (!slides.length) return;
 
-    if (slides.length === 0) return;
-
-    let currentIndex = 0;
-    let slideInterval;
-    const intervalTime = 4000;
-
-    function updateSlider(index) {
-        // 모든 슬라이드와 도트에서 active 제거
-        slides.forEach(s => s.classList.remove('active'));
-        dots.forEach(d => d.classList.remove('active'));
-
-        // 해당 인덱스 활성화
-        slides[index].classList.add('active');
-        if (dots[index]) dots[index].classList.add('active');
-
-        currentIndex = index;
-    }
-
-    function startInterval() {
-        stopInterval(); // 중복 방지
-        slideInterval = setInterval(() => {
-            let nextIndex = (currentIndex + 1) % slides.length;
-            updateSlider(nextIndex);
-        }, intervalTime);
-    }
-
-    function stopInterval() {
-        if (slideInterval) clearInterval(slideInterval);
-    }
-
-    // 1. 초기 상태 설정
-    updateSlider(0);
-    startInterval();
-
-    // 2. 도트 클릭 이벤트 (이 부분이 안됐던 이유는 클래스명 불일치 때문)
+    let current = 0;
+    const nextSlide = () => {
+        slides[current].classList.remove('active');
+        dots[current]?.classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+        dots[current]?.classList.add('active');
+    };
+    
+    let timer = setInterval(nextSlide, 4000);
+    
     dots.forEach((dot, idx) => {
         dot.addEventListener('click', () => {
-            updateSlider(idx);
-            startInterval(); // 클릭 시 시간 초기화 후 다시 시작
-        });
-    });
-}
-
-/* ------------------------------
-7. PARALLAX SCROLL (data-speed)
------------------------------- */
-function initParallax() {
-    const parallaxItems = document.querySelectorAll('[data-speed]');
-    if (parallaxItems.length === 0) return;
-
-    window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        
-        // requestAnimationFrame으로 성능 최적화
-        window.requestAnimationFrame(() => {
-            parallaxItems.forEach(item => {
-                const speed = parseFloat(item.getAttribute('data-speed'));
-                // 스크롤 값 * speed 만큼 Y축 이동 (부드러운 깊이감 형성)
-                const yPos = -(scrolled * speed);
-                item.style.transform = `translateY(${yPos}px)`;
-            });
+            clearInterval(timer);
+            slides[current].classList.remove('active');
+            dots[current].classList.remove('active');
+            current = idx;
+            slides[current].classList.add('active');
+            dots[current].classList.add('active');
+            timer = setInterval(nextSlide, 4000);
         });
     });
 }

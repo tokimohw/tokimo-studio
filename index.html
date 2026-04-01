@@ -7,6 +7,10 @@
   <meta name="theme-color" content="#f2f2f2">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <meta name="description" content="Visualizing Minimal Aesthetics into Digital Experience — Brand Identity & Web Design Studio.">
+  <meta property="og:title" content="TOKIMO ARCHIVE | Digital Craftsman">
+  <meta property="og:image" content="images/index/hero-cover1.jpg"> <meta property="og:url" content="https://tokimo-studio.vercel.app">
 
   <title>TOKIMO ARCHIVE | Digital Craftsman</title>
   
@@ -51,21 +55,25 @@
           <div class="hero-bg-text">CRAFTSMANSHIP</div>
           
           <div class="hero-slider">
-            <img src="images/index/hero-cover1.png" alt="TOKIMO Cover 1" class="parallax-img slide active">
+            <img src="images/index/hero-cover1.png" alt="TOKIMO Cover 1" class="parallax-img slide active" fetchpriority="high">
             <img src="images/index/hero-cover2.png" alt="TOKIMO Cover 2" class="parallax-img slide">
-            <img src="images/index/hero-cover3.png" alt="TOKIMO Cover 3" class="parallax-img slide">
+            <img src="images/index/hero-cover3.png" alt="TOKIMO Cover 3" class="parallax-img slide" loading="lazy">
           </div>
 
           <!-- 슬라이드 점-->
-          <div class="hero-dots">
-            <span class="dot active" data-index="0"></span>
-            <span class="dot" data-index="1"></span>
-            <span class="dot" data-index="2"></span>
+          <button class="menu-trigger" id="menu-trigger" aria-label="메뉴 열기">
+            <span></span><span></span><span></span>
+          </button>
+
+          <div class="hero-dots" role="tablist">
+            <button class="dot active" data-index="0" aria-label="1번 슬라이드" role="tab"></button>
+            <button class="dot" data-index="1" aria-label="2번 슬라이드" role="tab"></button>
+            <button class="dot" data-index="2" aria-label="3번 슬라이드" role="tab"></button>
           </div>
 
           <div class="hero-title-wrap"> 
             <h1 class="cover-title">TOKIMO <br><em>Archive.</em></h1>
-            <p class="hero-description">Digital Architecture & Brand Curating</p>
+            <p class="hero-description">Visualizing Minimal Aesthetics into Digital Experience<br>Brand Identity & Web Design Studio.</p>
           </div>
 
           <div class="hero-side-meta">
