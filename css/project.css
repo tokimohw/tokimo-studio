@@ -77,26 +77,32 @@
 
 .collage-grid {
   position: relative;
-  min-height: 900px;
+  min-height: 1500px;
 }
 
 /* 👉 카드 자체를 "이미지 덩어리"로 */
 .collage-item {
   position: absolute;
+  transition: transform 0.8s ease, z-index 0.3s;
   overflow: hidden;
   border-radius: 8px;
 }
 
 /* 👉 핵심: 배경 이미지 처리 */
+/* project.css - collage-item::before 부분 수정 */
 .collage-item::before {
   content: "";
   position: absolute;
   inset: 0;
 
-  background-image: var(--bg); /* ← 핵심 */
+  /* JS에서 전달받은 경로를 사용 */
+  background-image: var(--bg); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  
+  /* 이미지가 없을 때를 대비한 배경색 (디버깅용) */
+  background-color: #e0ddd5; 
 
   transition: transform 1.2s ease, filter 0.8s ease;
   z-index: 0;
@@ -163,7 +169,7 @@
 
 /* 👉 이미지만 움직이게 */
 .collage-item:hover::before {
-  transform: scale(1.08);
+  transform: scale(1.05);
   filter: brightness(0.9);
 }
 
@@ -179,35 +185,72 @@
 /* =========================
    SIZE & POSITION
 ========================= */
-
-.size-lg {
+/* 1번 */
+.collage-item:nth-child(6n+1) {
   width: 460px;
   height: 580px;
+
+  top: 0;
+  left: 6dvi;
+  transform: rotate(-2deg);
+  z-index: 3;
 }
 
-.size-md {
+/* 2번 */
+.collage-item:nth-child(6n+2) {
   width: 340px;
   height: 420px;
+
+  top: 120px;
+  right: 6%;
+  transform: rotate(1.5deg);
+  z-index: 2;
 }
 
-.size-sm {
+/* 3번 */
+.collage-item:nth-child(6n+3) {
   width: 260px;
   height: 320px;
+
+  top: 600px;
+  left: 23%;
+  transform: rotate(-1deg);
+  z-index: 1;
 }
 
-.pos-left {
-  top: 0;
+/* ===== 2번째 줄 (4~6번) ===== */
+
+/* 4번 */
+.collage-item:nth-child(6n+4) {
+  width: 460px;
+  height: 580px;
+
+  top: 700px;
+  right: 6%;
+  transform: rotate(2deg);
+  z-index: 3;
+}
+
+/* 5번 */
+.collage-item:nth-child(6n+5) {
+  width: 340px;
+  height: 420px;
+
+  top: 820px;
   left: 0;
+  transform: rotate(-1.5deg);
+  z-index: 2;
 }
 
-.pos-right-top {
-  top: 100px;
-  right: 0;
-}
+/* 6번 */
+.collage-item:nth-child(6n+6) {
+  width: 260px;
+  height: 320px;
 
-.pos-center-bottom {
-  bottom: 0;
-  left: 38%;
+  top: 1100px;
+  left: 40%;
+  transform: rotate(1deg);
+  z-index: 1;
 }
 
 /* =========================
@@ -227,8 +270,8 @@
 }
 
 .t2 {
-  bottom: 12%;
-  right: 10%;
+    bottom: 15%;
+    left: 20%;
 }
 
 /* =========================
@@ -236,6 +279,15 @@
 ========================= */
 
 @media (max-width: 768px) {
+
+  .collage-header {
+    padding: 0 20px;
+    margin-bottom: 80px;
+  }
+
+  .archive-title {
+    font-size: 40px;
+  }
 
   .collage-grid {
     display: flex;
@@ -246,7 +298,8 @@
   .collage-item {
     position: relative !important;
     width: 100% !important;
-    height: 420px;
+    height: 65vw;
+    will-change: transfrom;
   }
 
   .collage-link {
@@ -260,4 +313,65 @@
   .floating-text {
     display: none;
   }
+}
+
+@media (max-width: 1024px) {
+
+  .collage-grid {
+    min-height: 1300px;
+  }
+
+  /* 1 */
+  .collage-item:nth-child(6n+1) {
+    width: 380px;
+    height: 500px;
+    top: 0;
+    left: 4%;
+  }
+
+  /* 2 */
+  .collage-item:nth-child(6n+2) {
+    width: 300px;
+    height: 380px;
+    top: 100px;
+    right: 4%;
+  }
+
+  /* 3 */
+  .collage-item:nth-child(6n+3) {
+    width: 220px;
+    height: 280px;
+    top: 520px;
+    left: 28%;
+  }
+
+  /* 4 */
+  .collage-item:nth-child(6n+4) {
+    width: 380px;
+    height: 500px;
+    top: 650px;
+    right: 4%;
+  }
+
+  /* 5 */
+  .collage-item:nth-child(6n+5) {
+    width: 300px;
+    height: 380px;
+    top: 780px;
+    left: 2%;
+  }
+
+  /* 6 */
+  .collage-item:nth-child(6n+6) {
+    width: 220px;
+    height: 280px;
+    top: 1050px;
+    left: 42%;
+  }
+
+  /* header 여백 줄이기 */
+  .collage-header {
+    padding: 0 40px;
+  }
+
 }
