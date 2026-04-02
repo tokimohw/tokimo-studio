@@ -1,4 +1,50 @@
-/* main {
+/* 포커스 */
+.item-role {
+  margin-top: 12px;
+  font-size: 0.75rem;
+  opacity: 0.6;
+  letter-spacing: 0.02em;
+}
+
+.item-focus {
+  margin-top: 4px;
+  font-size: 0.7rem;
+  opacity: 0.45;
+  line-height: 1.4;
+}
+
+.item-tech {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.item-tech span {
+  font-size: 0.7rem;
+  opacity: 0.55;
+  padding: 2px 6px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 999px;
+}
+
+/* hover 시 살짝 강조 */
+/* hover */
+.collage-item:hover .item-role,
+.collage-item:hover .item-focus {
+  opacity: 0.85;
+}
+
+.collage-item:hover .item-tech span {
+  opacity: 0.8;
+  border-color: rgba(255,255,255,0.35);
+}
+
+/* 전체 간격 안정 */
+.collage-link {
+  display: block;
+  padding: 20px 0;
+}/* main {
   margin-top: 100px;
 } */
 
@@ -78,6 +124,7 @@
 .collage-grid {
   position: relative;
   min-height: 1500px;
+  overflow: visible;
 }
 
 /* 👉 카드 자체를 "이미지 덩어리"로 */
@@ -86,6 +133,8 @@
   transition: transform 0.8s ease, z-index 0.3s;
   overflow: hidden;
   border-radius: 8px;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 /* 👉 핵심: 배경 이미지 처리 */
@@ -136,6 +185,8 @@
   padding: 28px;
   color: #fff;
   text-decoration: none;
+
+  transition: transform 0.6s ease;
 }
 
 /* =========================
@@ -154,6 +205,7 @@
   font-weight: 500;
   line-height: 1.2;
   margin-bottom: 10px;
+  transition: 0.5s ease;
 }
 
 .item-desc {
@@ -162,6 +214,13 @@
   opacity: 0.85;
   max-width: 260px;
 }
+
+/*  */
+.collage-item:hover .item-name {
+  transform: translateY(-2px);
+  transition: 0.5s ease;
+}
+
 
 /* =========================
    HOVER (핵심🔥)
@@ -178,13 +237,17 @@
   transform: translateY(-6px);
 }
 
-.collage-link {
-  transition: transform 0.6s ease;
-}
-
 /* =========================
    SIZE & POSITION
 ========================= */
+.collage-item:nth-child(odd) {
+  filter: brightness(1);
+}
+
+.collage-item:nth-child(even) {
+  filter: brightness(0.97);
+}
+
 /* 1번 */
 .collage-item:nth-child(6n+1) {
   width: 460px;
