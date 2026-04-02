@@ -388,6 +388,14 @@ body {
   z-index: 2;
 }
 
+.process-text {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  opacity: 0.6;
+  max-width: 420px;
+}
+
 /* 라인 */
 .approach-list li::after {
   content: "";
@@ -576,7 +584,7 @@ body {
 .archive-item {
   display: block;
   text-decoration: none;
-  color: #f1f1f1;
+  color: #4443434d;
 }
 
 .archive-img-wrap {
@@ -634,6 +642,12 @@ body {
   font-weight: 300;
   word-break: keep-all;
 }
+.p-role {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  opacity: 0.5;
+  letter-spacing: 0.03em;
+}
 
 /* 태그 디테일: 닷 포인트 구분자 */
 .p-tech-tags span:not(:last-child)::after {
@@ -658,7 +672,13 @@ body {
 
 /* 설명 */
 .services-desc {
-  margin: 20px 0 40px;
+  margin: 20px 0 0px;
+  font-size: 0.95rem;
+  opacity: 0.7;
+}
+
+.services-proof {
+  margin: 0 0 40px;
   font-size: 0.95rem;
   opacity: 0.7;
 }
