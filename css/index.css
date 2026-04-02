@@ -150,6 +150,13 @@ body {
   text-align: center;
 }
 
+/* HERO ROLE */
+.hero-role {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
 /* hero-dots: 슬라이더 컨트롤러 */
 .hero-dots, .hero-img-dots {
   position: absolute;
@@ -349,6 +356,55 @@ body {
 }
 
 /* =========================
+   WORK APPROACH
+========================= */
+
+.work-approach-section {
+  padding: 120px 0;
+}
+
+.approach-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.approach-list li {
+  position: relative;
+  padding: 12px 0;
+  cursor: default;
+  
+  font-size: 1rem;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.08); 
+  transition: transform 0.3s ease; 
+}
+.approach-list li:hover {
+  transform: translateX(6px);
+}
+
+.approach-list li span {
+  position: relative;
+  z-index: 2;
+}
+
+/* 라인 */
+.approach-list li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 1px;
+  background: #111;
+  transition: width 0.4s ease;
+}
+
+.approach-list li:hover::after {
+  width: 100%;
+}
+
+/* =========================
    05. Lookbook Section
    - 스트릿 에디토리얼 무드
    - 대형 비주얼과 우측 텍스트 오버랩
@@ -453,98 +509,43 @@ body {
 }
 
 /* =========================
-   06. Typography Section
-   - 브랜드 스테이트먼트 및 시그니처 서체 강조 영역
-   - 거대 텍스트와 보조 캡션의 대비
+   06. ABOUT
 ========================= */
-
-.statement-section {
-  position: relative;
-  padding: 280px 0; /* 상하 여백을 충분히 주어 텍스트에 집중하게 함 */
-  background-color: #fff;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.about-section {
+  padding: 140px 0;
 }
 
-/* 인더스트리얼 느낌의 상단 세로 가이드 라인 */
-.statement-section::before {
-  content: '';
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1px;
-  height: 80px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+.about-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 5%;
 }
 
-.statement-container {
-  width: 100%;
-  /* padding: 0 5%; 를 제거하여 좌우 불균형 해소 */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.about-text {
+  font-size: 1.05rem;
+  line-height: 2;
+  letter-spacing: 0.02em;
+  max-width: 520px;
 }
 
-.large-typography-wrap {
-  text-align: center;
-  /* 텍스트가 화면 너비를 넘지 않도록 안전장치 */
-  width: 100vw; 
-  max-width: 1600px;
+.about-left {
+  flex: 1;
 }
 
-.statement-text {
+.about-right {
+  flex: 2;
+}
+
+.about-container::before {
+  content: "";
   display: block;
-  font-family: var(--font-main);
-  /* clamp를 통해 해상도에 따라 유연하게 크기 조절 */
-  font-size: clamp(80px, 15vw, 240px);
-  font-weight: 900;
-  line-height: 0.85;
-  letter-spacing: -0.06em;
-  color: #111;
-  /* 중앙 정렬 상태에서 미세한 회전 */
-  transform: rotate(-1deg);
-  transform-origin: center center;
+  width: 40px;
+  height: 1px;
+  background: #111;
+  margin-bottom: 30px;
+  opacity: 0.3;
 }
 
-.statement-text .dimmed {
-  display: block;
-  font-family: var(--font-sub);
-  font-style: italic;
-  font-weight: 300;
-  opacity: 0.1; /* 매우 연하게 처리하여 공간감을 형성 */
-  transform: rotate(1deg) translateY(15px);
-}
-
-.statement-caption {
-  width: 100%;
-  margin-top: 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.statement-caption p {
-  font-size: 14px;
-  line-height: 2.2;
-  color: #444;
-  opacity: 0.8;
-  word-break: keep-all;
-}
-
-.catalog-num {
-  margin-top: 100px;
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.5em;
-  color: #111;
-  opacity: 0.2;
-  border-top: 1px solid rgba(0,0,0,0.1);
-  padding-top: 25px;
-}
 
 /* =========================
    07. Project Section
@@ -552,6 +553,15 @@ body {
    - 2열 비대칭 그리드 시스템
 ========================= */
 
+.project-header {
+  margin-bottom: 60px;
+}
+.p-section-desc {
+  font-size: 0.95rem;
+  opacity: 0.7;
+  margin-bottom: 40px;
+}
+/*  */
 .project-grid-section {
   padding: 120px 0;
   background-color: #fff;
@@ -630,6 +640,81 @@ body {
   content: '•';
   margin-left: 12px;
   opacity: 0.3;
+}
+
+/* =========================
+   SERVICES
+========================= */
+/* 전체 */
+.services-section {
+  padding: 160px 0;
+}
+
+.services-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* 설명 */
+.services-desc {
+  margin: 20px 0 40px;
+  font-size: 0.95rem;
+  opacity: 0.7;
+}
+
+/* 리스트 */
+.services-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* 각 항목 */
+.services-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+
+}
+
+.services-list li:hover {
+  transform: translateX(6px);
+}
+
+/* 타이틀 */
+.service-title {
+  font-size: 1rem;
+}
+
+/* 서브 */
+.service-sub {
+  font-size: 0.85rem;
+  opacity: 0.5;
+}
+
+/* CTA */
+.services-cta {
+  margin-top: 30px;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+.services-container::before {
+  content: "SERVICE";
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  opacity: 0.4;
+  margin-bottom: 10px;
+}
+
+/* FOOTER CTA */
+.footer-cta {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  opacity: 0.7;
 }
 
 /* =========================
