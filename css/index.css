@@ -103,7 +103,6 @@ body {
   /* 폰트 크기를 기존보다 약 30~40% 축소 (최대 10rem -> 6rem) */
   font-size: clamp(2.8rem, 5.5vw, 6rem); 
   font-family: var(--font-main);
-  font-weight: 900;
   color: #f1f1f1;
   line-height: 0.95;
   letter-spacing: -0.04em; /* 글자 간격을 좁혀 밀도감 형성 */
@@ -596,9 +595,6 @@ body {
 }
 
 @media (max-width: 768px) {
-  section {
-    padding: 80px 0 !important;
-  }
 
   .hero-title-wrap {
     top: 50%; /* 모바일에서는 정중앙 배치 */
