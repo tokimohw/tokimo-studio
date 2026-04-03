@@ -236,7 +236,7 @@
     left: auto !important;
     right: auto !important;
     width: 100% !important;
-    height: 120vw; /* 이미지 비중 확대 */
+    height: 120vw !important; /* 이미지 비중 확대 */
     transform: none !important; /* 모바일에서는 회전 제거로 가독성 확보 */
     border-radius: 4px;
   }
