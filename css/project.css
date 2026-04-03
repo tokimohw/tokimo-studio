@@ -318,24 +318,28 @@
   }
 
   .collage-grid {
-    /* absolute 배치를 해제하여 문서 흐름(Flow)을 회복시킴 */
     display: flex;
     flex-direction: column;
-    gap: 40px;
-    min-height: auto; /* 고정 높이 제거 */
-    padding: 0 20px 100px;
+    gap: 32px; /* 카드 사이 간격을 살짝 좁혀 밀도감 상승 */
+    min-height: auto;
+    padding: 0 20px 80px;
   }
 
   .collage-item {
-    /* 모든 아이템의 위치값을 초기화하여 수직으로 쌓이게 함 */
     position: relative !important;
+    width: 100% !important;
+    
+    /* [핵심 수정] 너무 커지지 않도록 고정 높이와 유연한 높이 병행 */
+    /* 500px을 넘지 않으면서 화면 높이의 약 65% 정도 유지 */
+    height: 65vh !important; 
+    max-height: 520px !important; 
+    min-height: 420px !important; 
+
     top: auto !important;
     left: auto !important;
     right: auto !important;
-    width: 100% !important;
-    height: 120vw !important; /* 이미지 비중 확대 */
-    transform: none !important; /* 모바일에서는 회전 제거로 가독성 확보 */
-    border-radius: 4px;
+    transform: none !important;
+    border-radius: 6px;
   }
 
   .collage-grid::before {
@@ -352,17 +356,50 @@
   }
 
   .collage-link {
-    padding: 24px;
+    padding: 30px 24px; /* 하단 텍스트 영역 여백 충분히 확보 */
+    /* 텍스트가 항상 하단에 잘 정렬되도록 함 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.8) 0%,
+      rgba(0,0,0,0.4) 40%,
+      rgba(0,0,0,0) 100%
+    );
   }
 
-  .item-name {
-    font-size: 1.5rem;
-    margin-bottom: 8px;
+.item-name {
+    font-size: 1.65rem; /* 텍스트 크기 가독성 높임 */
+    line-height: 1.1;
+    margin-bottom: 12px;
+    word-break: keep-all; /* 단어 단위 줄바꿈으로 깔끔하게 */
   }
 
   .item-desc {
-    font-size: 0.85rem;
-    max-width: 100%; /* 설명 텍스트가 잘리지 않게 조정 */
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    opacity: 0.9;
+    font-weight: 300;
+  }
+
+  .jp-sub {
+    font-size: 10px;
+    margin-top: 6px;
+    opacity: 0.7;
+    line-height: 1.5;
+  }
+
+  /* 기술 스택 태그가 모바일에서 겹치지 않게 */
+  .item-tech {
+    margin-top: 10px;
+    gap: 6px;
+  }
+
+  .item-tech span {
+    font-size: 9px;
+    padding: 3px 8px;
   }
 
   /* 모바일에서 불필요한 장식 요소 제거 */
@@ -372,23 +409,30 @@
 
   /* CTA */
   .project-cta-section {
-    padding: 80px 24px;
+    padding: 60px 20px;
+    margin-top: 40px;
   }
   
   .cta-title {
-    font-size: 2.8rem;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .cta-desc, .cta-desc-jp {
+    font-size: 0.85rem;
+    word-break: keep-all;
   }
 
 }
 
 /* SMALL MOBILE (390px 이하) : 더 작은 기기 대응 */
 @media (max-width: 390px) {
-  .archive-title {
-    font-size: 2.5rem;
-  }
-  
   .collage-item {
-    height: 130vw;
+    height: 70vh !important;
+    min-height: 380px !important;
+  }
+  .item-name {
+    font-size: 1.4rem;
   }
 }
 
