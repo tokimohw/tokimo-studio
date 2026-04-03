@@ -130,23 +130,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 5-5. 모바일 메뉴 제어
 // 5-5. 모바일 메뉴 제어 (보강 버전)
+// ===================== 5-5. 모바일 메뉴 제어 (개선 버전) =====================
 const trigger = document.getElementById('menu-trigger');
 const menu = document.getElementById('mobile-menu');
 
 if (trigger && menu) {
   const toggleMenu = (state) => {
-    // 상태 파악
-    const isActive = state !== undefined ? state : trigger.classList.toggle('is-active');
+    // state가 인자로 들어오면 그 값에 따르고, 없으면 현재 상태를 반전(toggle)
+    const isActive = state !== undefined ? state : !menu.classList.contains('is-active');
+    
+    // 1. 버튼 애니메이션 클래스 제어
+    trigger.classList.toggle('is-active', isActive);
+    // 2. 메뉴판 열림 클래스 제어
     menu.classList.toggle('is-active', isActive);
+    // 3. 바디 스크롤 차단 클래스 제어
+    document.body.classList.toggle('menu-open', isActive);
     
     if (isActive) {
-      // 메뉴 열림: 스크롤 차단 및 클래스 부여
-      document.body.classList.add('menu-open');
       lenis.stop(); // Lenis 스크롤 중지
     } else {
-      // 메뉴 닫힘: 스크롤 재개
-      document.body.classList.remove('menu-open');
-      trigger.classList.remove('is-active'); // 링크 클릭 시 X 버튼 초기화
       lenis.start(); // Lenis 스크롤 시작
     }
   };
@@ -156,7 +158,7 @@ if (trigger && menu) {
     toggleMenu();
   });
 
-  // 메뉴 내 링크 클릭 시 즉시 닫기 (지연 시간 삭제)
+  // 메뉴 내 링크 클릭 시 즉시 닫기
   menu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       toggleMenu(false);

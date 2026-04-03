@@ -129,7 +129,7 @@ h1, h2, h3, h4 {
   align-items: center;
 /* [수정] 헤더 패딩에 Safe Area Top 합산 */
   padding: calc(35px + var(--sat)) 8% 35px;
-  z-index: 10001;
+  z-index: 1000005;
 }
 
 .header .logo a {
@@ -377,7 +377,7 @@ body.menu-open {
     cursor: pointer;
     
     /* 오버레이(999999)보다 무조건 위에 있도록 설정 */
-    z-index: 1000001 !important; 
+    z-index: 1000006 !important; 
   }
   
   .header { padding: 25px 8%; }
