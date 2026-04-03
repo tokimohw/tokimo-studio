@@ -633,6 +633,234 @@ body {
   color: #666;
 }
 
+
+/* ==========================================================================
+   NEW: PROCESS SECTION (협업 프로세스)
+   ========================================================================== */
+.process-section {
+  padding: 140px 0;
+  background-color: #fff;
+}
+
+.process-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 6%;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+  margin-top: 80px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: 60px;
+}
+
+.process-card {
+  position: relative;
+}
+
+.process-num {
+  font-family: var(--font-sub);
+  font-style: italic;
+  font-size: 6rem;
+  line-height: 0.8;
+  color: #f0f0f0; /* 배경에 스며드는 아주 연한 그레이 */
+  position: absolute;
+  top: -40px;
+  left: -10px;
+  z-index: 0;
+}
+
+.process-name {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.process-detail {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #555;
+  position: relative;
+  z-index: 1;
+  word-break: keep-all;
+}
+
+/* ==========================================================================
+   NEW: FAQ & STATUS SECTION (질의응답 및 상태)
+   ========================================================================== */
+.faq-status-section {
+  padding: 100px 0 160px;
+  background-color: #f8f8f8; /* 아주 미세한 톤 차이로 환기 */
+}
+
+.faq-status-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 6%;
+  display: flex;
+  gap: 100px;
+  align-items: flex-start;
+}
+
+/* 좌측 Status Panel (티켓 디자인) */
+.status-panel {
+  flex: 1;
+  position: sticky;
+  top: 120px; /* 스크롤 시 따라오게 하여 지속적인 CTA 유도 */
+}
+
+.status-ticket {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 50px 40px;
+  border-radius: 4px;
+}
+
+.ticket-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #3d3a38;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(61, 58, 56, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(61, 58, 56, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(61, 58, 56, 0); }
+}
+
+.ticket-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #888;
+}
+
+.ticket-title {
+  font-size: 2.2rem;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  margin-bottom: 40px;
+}
+
+.ticket-title em {
+  font-family: var(--font-sub);
+  font-style: italic;
+  font-weight: 300;
+  color: #8a847e;
+}
+
+.ticket-meta {
+  border-top: 1px dashed rgba(0,0,0,0.1);
+  border-bottom: 1px dashed rgba(0,0,0,0.1);
+  padding: 20px 0;
+  margin-bottom: 40px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  color: #555;
+}
+
+.meta-row:last-child { margin-bottom: 0; }
+
+.status-btn {
+  display: block;
+  text-align: center;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 18px;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  transition: background 0.3s ease;
+}
+
+.status-btn:hover { background: #3d3a38; }
+
+/* 우측 FAQ Panel */
+.faq-panel {
+  flex: 1.5;
+}
+
+.faq-header { margin-bottom: 60px; }
+
+.faq-item {
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding: 30px 0;
+}
+
+.faq-item:last-child {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.faq-q {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 15px;
+  color: #111;
+  letter-spacing: -0.02em;
+}
+
+.faq-a {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #666;
+  word-break: keep-all;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (모바일 최적화)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .process-grid {
+    grid-template-columns: 1fr; /* 태블릿부터 세로로 전환하여 가독성 확보 */
+    gap: 50px;
+  }
+  
+  .faq-status-container {
+    flex-direction: column;
+    gap: 80px;
+  }
+  
+  .status-panel {
+    width: 100%;
+    position: static; /* 스티키 해제 */
+  }
+}
+
+@media (max-width: 768px) {
+  .process-section { padding: 100px 0; }
+  .faq-status-section { padding: 80px 0 120px; }
+  
+  .process-num {
+    font-size: 4.5rem;
+    top: -25px;
+  }
+  
+  .ticket-title { font-size: 1.8rem; }
+  .faq-q { font-size: 1.1rem; }
+}
+
+
 /* =========================
    08. Responsive System
 ========================= */

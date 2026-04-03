@@ -40,6 +40,54 @@
   letter-spacing: 0.08em;
 }
 
+.jp-sub, .jp-text {
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  letter-spacing: 0.04em; /* 일본어는 자간을 살짝 벌려주는 것이 트렌드입니다 */
+  word-break: auto-phrase; /* 최신 CSS 기능: 문절 단위로 예쁘게 줄바꿈 해줍니다 */
+}
+
+/* 일본어 서브 텍스트 (은은한 회색) */
+.jp-sub {
+  display: block;
+  font-size: 11px;
+  line-height: 1.6;
+  margin-top: 10px;
+  color: rgba(0,0,0,0.4);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+/* 티켓 내부 일본어 안내 */
+.jp-status-note {
+  font-size: 12px;
+  color: #8a847e;
+  margin: -30px 0 30px 0;
+  font-weight: 300;
+}
+
+/* FAQ 내부 질문 일본어 */
+.jp-q {
+  display: block;
+  font-size: 11px;
+  color: #999;
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+/* 버튼 내부 일본어 */
+.jp-btn-text {
+  font-size: 10px;
+  opacity: 0.7;
+  margin-left: 5px;
+}
+
+/* 모바일 대응: 일본어 텍스트가 너무 작아지지 않게 */
+@media (max-width: 768px) {
+  .jp-sub, .jp-q {
+    font-size: 10px;
+  }
+}
+
 /* ==========================================================================
    2. BASE RESET & BODY (Page Transition & Texture)
    ========================================================================== */
