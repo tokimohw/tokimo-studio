@@ -1,67 +1,34 @@
 /* ==========================================================================
-   [TOKIMO] INTEGRATED STYLE SYSTEM - REFINED ARCHIVE
-   Design Philosophy: Japanese Editorial, Quiet Radicalism, Digital Craftsmanship
+   [TOKIMO] INTEGRATED STYLE SYSTEM - FULL REFINED
    ========================================================================= */
 
 /* =========================
    01. Base / Reset
-   - 브랜드 서체 및 전역 변수 설정
-   - 렌더링 최적화 및 기본 배경 설정
 ========================= */
-
 :root {
-  /* 브랜드 시그니처 폰트 및 트랜지션 */
   --font-main: 'Times New Roman', serif;
   --font-sub: 'Georgia', serif;
-  --font-mono: 'Courier New', monospace; /* 관리번호, 메타데이터용 */
+  --font-mono: 'Courier New', monospace;
   --transition-vogue: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-heavy: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 html,
 body {
   width: 100%;
   overflow-x: hidden;
-  position: relative;
-  background-color: #fff;
+  background: #fff;
   color: #1a1a1a;
-  -webkit-font-smoothing: antialiased; /* 서체 렌더링을 더욱 날카롭고 고급스럽게 */
+  -webkit-font-smoothing: antialiased;
 }
 
-/* 상단 네비게이션 여백 확보 */
 .vogue-index {
   padding-top: 100px;
 }
 
 /* =========================
-   02. Layout
-   - 공통 컨테이너 및 섹션 라벨링
-   - 브랜드의 일관된 여백 관리
+   02. Hero Section
 ========================= */
-
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 4%;
-  box-sizing: border-box;
-}
-
-/* vogue-label: 섹션 상단 관리 번호 스타일의 라벨 */
-.vogue-label {
-  display: block;
-  margin-bottom: 20px;
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: #888;
-}
-
-/* =========================
-   03. Hero Section
-   - 풀스크린 이미지 슬라이더 및 타이포그래피 오버레이
-   - 하이엔드 무드의 배경 텍스트 및 메타 정보
-========================= */
-
 .hero-container.full-width {
   max-width: 100%;
   padding: 0;
@@ -71,11 +38,9 @@ body {
   position: relative;
   width: 100vw;
   height: 100vh;
-  margin: 0;
   overflow: hidden;
 }
 
-/* 가독성 및 무드를 위한 다크 그라데이션 오버레이 */
 .hero-main-img::after {
   content: '';
   position: absolute;
@@ -86,33 +51,26 @@ body {
 
 .hero-slider {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   z-index: 1;
 }
 
 .hero-slider .slide {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  /* 1.5s에서 2s로 늘려 더욱 우아하고 무거운 페이드 전환 */
   transition: opacity 2s cubic-bezier(0.25, 1, 0.5, 1), transform 5s ease-out;
-  transform: scale(1);
-  filter: brightness(0.6) contrast(1.1); /* 어둡게 눌러 타이포그래피를 강조 */
+  filter: brightness(0.6) contrast(1.1);
 }
 
 .hero-slider .slide.active {
   opacity: 1;
-  transform: scale(1.05); /* 미세한 줌 인 효과 */
+  transform: scale(1.05);
 }
 
-/* hero-bg-text: 배경에 깔리는 거대한 투명 텍스트 */
 .hero-bg-text {
   position: absolute;
   top: 50%;
@@ -123,50 +81,77 @@ body {
   font-size: 15vw;
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: -0.05em;
-  white-space: nowrap;
   color: #fff;
   opacity: 0.08;
   mix-blend-mode: overlay;
   pointer-events: none;
 }
 
-/* cover-title: 메인 슬로건 */
+/* hero 안 쪽 텍스트 */
 .hero-title-wrap {
   position: absolute;
-  top: 38%;
-  left: 43%;
+  top: 45%; /* 기존 40%에서 살짝 내려 안정감 확보 */
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 5;
+  text-align: center;
+  width: 90%;
+  max-width: 1200px;
 }
+
 .cover-title {
-  /* transform: translate(-50%, -50%); */
-  z-index: 5;
-  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  /* 폰트 크기를 기존보다 약 30~40% 축소 (최대 10rem -> 6rem) */
+  font-size: clamp(2.8rem, 5.5vw, 6rem); 
+  font-family: var(--font-main);
+  font-weight: 900;
   color: #f1f1f1;
-  text-align: center;
+  line-height: 0.95;
+  letter-spacing: -0.04em; /* 글자 간격을 좁혀 밀도감 형성 */
+  margin-bottom: 24px;
+  text-transform: uppercase;
 }
+
+.cover-title em {
+  display: block; /* 줄바꿈 효과를 위해 블록화 */
+  font-family: var(--font-sub);
+  font-style: italic;
+  font-weight: 300;
+  text-transform: none; /* em 부분은 소문자 이탈릭으로 대비 */
+  opacity: 0.8;
+  letter-spacing: 0.02em;
+  margin-top: 5px;
+}
+
 .hero-description {
+  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+  line-height: 1.8;
   color: #f1f1f1;
-  text-align: center;
+  opacity: 0.6; /* 시선을 제목으로 유도하기 위해 투명도 조절 */
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  margin-bottom: 15px;
+  word-break: keep-all;
 }
 
-/* HERO ROLE */
 .hero-role {
-  margin-top: 10px;
-  font-size: 0.9rem;
-  opacity: 0.6;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #fff;
+  opacity: 0.4;
+  margin-top: 20px;
 }
 
-/* hero-dots: 슬라이더 컨트롤러 */
-.hero-dots, .hero-img-dots {
+/* 슬라이더 컨트롤러 */
+.hero-dots {
   position: absolute;
   bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 100 !important;
+  z-index: 100;
   display: flex;
   gap: 15px;
-  pointer-events: auto;
 }
 
 .dot {
@@ -176,15 +161,15 @@ body {
   border-radius: 50%;
   opacity: 0.3;
   cursor: pointer;
-  transition: all 0.4s var(--transition-vogue);
+  transition: var(--transition-vogue);
 }
 
 .dot.active {
   opacity: 1;
-  transform: scale(1.2);
+  transform: scale(1.3);
 }
 
-/* hero-side-meta: 우측 세로 텍스트 정보 */
+/* 사이드 메타 */
 .hero-side-meta {
   position: absolute;
   right: 40px;
@@ -194,7 +179,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 60px;
-  pointer-events: none;
 }
 
 .meta-group {
@@ -202,264 +186,180 @@ body {
   flex-direction: column;
   align-items: flex-end;
   writing-mode: vertical-rl;
-  text-transform: uppercase;
 }
 
 .meta-label {
   font-family: var(--font-mono);
   font-size: 8px;
-  letter-spacing: 0.3em;
   color: rgba(255, 255, 255, 0.4);
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .meta-value {
   font-family: var(--font-main);
   font-size: 11px;
   font-style: italic;
-  letter-spacing: 0.1em;
   color: rgba(255, 255, 255, 0.8);
 }
 
-/* ============================================================
-   04. Mood Archive Section
-   - 구조: 12-Column Grid System
-   - 감성: 비대칭 에디토리얼 레이아웃 (Quiet Radicalism)
-============================================================ */
-
+/* =========================
+   03. Mood Archive (Collage)
+========================= */
 .mood-archive-wrap {
-  padding: 180px 0;
-  background-color: #f8f8f8;
+  width: 100%;
+  padding: 160px 0;
   overflow: hidden;
 }
 
-/* [PC 전용 스타일: 769px 이상] */
-/* [PC 전용 스타일: 769px 이상] */
-@media (min-width: 769px) {
-  .archive-container {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    /* 이미지들이 비율(aspect-ratio)에 따라 높이를 스스로 결정하도록 auto 설정 */
-    grid-auto-rows: auto; 
-    gap: 0; 
-    max-width: 1400px;
-    margin: 0 auto;
-    position: relative;
-  }
+.archive-container {
+  position: relative;
+  width: 100%;
+  max-width: 1600px;
+  height: 140vh;
+  margin: 0 auto;
+}
 
-  .mood-archive-item {
-    position: relative;
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.7s ease;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
-    /* 이미지가 로딩되기 전에도 틀을 유지 */
-    overflow: hidden; 
-  }
-
-  /* 1. Main Editorial (4:5) */
-  .item-lg { 
-    grid-column: 1 / 7; 
-    z-index: 1; 
-    transform: translateY(20px); 
-  }
-  
-  /* 2. Small Mood (4:5) */
-  .item-sm { 
-    grid-column: 8 / 11; 
-    align-self: center; /* 그리드 안에서 수직 중앙 정렬 */
-    z-index: 4; 
-    transform: rotate(-1.2deg) translate(-30px, 40px);
-  }
-
-  /* 3. Interior / Wide (4:5로 통합하거나 1:1로 변경 가능) */
-  .item-md { 
-    grid-column: 9 / 13; 
-    z-index: 2; 
-    transform: translate(-20px, -30px);
-  }
-
-  /* 4. Detail Square (1:1 강제) */
-  .item-sm-square { 
-    grid-column: 2 / 5; 
-    z-index: 5; 
-    transform: translate(40px, 20px) rotate(1.5deg);
-  }
-  .item-sm-square img {
-    aspect-ratio: 1 / 1; /* 이 아이템만 정사각형으로 보여줌 */
-  }
-
-  /* 5. Long Editorial (2:3 또는 4:6) */
-  .item-tall { 
-    grid-column: 6 / 10; 
-    z-index: 3; 
-    transform: translate(10px, -40px) rotate(-0.5deg);
-  }
-  .item-tall img {
-    aspect-ratio: 2 / 3; /* 더 길쭉한 세로 비율 적용 */
+@media (hover: hover) {
+  .archive-container:hover .mood-archive-item:not(:hover) {
+    filter: grayscale(100%) blur(3px);
+    opacity: 0.4;
+    transform: scale(0.97);
   }
 }
 
-/* [공통 요소 스타일] */
+.mood-archive-item {
+  position: absolute;
+  overflow: hidden;
+  transition: var(--transition-heavy);
+  will-change: transform, filter;
+}
+
 .mood-archive-item img {
   width: 100%;
-  /* 원본 비율에 상관없이 4:5 비율 틀을 강제 생성 */
-  aspect-ratio: 4 / 5; 
-  /* 틀에 맞게 이미지를 꽉 채우되, 찌그러지지 않게 중심부 위주로 자름 */
-  object-fit: cover; 
-  display: block;
-  filter: grayscale(0.15) contrast(1.05);
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s ease;
 }
 
-/* 인쇄물 질감 오버레이 */
-.mood-archive-item::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.03);
-  background-image: repeating-radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.04) 0px, rgba(0, 0, 0, 0) 1px, transparent 2px);
-  background-size: 3px 3px;
-  mix-blend-mode: multiply;
-  pointer-events: none;
+.mood-archive-item:hover {
+  transform: translateY(-20px) scale(1.03) !important;
+  z-index: 100 !important;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
+}
+
+.item-lg {
+  width: 32vw;
+  height: 45vw;
+  top: 5%;
+  left: 8%;
   z-index: 2;
 }
 
-/* Hover 인터랙션 */
-.mood-archive-item:hover {
-  z-index: 20;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
-  /* 기존 transform 값을 유지하면서 살짝 위로 이동 */
-  transform: translateY(-10px) !important; 
+.item-sm {
+  width: 18vw;
+  height: 26vw;
+  top: 10%;
+  right: 12%;
+  z-index: 4;
 }
 
-.mood-archive-item:hover img {
-  transform: scale(1.03);
-  filter: grayscale(0) contrast(1.1);
+.item-md.overlap-right {
+  width: 26vw;
+  height: 35vw;
+  top: 32%;
+  left: 36%;
+  z-index: 1;
 }
 
-/* 캡션(Meta) 스타일 */
-.img-meta {
-  position: absolute;
-  bottom: -30px;
-  left: 0;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.2em;
-  color: #111;
-  text-transform: uppercase;
-  opacity: 0.6;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
+.item-sm-square {
+  width: 20vw;
+  height: 20vw;
+  bottom: 8%;
+  left: 14%;
+  z-index: 5;
 }
 
-.mood-archive-item:hover .img-meta {
-  opacity: 1;
+.item-tall {
+  width: 23vw;
+  height: 42vw;
+  bottom: 0%;
+  right: 10%;
+  z-index: 3;
 }
 
 /* =========================
-   WORK APPROACH
+   04. About & Approach
 ========================= */
-
+.about-section,
 .work-approach-section {
-  padding: 120px 0;
+  padding: 140px 0;
 }
 
+.about-container,
 .approach-container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 5%;
 }
 
-.approach-list li {
-  position: relative;
-  padding: 12px 0;
-  cursor: default;
-  
-  font-size: 1rem;
-  padding: 18px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.08); 
-  transition: transform 0.3s ease; 
-}
-.approach-list li:hover {
-  transform: translateX(6px);
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  font-family: var(--font-main);
 }
 
-.approach-list li span {
+.about-text {
+  font-size: 1.1rem;
+  line-height: 2;
+  max-width: 540px;
+}
+
+.approach-list {
+  list-style: none;
+  margin-top: 40px;
+}
+
+.approach-list li {
   position: relative;
-  z-index: 2;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  font-size: 1.1rem;
+  transition: transform 0.4s ease;
+}
+
+.approach-list li:hover {
+  transform: translateX(10px);
 }
 
 .process-text {
   margin-top: 30px;
   font-size: 0.9rem;
-  line-height: 1.8;
   opacity: 0.6;
-  max-width: 420px;
-}
-
-/* 라인 */
-.approach-list li::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0%;
-  height: 1px;
-  background: #111;
-  transition: width 0.4s ease;
-}
-
-.approach-list li:hover::after {
-  width: 100%;
+  line-height: 1.8;
 }
 
 /* =========================
    05. Lookbook Section
-   - 스트릿 에디토리얼 무드
-   - 대형 비주얼과 우측 텍스트 오버랩
 ========================= */
-
-.lookbook-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 4%;
-}
-
 .lookbook-visual {
   position: relative;
+  padding: 100px 0;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 80px 0;
 }
 
 .visual-img-wrap {
-  width: 65%;
-  height: 85vh;
-  position: relative;
+  width: 70%;
+  height: 90vh;
   overflow: hidden;
-  margin-left: -2%;
+  position: relative;
 }
 
 .visual-img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.05);
-  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
-  filter: grayscale(0.1);
-}
-
-.visual-img-wrap:hover img {
-  transform: scale(1.08);
-  filter: grayscale(0);
-}
-
-.visual-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.45) 100%);
-  pointer-events: none;
-  z-index: 2;
+  filter: grayscale(0.2);
+  transition: 1.5s ease;
 }
 
 .editorial-text-wrap {
@@ -471,154 +371,89 @@ body {
 }
 
 .editorial-title {
-  font-family: var(--font-main);
-  font-size: clamp(70px, 10vw, 150px);
-  line-height: 0.85;
-  color: #f8f8f8;
-  transform: rotate(-1.5deg) translate(10px, 20px);
-  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  margin-bottom: 30px;
-}
-
-.editorial-title em {
-  display: inline-block;
-  font-family: var(--font-sub);
-  font-style: italic;
-  font-weight: 300;
-  opacity: 0.4;
-  transform: translateX(-15px);
-}
-
-.editorial-desc {
-  max-width: 380px;
-  margin-left: auto;
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.9;
-  /* 기존 0.6 설정 주석처리: 최신 선언 0.7 적용 */
-  /* opacity: 0.6; */
-  opacity: 0.7; 
-  color: #666;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-}
-
-.lookbook-meta-info {
-  position: absolute;
-  top: 50%;
-  left: 2%;
-  transform: translateY(-50%) rotate(-90deg);
-  transform-origin: left center;
-  display: flex;
-  gap: 20px;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: #888;
-  letter-spacing: 0.2em;
+  font-size: clamp(60px, 10vw, 150px);
+  line-height: 0.8;
+  color: #fff;
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 /* =========================
-   06. ABOUT
+   06. Project Grid (Restored Details)
 ========================= */
-.about-section {
-  padding: 140px 0;
+
+.container {
+  max-width: 1400px;
+  margin: 0 50px;
 }
 
-.about-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 5%;
+.project-grid-section {
+  padding: 160px 0;
+  background-color: #fff;
 }
-
-.about-text {
-  font-size: 1.05rem;
-  line-height: 2;
-  letter-spacing: 0.02em;
-  max-width: 520px;
-}
-
-.about-left {
-  flex: 1;
-}
-
-.about-right {
-  flex: 2;
-}
-
-.about-container::before {
-  content: "";
-  display: block;
-  width: 40px;
-  height: 1px;
-  background: #111;
-  margin-bottom: 30px;
-  opacity: 0.3;
-}
-
-
-/* =========================
-   07. Project Section
-   - 아카이브 리스트 및 프로젝트 그리드
-   - 2열 비대칭 그리드 시스템
-========================= */
 
 .project-header {
   margin-bottom: 60px;
 }
+
+.p-section-title {
+  font-size: 3rem;
+  font-family: var(--font-main);
+  margin-bottom: 15px;
+}
+
 .p-section-desc {
   font-size: 0.95rem;
   opacity: 0.7;
   margin-bottom: 40px;
 }
-/*  */
-.project-grid-section {
-  padding: 120px 0;
-  background-color: #fff;
-}
 
 .archive-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 120px 60px;
+  gap: 120px 80px;
 }
 
 .archive-item {
   display: block;
   text-decoration: none;
-  color: #4443434d;
+  color: inherit;
 }
 
 .archive-img-wrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 11;
+  aspect-ratio: 16/11;
   overflow: hidden;
-  background-color: #1a1a1a;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  background: #1a1a1a;
 }
 
 .archive-img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(1) brightness(0.9);
-  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), filter 1s ease;
+  filter: grayscale(1);
+  transition: 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .archive-item:hover img {
+  filter: grayscale(0);
   transform: scale(1.04);
-  filter: grayscale(0) brightness(1);
 }
 
 .project-overlay-info {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   backdrop-filter: blur(5px);
   transition: opacity 0.6s ease;
+  color: #fff;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
 }
 
 .archive-item:hover .project-overlay-info {
@@ -626,30 +461,48 @@ body {
 }
 
 .archive-info h3 {
+  font-size: 1.8rem;
   font-family: var(--font-main);
-  font-size: 26px;
   font-style: italic;
-  font-weight: 400;
-  color: #111;
   margin-bottom: 15px;
+  color: #111;
 }
 
 .archive-info p {
-  max-width: 340px;
-  font-size: 13.5px;
-  line-height: 1.9;
+  font-size: 0.95rem;
+  line-height: 1.8;
   color: #666;
   font-weight: 300;
   word-break: keep-all;
 }
+
+/* restored: role and tech tags */
+.p-meta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #999;
+  margin-bottom: 10px;
+  letter-spacing: 0.1em;
+}
+
 .p-role {
-  margin-top: 8px;
+  margin-top: 15px;
   font-size: 0.8rem;
   opacity: 0.5;
   letter-spacing: 0.03em;
 }
 
-/* 태그 디테일: 닷 포인트 구분자 */
+.p-tech-tags {
+  margin-top: 12px;
+  display: flex;
+  gap: 15px;
+}
+
+.p-tech-tags span {
+  font-size: 11px;
+  color: #888;
+}
+
 .p-tech-tags span:not(:last-child)::after {
   content: '•';
   margin-left: 12px;
@@ -657,253 +510,163 @@ body {
 }
 
 /* =========================
-   SERVICES
+   07. Services (Restored Details)
 ========================= */
-/* 전체 */
 .services-section {
   padding: 160px 0;
+  border-top: 1px solid #eee;
 }
 
 .services-container {
+  position: relative;
   max-width: 900px;
   margin: 0 auto;
   padding: 0 5%;
 }
 
-/* 설명 */
+/* restored: "SERVICE" label */
+.services-container::before {
+  content: "SERVICE";
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  opacity: 0.4;
+  margin-bottom: 15px;
+}
+
 .services-desc {
-  margin: 20px 0 0px;
+  margin: 20px 0 10px;
   font-size: 0.95rem;
   opacity: 0.7;
 }
 
 .services-proof {
-  margin: 0 0 40px;
+  margin-bottom: 40px;
   font-size: 0.95rem;
-  opacity: 0.7;
-}
-
-/* 리스트 */
-.services-list {
-  list-style: none;
-  padding: 0;
-}
-
-/* 각 항목 */
-.services-list li {
-  display: flex;
-  justify-content: space-between;
-  padding: 18px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-  transition: transform 0.3s ease;
-
-}
-
-.services-list li:hover {
-  transform: translateX(6px);
-}
-
-/* 타이틀 */
-.service-title {
-  font-size: 1rem;
-}
-
-/* 서브 */
-.service-sub {
-  font-size: 0.85rem;
   opacity: 0.5;
 }
 
-/* CTA */
+.services-list {
+  list-style: none;
+}
+
+.services-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 0;
+  border-bottom: 1px solid #f0f0f0;
+  transition: transform 0.3s ease;
+}
+
+.services-list li:hover {
+  transform: translateX(10px);
+}
+
+.service-title {
+  font-size: 1.1rem;
+  color: #111;
+}
+
+.service-sub {
+  opacity: 0.4;
+  font-size: 0.85rem;
+}
+
 .services-cta {
-  margin-top: 30px;
+  margin-top: 40px;
   font-size: 0.95rem;
   opacity: 0.8;
-}
-
-.services-container::before {
-  content: "SERVICE";
-  display: block;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  opacity: 0.4;
-  margin-bottom: 10px;
-}
-
-/* FOOTER CTA */
-.footer-cta {
-  margin-top: 10px;
-  font-size: 0.9rem;
-  opacity: 0.7;
+  font-style: italic;
+  color: #666;
 }
 
 /* =========================
-   08. Animation / Effects
-   - 레이아웃 보조 클래스 및 재사용 애니메이션
+   08. Responsive System
 ========================= */
-
-.offset-up { transform: translateY(-30px); }
-.offset-down { transform: translateY(60px); }
-
-/* =========================
-   09. Responsive (Mobile System)
-   - 모바일 환경을 위한 레이아웃 재구성
-   - 터치 기반 인터랙션 최적화
-========================= */
-
-/* [1] Tablet (max-width: 1024px) */
 @media (max-width: 1024px) {
-  .vogue-index { padding-top: 80px; }
-  .container { padding: 0 6%; }
-  /* .cover-title { font-size: 12vw; } */
-  .archive-grid { grid-template-columns: 1fr; gap: 80px; }
+  .archive-container {
+    height: 110vh;
+  }
+
+  .archive-grid {
+    gap: 80px 40px;
+  }
 }
 
-
-/* [2] Smartphone (max-width: 768px) */
 @media (max-width: 768px) {
-  section { padding: 80px 0 !important; }
-
-  /* Hero Mobile */
-  .index-hero {
-    width: 100vw; height: 100vh; position: relative; left: 50%; transform: translateX(-50%); overflow: hidden;
+  section {
+    padding: 80px 0 !important;
   }
-  .hero-main-img img { object-position: center 20%; transform: scale(1) !important; }
+
   .hero-title-wrap {
-    width: 90%; font-size: 3vw; bottom: 50%; top: auto; left: 50%; transform: translateX(-50%); text-align: center;
+    top: 50%; /* 모바일에서는 정중앙 배치 */
   }
-  .hero-bg-text {
-    top: 25% !important; font-size: 22vw !important; opacity: 0.08 !important;
+  
+  .cover-title {
+    font-size: clamp(2.5rem, 12vw, 3.5rem);
+    letter-spacing: -0.02em;
   }
-  .hero-side-meta { display: none; }
-
-  .hero-dots, .hero-img-dots {
-    bottom: 100px;
-  }
-
-  .mood-archive-wrap { 
-    padding: 80px 20px; 
-    background-color: #f8f8f8;
+  
+  .hero-description {
+    font-size: 0.85rem;
+    padding: 0 10%;
   }
 
-  .archive-container { 
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 40px 16px; /* 세로 간격을 늘려 캡션 공간 확보 */
-    padding: 0 24px; /* 양 옆 여백 증가로 답답함 해소 */
+  .hero-side-meta {
+    display: none;
+  }
+
+  /* Mood Archive Mobile */
+  .archive-container {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0 24px;
   }
 
   .mood-archive-item {
-    position: relative;
-    width: 100%; 
-    height: auto;
-    transform: none !important; /* PC 회전/이동 초기화 */
-    box-shadow: none;
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    margin-bottom: 50px;
+  }
+
+  .item-lg,
+  .item-sm,
+  .item-md,
+  .item-sm-square,
+  .item-tall {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 0 40px 0 !important;
   }
 
   .mood-archive-item img {
+    aspect-ratio: 4/5;
+  }
+
+  /* Project Grid Mobile */
+  .archive-grid {
+    grid-template-columns: 1fr;
+    gap: 70px;
+  }
+
+  .archive-img-wrap {
+    aspect-ratio: 1/1;
+  }
+
+  /* Lookbook Mobile */
+  .visual-img-wrap {
     width: 100%;
-    height: auto;
-    /* 모바일에서 이미지가 꽉 차 보이도록 보정 */
-    display: block;
-    object-fit: cover;
-    /* 모바일에서도 모든 이미지를 4:5로 통일하여 정갈한 그리드 유지 */
-    aspect-ratio: 4 / 5 !important;
+    height: 60vh;
   }
 
-  .item-lg { 
-    grid-column: span 2; 
-    margin-bottom: 20px;
-  } /* 메인 이미지는 전폭 */
-  
-  .item-lg img {
-  /* [핵심 수정] 
-       이미지가 잘리지 않게 하려면 4:5(세로형)보다 
-       정사각형(1:1)이나 약간 가로형(3:2)이 유리합니다.
-    */
-    /* aspect-ratio: 1 / 1 !important;  전체 구도를 보고 1:1 또는 4:5 중 선택 */
-    
-    /* 이미지 전체가 틀 안에 다 들어오게 하려면 'contain'을 쓰지만, 
-       여백이 생길 수 있으므로 'cover'를 유지하면서 비율만 조정하는 것을 추천합니다. 
-    */
-    object-fit: cover !important; 
-    object-position: center; /* 이미지의 중심을 기준으로 보여줌 */
-    
-    width: 100% !important;
-    height: auto !important;
-  }
-
-  .item-sm, .item-md, .item-sm-square, .item-tall { grid-column: span 1; }
-
-  .img-meta { 
+  .editorial-text-wrap {
     position: relative;
-    bottom: auto;
-    margin-top: 12px;
-    opacity: 0.7;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-  }
- 
-  /* Lookbook Mobile (수직 정렬) */
-  .lookbook-visual { flex-direction: column; align-items: flex-start; }
-  .visual-img-wrap { width: 100% !important; height: auto !important; aspect-ratio: 4/5; margin: 0 0 20px 0 !important; }
-  
-  .editorial-text-wrap { 
-    position: relative !important; 
-    right: auto; 
-    bottom: auto; 
-    text-align: left !important; /* 모바일은 왼쪽 정렬이 시각적으로 안정적임 */
-    padding: 0 20px;
-    margin-top: -150px; /* 이미지 위로 살짝 올라타게 겹침 (Depth 형성) */
-    z-index: 10;
-  }
-  
-  .editorial-title { font-size: 50px !important; color: #fff !important; text-shadow: 0 4px 15px rgba(0,0,0,0.4) !important; transform: none !important; margin-bottom: 10px; }
-  .editorial-desc { color: #fff !important; text-shadow: 0 2px 10px rgba(0,0,0,0.5) !important; margin: 0; }
-  
-  .lookbook-meta-info { position: relative !important; transform: none !important; justify-content: flex-start; padding: 0 20px; margin-top: 20px; } 
-
-  /* Statement Mobile */
-  .statement-section { padding: 180px 20px !important; }
-  .statement-text { font-size: 15vw !important; transform: none !important;}
-  .statement-text .dimmed { transform: none !important; font-size: 12vw !important; margin-top: 5px; }
-  .statement-caption { border: none !important; padding: 0 !important; }
-
-  /* Project Mobile */
-  .archive-grid { display: flex; flex-direction: column; gap: 70px; }
-  .archive-img-wrap { aspect-ratio: 1/1; }
-}
-
-
-@media (hover: hover) and (pointer: fine) {
-  .mood-archive-item:hover {
-    z-index: 20;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
-    transform: translateY(-10px) !important; 
-  }
-  .mood-archive-item:hover img {
-    transform: scale(1.03);
-    filter: grayscale(0) contrast(1.1);
+    inset: auto;
+    text-align: left;
+    padding: 40px 20px;
   }
 }
-
-/* ==========================================================================
-   [RESERVED DUPLICATES - BACKUP ONLY]
-   - 아래는 최신 사양에 의해 대체된 이전 선언문들입니다. (보관용 주석)
-========================================================================== */
-
-/*
-.editorial-desc {
-  opacity: 0.6;
-  line-height: 1.9;
-  font-size: 15px;
-  color: #fff;
-}
-.hero-bg-text {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3;
-  opacity: 0.03;
-}
-*/
