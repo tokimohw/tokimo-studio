@@ -228,7 +228,7 @@ body {
 
 .mood-archive-item {
   position: absolute;
-  overflow: hidden;
+  /* overflow: hidden; */
   transition: var(--transition-heavy);
   will-change: transform, filter;
 }
@@ -238,6 +238,7 @@ body {
   height: 100%;
   object-fit: cover;
   transition: transform 1.2s ease;
+  display: block;
 }
 
 .mood-archive-item:hover {
@@ -251,6 +252,23 @@ body {
 .item-md.overlap-right {width: 30vw;height: 40vw;top: 25%;left: 35%;z-index: 1;}
 .item-sm-square {width: 22vw;height: 30vw;bottom: 0%;left: 10%;z-index: 5;}
 .item-tall {width: 25vw;/* height: 45vw; */bottom: 0%;right: 7%;z-index: 3;}
+
+/* 이미지 하단 텍스트 */
+.img-meta {
+  position: absolute;
+  bottom: -25px; /* 이미지 아래쪽으로 25px 내림 */
+  left: 0;
+  width: 100%;
+  z-index: 10; /* 이미지보다 위에 오도록 */
+  
+  /* 텍스트 스타일 */
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-main);
+  opacity: 0.6;
+  text-transform: uppercase;
+}
 
 /* =========================
    04. About & Approach
