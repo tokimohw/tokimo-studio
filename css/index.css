@@ -324,17 +324,30 @@ body {
 /* =========================
    05. Lookbook Section
 ========================= */
+.lookbook-section {
+  padding: 160px 0;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.lookbook-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
 .lookbook-visual {
   position: relative;
-  padding: 100px 0;
   display: flex;
+  align-items: flex-end; /* 텍스트를 이미지 하단 라인에 맞춤 */
+  gap: 40px;
 }
 
 .visual-img-wrap {
-  width: 70%;
-  height: 90vh;
-  overflow: hidden;
   position: relative;
+  width: 70%; /* 이미지 비중 */
+  height: 80vh; /* 화면 높이에 맞춘 유연한 높이 */
+  overflow: hidden;
 }
 
 .visual-img-wrap img {
@@ -342,22 +355,77 @@ body {
   height: 100%;
   object-fit: cover;
   filter: grayscale(0.2);
-  transition: 1.5s ease;
+  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.lookbook-visual:hover img {
+  transform: scale(1.05);
+}
+
+/* 텍스트 컨테이너: 이미지 위에 반쯤 걸치는 에디토리얼 배치 */
 .editorial-text-wrap {
   position: absolute;
-  right: 5%;
-  bottom: 15%;
+  right: 0;
+  bottom: 10%;
   z-index: 10;
   text-align: right;
+  pointer-events: none;
 }
 
+/* 룩북 센션 텍스트 */
 .editorial-title {
-  font-size: clamp(60px, 10vw, 150px);
+  color: #3d3a38; /* 잉크 느낌의 웜 블랙 */
+  font-size: clamp(4rem, 9.5vw, 8.5rem);
+  font-weight: 900;
   line-height: 0.8;
-  color: #fff;
-  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.06em; /* 더 과감하게 좁힘 */
+  text-transform: uppercase;
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+  transform: rotate(-1deg); /* 의도된 불균형 */
+}
+
+.editorial-title em {
+  color: #928d88; /* 배경에 묻히는 연한 갈색빛 그레이 */
+  font-family: var(--font-sub);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 0.4em;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  display: block;
+  margin-top: 5px;
+}
+
+/* 호버 시에만 살짝 선명해지는 효과 */
+.lookbook-visual:hover .editorial-title {
+  opacity: 1;
+  color: #333333;
+  transition: all 1s ease;
+}
+
+.editorial-desc {
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  line-height: 1.8;
+  color: #555;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+/* 하단 메타 정보 영역 */
+.lookbook-meta-info {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #999;
+  letter-spacing: 0.15em;
+}
+
+.meta-slash {
+  opacity: 0.3;
 }
 
 /* =========================
@@ -571,6 +639,7 @@ body {
 
 /* 🔍 문제의 1160px 근처 해상도 집중 보정 */
 @media (max-width: 1200px) {
+  /* 무드 섹션 */
   .archive-container {
     height: 125vh; /* 화면이 낮아지면 컨테이너 높이도 축소 */
   }
@@ -580,10 +649,27 @@ body {
   .item-md.overlap-right {width: 35vw;left: 32%;top: 25%;}
   .item-sm {width: 22vw;right: 5%;}
   .item-tall {width: 28vw !important;right: 2%;bottom: 0%;}
+
+  /* 룩북 섹션 */
+  .visual-img-wrap {
+    width: 65%; /* 이미지를 살짝 줄여 여백 확보 */
+    height: 70vh; 
+  }
+
+  .editorial-text-wrap {
+    bottom: 15%; /* 텍스트를 위로 살짝 올려 시인성 확보 */
+    right: 2%;
+  }
+
+  .editorial-title {
+    font-size: clamp(4rem, 8.5vw, 7rem); /* 폰트 크기 미세 축소 */
+    letter-spacing: -0.05em;
+  }
 }
 
 /* 태블릿~모바일 전환 구간 (간격 벌어짐 방지) */
 @media (max-width: 900px) {
+  /* 무드 섹션 */
   .archive-container {
     height: auto;
     display: grid;
@@ -607,15 +693,91 @@ body {
 
   .item-tall {width: 28vw !important;right: 2%;}
 
+  /* 룩북 섹션 */
+  .lookbook-section {
+    padding: 100px 0;
+  }
+
+  .lookbook-visual {
+    flex-direction: column; /* 여기서부터 세로 배치로 전환 */
+    align-items: flex-start;
+    gap: 35px;
+  }
+
+  .visual-img-wrap {
+    width: 100%; /* 이미지가 가로를 꽉 채움 */
+    height: 50vh;
+  }
+
+  .editorial-text-wrap {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    text-align: left; /* 왼쪽 정렬로 전환 */
+    transform: none; /* 회전 해제하여 안정감 부여 */
+    padding-left: 0;
+  }
+
+  .editorial-title {
+    font-size: 4.5rem;
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    transform: rotate(-0.5deg); /* 아주 미세한 느낌만 유지 */
+    mix-blend-mode: normal; /* 배경색이 바뀌는 지점이므로 안전하게 normal */
+  }
+
+  .editorial-title em {
+    font-size: 0.45em;
+    margin-top: 5px;
+  }
+
+  .editorial-desc {
+    text-align: left;
+    max-width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .lookbook-meta-info {
+    margin-top: 40px;
+    justify-content: flex-start;
+    gap: 15px;
+  }
+
 }
 
 @media (max-width: 1024px) {
+  /* 무드 섹션 */
   .archive-container {
     height: 110vh;
   }
 
   .archive-grid {
     gap: 80px 40px;
+  }
+
+  /* 룩북 섹션 */
+  .lookbook-section {
+    padding: 120px 0;
+  }
+
+  .visual-img-wrap {
+    width: 75%; /* 다시 이미지를 키우되 텍스트가 더 많이 겹치게 설정 */
+    height: 60vh;
+  }
+
+  .editorial-text-wrap {
+    bottom: 5%;
+    right: 0;
+  }
+
+  .editorial-title {
+    font-size: 6rem;
+    transform: rotate(-0.8deg); /* 회전 반경 축소 */
+  }
+
+  .editorial-desc {
+    font-size: 0.95rem;
+    margin-left: auto; /* 우측 정렬 유지 */
   }
 }
 
@@ -679,15 +841,67 @@ body {
   }
 
   /* Lookbook Mobile */
+  .lookbook-section {
+    padding: 80px 0; /* 모바일은 상하 여백을 약간 축소 */
+  }
+
+  .lookbook-visual {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+  }
+
   .visual-img-wrap {
     width: 100%;
-    height: 60vh;
+    height: 55vh; /* 모바일 화면의 절반 이상을 차지하도록 설정 */
   }
 
   .editorial-text-wrap {
-    position: relative;
-    inset: auto;
+    position: relative; /* 모바일에서는 이미지 아래로 배치 */
+    right: auto;
+    bottom: auto;
     text-align: left;
-    padding: 40px 20px;
+    margin-top: 20px;
+    padding-left: 5px; /* 미세한 회전 시 글자가 잘리지 않도록 여백 확보 */
+  }
+
+  .editorial-title {
+    /* 모바일에서는 폰트 크기를 고정(3.2rem)하거나 더 좁은 범위의 clamp 사용 */
+    font-size: clamp(3rem, 14vw, 4rem); 
+    line-height: 0.85; /* 모바일 가독성을 위해 아주 살짝 넓힘 */
+    letter-spacing: -0.03em; /* 모바일은 자간을 조금 풀어주어야 뭉쳐 보이지 않음 */
+    
+    /* 회전 효과 유지하되 모바일에선 조금 더 안정적으로 (-0.5deg) */
+    transform: rotate(-0.5deg); 
+    transform-origin: left center;
+    
+    /* 배경 톤과 맞춘 잉크 블랙 유지 */
+    color: #3d3a38;
+    mix-blend-mode: normal; /* 모바일 브라우저 성능 및 가독성을 위해 multiply 해제 권장 (선택사항) */
+    opacity: 1; /* 모바일은 기본적으로 선명하게 노출 */
+  }
+
+  .editorial-title em {
+    font-size: 0.45em; /* em 비율은 살짝 키워서 존재감 부여 */
+    margin-top: 8px;
+    letter-spacing: 0.01em;
+    color: #8a847e;
+  }
+
+  .editorial-desc {
+    font-size: 0.9rem;
+    margin-top: 15px;
+    line-height: 1.7;
+    opacity: 0.7;
+    word-break: keep-all; /* 한글/영문 단어 잘림 방지 */
+  }
+
+  .lookbook-meta-info {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0,0,0,0.05); /* 경계선 추가로 구분감 확보 */
+    flex-direction: row; /* 메타 정보는 가로로 유지하거나 상황에 따라 column */
+    justify-content:间;
+    width: 100%;
   }
 }
