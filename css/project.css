@@ -196,6 +196,85 @@
 .collage-item:nth-child(3) { width: 280px; height: 340px; top: 680px; left: 22%; transform: rotate(-1deg); }
 .collage-item:nth-child(4) { width: 480px; height: 600px; top: 780px; right: 8%; transform: rotate(1.5deg); }
 
+
+/* =========================
+   CTA Section Styles
+========================= */
+.project-cta-section {
+  margin-top: 100px;
+  padding: 120px 6%;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  background: #f8f8f8; /* 아주 미세한 톤 차이로 구분감 부여 */
+}
+
+.cta-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 60px;
+}
+
+.cta-title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  margin-bottom: 30px;
+}
+
+.cta-title em {
+  font-family: var(--font-sub);
+  font-style: italic;
+  font-weight: 300;
+  color: #8a847e;
+}
+
+.cta-desc {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.cta-desc-jp {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: #888;
+  font-weight: 300;
+}
+
+.cta-button {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 40px;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  transition: all 0.4s ease;
+}
+
+.cta-button:hover {
+  background: #333;
+  padding-right: 50px;
+}
+
+/* 일본어 보조 텍스트 스타일 */
+.jp-sub {
+  display: block;
+  margin-top: 8px;
+  font-size: 11px;
+  opacity: 0.6;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+
 /* 7. TABLET (1024px ~ 900px) */
 @media (max-width: 1024px) {
   .collage-grid {
@@ -207,6 +286,24 @@
   .collage-item:nth-child(2) { width: 38%; height: 53vw !important; right: 4%; top: 120px; }
   .collage-item:nth-child(3) { width: 32%; height: 53vw !important; left: 10%; top: 600px; }
   .collage-item:nth-child(4) { width: 45%; height: 53vw !important; right: 4%; top: 720px; }
+}
+
+
+/* =========================
+   CTA Responsive
+========================= */
+@media (max-width: 900px) {
+  /* CTA */
+  .cta-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
+  
+  .cta-button {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 
 /* 8. MOBILE (768px 이하) - 푸터 노출 핵심 해결 구간 */
@@ -271,6 +368,15 @@
   /* 모바일에서 불필요한 장식 요소 제거 */
   .floating-text, .micro-note, .collage-grid::before {
     display: none;
+  }
+
+  /* CTA */
+  .project-cta-section {
+    padding: 80px 24px;
+  }
+  
+  .cta-title {
+    font-size: 2.8rem;
   }
 
 }
