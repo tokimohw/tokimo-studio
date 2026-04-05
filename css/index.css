@@ -428,6 +428,67 @@ body {
   opacity: 0.3;
 }
 
+/* CTA 섹션 */
+/* =========================
+   EDITORIAL CTA (감성형 CTA)
+========================= */
+
+.cta-editorial {
+  padding: 100px 0;
+  text-align: center;
+}
+
+.cta-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.cta-jp {
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  opacity: 0.5;
+  margin-bottom: 20px;
+}
+
+.cta-main {
+  font-family: var(--font-main);
+  font-size: clamp(42px, 5vw, 72px);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.cta-sub {
+  font-size: 0.9rem;
+  opacity: 0.6;
+  margin-bottom: 40px;
+}
+
+/* 핵심: 버튼 대신 링크 */
+.cta-link {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  color: #111;
+  position: relative;
+}
+
+/* underline animation */
+.cta-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 1px;
+  background: #111;
+  transition: width 0.4s ease;
+}
+
+.cta-link:hover::after {
+  width: 100%;
+}
 /* =========================
    06. Project Grid (Restored Details)
 ========================= */
