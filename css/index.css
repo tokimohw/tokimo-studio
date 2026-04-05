@@ -22,7 +22,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.vogue-index {
+.main-index {
   padding-top: 100px;
 }
 
@@ -200,6 +200,7 @@ body {
   font-style: italic;
   color: rgba(255, 255, 255, 0.8);
 }
+
 
 /* =========================
    03. Mood Archive (Collage)
