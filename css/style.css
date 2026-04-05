@@ -51,7 +51,6 @@
   display: block;
   font-size: 11px;
   line-height: 1.6;
-  margin-top: 10px;
   color: rgba(0,0,0,0.4);
   font-weight: 300;
   letter-spacing: 0.02em;
@@ -87,6 +86,54 @@
     font-size: 10px;
   }
 }
+
+/* 영문 전용 스타일: 현대적이고 건축적인 인상 */
+.en {
+  /* 깨끗하고 가독성이 높은 'Inter'를 기본으로 하며, 시스템 폰트로 부드럽게 연결합니다. */
+  font-family: 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', sans-serif;
+  
+  /* 얇은 두께(300~400)를 사용하여 '정숙한' 무드를 유지합니다. */
+  font-weight: 300;
+  
+  /* 영문은 자간을 살짝 넓혔을 때 에디토리얼 잡지 같은 고급스러움이 살아납니다. */
+  letter-spacing: 0.03em;
+  
+  /* 행간을 여유 있게 두어 시각적인 숨통을 틔워줍니다. */
+  line-height: 1.6;
+  
+  /* Mac과 같은 고해상도 디스플레이에서 글자를 더 선명하고 얇게 표현합니다. */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 강조가 필요한 영문 (예: Architecture, Repositories 등) */
+.en.emphasis {
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  /* 대문자로 변환하여 '라벨' 같은 느낌을 줄 때 사용하세요. */
+  text-transform: uppercase;
+}
+
+/* 서정적인 영문 (이탤릭체 활용) */
+.en em {
+  font-family: 'Playfair Display', serif; /* 감성적인 Serif 서체가 있다면 교체 가능 */
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+
+
+/* margin */
+.mb10 {margin-bottom: 10px;}
+.mb20 {margin-bottom: 20px;}
+.mb30 {margin-bottom: 30px;}
+.mb40 {margin-bottom: 40px;}
+
+.mt10 {margin-top: 10px;}
+.mt20 {margin-top: 20px;}
+.mt30 {margin-top: 30px;}
+.mt40 {margin-top: 40px;}
 
 /* ==========================================================================
    2. BASE RESET & BODY (Page Transition & Texture)

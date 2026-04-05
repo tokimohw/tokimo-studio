@@ -201,6 +201,10 @@ body {
   color: rgba(255, 255, 255, 0.8);
 }
 
+.side-jp {
+  font-size: 10px; 
+  opacity: 0.8;
+}
 
 /* =========================
    03. Mood Archive (Collage)
@@ -294,8 +298,9 @@ body {
 
 .about-text {
   font-size: 1.1rem;
-  line-height: 2;
+  line-height: 1.4;
   max-width: 540px;
+  margin-bottom: 10px;
 }
 
 .approach-list {
@@ -320,6 +325,11 @@ body {
   font-size: 0.9rem;
   opacity: 0.6;
   line-height: 1.8;
+}
+
+.jp-approach {
+  display: inline; 
+  margin: 0 0 0 8px;
 }
 
 /* =========================
@@ -588,7 +598,6 @@ body {
 }
 
 .services-desc {
-  margin: 20px 0 10px;
   font-size: 0.95rem;
   opacity: 0.7;
 }
@@ -632,6 +641,10 @@ body {
   opacity: 0.8;
   font-style: italic;
   color: #666;
+}
+
+.jp-svi {
+  margin-bottom: 30px;
 }
 
 
@@ -891,6 +904,11 @@ body {
   width: 100%;
 }
 
+.jp-cta {
+  font-size: 14px; 
+  color: #666; 
+  margin-bottom: 20px;
+}
 
 /* ==========================================================================
    RESPONSIVE DESIGN (모바일 최적화)
