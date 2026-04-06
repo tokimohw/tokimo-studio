@@ -89,6 +89,7 @@ a {
   display: flex;
   align-items: center;
   padding-top: 100px;
+  margin-bottom: 30px;
 }
 .intro-inner {
   max-width: 900px;

@@ -14,22 +14,22 @@ document.addEventListener("DOMContentLoaded", () => {
   // 화면에 요소가 15% 정도 나타나면 천천히 떠오르는 효과
   const revealElements = document.querySelectorAll('.reveal');
 
-  const revealOptions = {
-    threshold: 0.15, // 요소가 15% 보일 때 트리거
-    rootMargin: "0px 0px -50px 0px" // 하단에서 50px 여유를 둠
-  };
+    /* detail.js 수정 */
+    const revealOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -80px 0px"
+    };
 
-  const revealObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // 화면에 들어오면 .active 클래스 추가하여 CSS 애니메이션 실행
-        entry.target.classList.add('active');
-        
-        // 한 번 나타난 요소는 다시 감지할 필요 없으므로 관찰 해제 (성능 최적화)
-        observer.unobserve(entry.target);
-      }
+    const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+        // 순차적 등장을 위한 delay 부여
+        setTimeout(() => {
+            entry.target.classList.add('active');
+        }, index * 150); // 요소간 0.15초 간격
+        }
     });
-  }, revealOptions);
+    }, revealOptions);
 
   // 모든 .reveal 요소에 관찰자 부착
   revealElements.forEach(el => {
