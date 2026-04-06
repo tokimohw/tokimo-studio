@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KINU ROASTERY | TOKIMO ARCHIVE</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400&family=Noto+Serif+JP:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/work-roastery.css">
+</head>
+<body>
+
+  <a href="index.html" class="back-btn">
+    <span class="arrow">←</span> TOKIMO
+  </a>
+
+  <main class="case-study">
+    
+    <header class="cs-intro reveal">
+      <div class="intro-inner">
+        <h1 class="project-title">
+          <span class="en italic">Silence in a Cup</span><br>
+          KINU ROASTERY
+        </h1>
+        <p class="project-desc jp">
+          古い情報構造を削ぎ落とし、実店舗の緩やかな時間性をデジタルに移植する。<br>
+          <span class="kr">기존의 복잡한 정보 구조를 덜어내고, 오프라인 매장의 느릿한 시간성을 디지털로 이식했습니다.</span>
+        </p>
+
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">ROLE</span>
+            <span class="meta-value">Web Design, Front-end</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">DURATION</span>
+            <span class="meta-value">4 Weeks (2025)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">STACK</span>
+            <span class="meta-value mono">HTML, CSS, Vanilla JS</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="hero-image reveal">
+      <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80&w=1600" alt="Kinu Roastery Web Design">
+    </div>
+
+    <section class="cs-section cs-problem reveal">
+      <div class="section-grid">
+        <div class="col-title">
+          <h2 class="section-heading mono">01 / Problem & Goal</h2>
+        </div>
+        <div class="col-content">
+          <p class="text-main jp">情報過多によるブランドの「温度」の喪失。<br>デジタル空間に静けさを取り戻すこと。</p>
+          <p class="text-sub kr mt-20">
+            기존 웹사이트는 정보가 너무 많아 텍스트가 시각적 소음으로 작용하고 있었습니다. 우리의 목표는 단순한 리뉴얼이 아니라, 사용자가 KINU 매장에 들어섰을 때 느끼는 '고요함과 여백'을 디지털 공간에 완벽하게 재현하는 것이었습니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section cs-concept reveal">
+      <div class="section-grid">
+        <div class="col-title">
+          <h2 class="section-heading mono">02 / Visual Direction</h2>
+        </div>
+        <div class="col-content">
+          <div class="concept-images">
+            <img src="images/cafe/cafe-01-hero-full.png" alt="Concept Mood 1">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" alt="Concept Mood 2" class="mt-40">
+          </div>
+          
+          <div class="concept-text mt-40">
+            <h3 class="jp mb-20">明朝体と余白の美学</h3>
+            <p class="text-sub kr">
+              타이포그래피는 감성을 전달하는 명조(Mincho)와 정보를 전달하는 고딕(Gothic)을 엄격하게 분리했습니다. 컬러 팔레트는 매장의 콘크리트 바닥과 오래된 호두나무 가구에서 추출한 웜 그레이(#EAE8E3)와 딥 우드(#2C2A28)만을 사용했습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section cs-architecture reveal">
+      <div class="section-grid">
+        <div class="col-title">
+          <h2 class="section-heading mono">03 / Architecture</h2>
+        </div>
+        <div class="col-content">
+          <div class="arch-box">
+            <h4 class="mono mb-10">THE LOGIC OF 'MA' (間)</h4>
+            <p class="jp-sub">要素間の余白（間）をピクセル単位で計算し、視線の流れを制御。</p>
+            <p class="kr-sub mt-10">사용자의 시선이 머무는 시간을 계산하여 요소 간의 여백(마, 間)을 극대화했습니다. 결제 버튼으로 유도하는 강압적인 UX를 배제하고, 자연스러운 스크롤 흐름 속에서 브랜드를 먼저 느끼게 설계했습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section cs-craft reveal">
+      <div class="section-grid">
+        <div class="col-title">
+          <h2 class="section-heading mono">04 / Digital Craft</h2>
+        </div>
+        <div class="col-content">
+          <p class="text-main jp mb-20">技術は見えない時に最も美しい。<br>60fpsの静かなインタラクション。</p>
+          
+          <ul class="tech-list">
+            <li>
+              <span class="mono tech-label">PERFORMANCE</span>
+              <span class="tech-desc kr">WebP/AVIF 이미지 최적화 및 Lazy Loading을 통해, 고해상도 이미지가 많음에도 TTI(Time To Interactive)를 1.2초로 단축했습니다.</span>
+            </li>
+            <li>
+              <span class="mono tech-label">ANIMATION</span>
+              <span class="tech-desc kr">브라우저 리페인팅을 방지하기 위해 Transform과 Opacity 속성만을 활용하여 60fps의 부드러운 패럴랙스 및 페이드인 효과를 구현했습니다.</span>
+            </li>
+            <li>
+              <span class="mono tech-label">SEMANTICS</span>
+              <span class="tech-desc kr">일본 웹 접근성 기준을 고려하여 철저한 시맨틱 마크업을 적용, 스크린 리더 환경에서도 완벽히 구조가 읽히도록 설계했습니다.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section cs-result reveal">
+      <div class="section-grid">
+        <div class="col-title">
+          <h2 class="section-heading mono">05 / Reflection</h2>
+        </div>
+        <div class="col-content">
+          <p class="text-main jp">店舗の空気感がウェブに拡張され、訪問者の滞在時間が約40%向上しました。</p>
+          <p class="text-sub kr mt-20">
+            결과적으로 웹사이트는 단순한 카탈로그가 아닌 '디지털 쇼룸'으로 기능하게 되었습니다. 이번 프로젝트를 통해, 공간이 가진 고유의 텍스처를 웹 프론트엔드 기술로 번역하는 '디지털 크래프트맨십'의 가치를 다시 한번 확신했습니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-archive reveal">
+      <div class="archive-inner">
+        <h2 class="archive-title mono">TOKIMO / PHYSICAL ARCHIVE 001</h2>
+        <div class="archive-content">
+          <div class="archive-image">
+            <img src="images/cafe/cafe-04-seating-view.png" alt="Vintage Stool Texture">
+          </div>
+          <div class="archive-caption">
+            <p class="jp">ウェブ上のノイズテクスチャは、このヴィンテージスツールの粗い表面からインスピレーションを得ました。</p>
+            <p class="en italic mt-10">The texture on the web was inspired by the rough surface of this vintage stool. We build spaces, both digital and physical.</p>
+            <p class="kr mt-20">TOKIMO는 디지털 설계뿐만 아니라, 오프라인 공간의 사물(Object)이 가진 물성을 깊이 탐구합니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-cta reveal">
+      <a href="#" class="next-project">
+        <span class="mono label">NEXT ARCHIVE</span>
+        <h2 class="en">Aura Space Identity</h2>
+      </a>
+      
+      <div class="soft-cta mt-60">
+        <p class="jp">あなたのブランドにも、静かなデジタル空間を。</p>
+        <a href="connect.html" class="contact-link mono">Start a Conversation →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/roastery.js"></script>
+</body>
+</html>

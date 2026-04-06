@@ -1,0 +1,269 @@
+/* ============================================================
+   TOKIMO ARCHIVE - INDEPENDENT DETAIL PAGE CSS
+   [목적] 글로벌 의존성 없는 완전한 독립 모듈 
+   [스타일] Japanese Minimal / Editorial / Digital Craftsmanship
+============================================================ */
+
+/* 00. Reset & Variables */
+:root {
+  /* Colors: 차분한 오프화이트와 딥 그레이 활용 (완전한 블랙/화이트 지양) */
+  --bg-color: #f7f6f4;
+  --text-main: #2a2a2a;
+  --text-sub: #7a7571;
+  --border-color: #e2e0dc;
+
+  /* Fonts: 에디토리얼을 위한 철저한 분리 */
+  --font-en: 'Inter', sans-serif;
+  --font-en-serif: 'Playfair Display', serif;
+  --font-jp: 'Noto Serif JP', serif; /* 감성을 주는 일본어 명조체 */
+  --font-kr: 'Inter', sans-serif; /* 본문용 가독성 좋은 산세리프 */
+  --font-mono: 'JetBrains Mono', monospace; /* 기술적/분석적 느낌 부여 */
+}
+
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-kr);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 유틸리티 클래스 */
+.mt-10 { margin-top: 10px; }
+.mt-20 { margin-top: 20px; }
+.mt-40 { margin-top: 40px; }
+.mt-60 { margin-top: 60px; }
+.mb-10 { margin-bottom: 10px; }
+.mb-20 { margin-bottom: 20px; }
+.italic { font-style: italic; }
+.mono { font-family: var(--font-mono); font-size: 0.85rem; letter-spacing: 0.05em; }
+
+/* 타이포그래피 공통 (역할: 언어별 자간/행간 최적화) */
+.jp { font-family: var(--font-jp); font-weight: 400; letter-spacing: 0.04em; line-height: 1.8; }
+.jp-sub { font-family: var(--font-en); font-size: 0.85rem; color: var(--text-sub); letter-spacing: 0.02em; }
+.kr { font-family: var(--font-kr); font-weight: 300; letter-spacing: -0.02em; line-height: 1.8; color: var(--text-sub); }
+.en { font-family: var(--font-en-serif); letter-spacing: 0.02em; }
+
+/* 09. Back Button (좌측 상단 고정, 미니멀) */
+.back-btn {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  z-index: 100;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  mix-blend-mode: difference; /* 이미지 위에 올라가도 보이도록 처리 */
+  color: #fff;
+}
+.back-btn:hover { opacity: 1; }
+
+/* Layout Base */
+.case-study {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* 01. Intro Section */
+.cs-intro {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding-top: 100px;
+}
+.intro-inner {
+  max-width: 900px;
+}
+.project-title {
+  font-size: clamp(3rem, 6vw, 6rem);
+  line-height: 1.1;
+  font-weight: 400;
+  margin-bottom: 40px;
+  letter-spacing: -0.02em;
+}
+.project-title .en {
+  font-size: 0.5em;
+  color: var(--text-sub);
+}
+.project-desc {
+  font-size: 1.2rem;
+  margin-bottom: 60px;
+  max-width: 600px;
+}
+.project-desc .kr {
+  display: block;
+  font-size: 0.95rem;
+  margin-top: 15px;
+}
+
+/* Meta Data Grid (채용담당자용 요약) */
+.meta-grid {
+  display: flex;
+  gap: 60px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 20px;
+}
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.meta-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-sub);
+}
+.meta-value {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+/* Hero Image */
+.hero-image {
+  width: 100%;
+  height: 70vh;
+  margin-bottom: 150px;
+}
+.hero-image img {
+  height: 100%;
+  filter: grayscale(20%); /* 차분한 무드를 위해 채도 살짝 낮춤 */
+}
+
+/* Editorial Grid System (본문 섹션 공통 구조) */
+/* 이유: 잡지처럼 좌측엔 작은 제목, 우측엔 넓은 본문을 배치하여 리듬감 형성 */
+.cs-section {
+  padding: 100px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+.section-grid {
+  display: grid;
+  grid-template-columns: 3fr 7fr; /* 3:7 비율의 에디토리얼 레이아웃 */
+  gap: 50px;
+}
+.section-heading {
+  color: var(--text-sub);
+}
+.text-main {
+  font-size: 1.8rem;
+  line-height: 1.5;
+}
+.text-sub {
+  font-size: 1rem;
+  max-width: 600px;
+}
+
+/* 03. Concept Images (비대칭 배치로 공간감 부여) */
+.concept-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+.concept-images img:nth-child(2) {
+  margin-top: 80px; /* 오른쪽 이미지를 밑으로 내려 리듬감 생성 */
+}
+
+/* 04. UI/UX Architecture Box */
+.arch-box {
+  background-color: #ebeae7;
+  padding: 40px;
+  border-radius: 2px;
+}
+
+/* 05. Digital Craft (개발자 채용 핵심 기술 명세) */
+.tech-list {
+  list-style: none;
+  max-width: 650px;
+}
+.tech-list li {
+  padding: 30px 0;
+  border-bottom: 1px dashed var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+.tech-list li:last-child { border-bottom: none; }
+.tech-label { margin-bottom: 10px; color: #111; }
+
+/* 07. Brand Archive (오프라인 브랜딩 연결) */
+/* 이유: 배경을 어둡게 반전시켜 '사물'에 완전히 집중하게 만듦 */
+.cs-archive {
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 150px 5%;
+  margin: 100px -5vw 0 -5vw; /* 화면 전체 너비 사용 */
+}
+.archive-inner { max-width: 1000px; margin: 0 auto; }
+.archive-title {
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 60px;
+}
+.archive-content {
+  display: grid;
+  grid-template-columns: 5fr 5fr;
+  gap: 60px;
+  align-items: center;
+}
+.archive-caption .jp { color: #fff; font-size: 1.4rem; }
+.archive-caption .kr { color: rgba(255,255,255,0.6); }
+
+/* 08. Soft CTA Section */
+.cs-cta {
+  padding: 150px 0;
+  text-align: center;
+}
+.next-project {
+  display: inline-block;
+  transition: opacity 0.3s ease;
+}
+.next-project:hover { opacity: 0.6; }
+.next-project .label { display: block; margin-bottom: 20px; color: var(--text-sub); }
+.next-project h2 { font-size: clamp(3rem, 8vw, 7rem); color: var(--text-main); }
+
+.soft-cta .jp { font-size: 1.2rem; margin-bottom: 20px; }
+.contact-link {
+  display: inline-block;
+  border-bottom: 1px solid var(--text-main);
+  padding-bottom: 5px;
+  transition: color 0.3s, border-color 0.3s;
+}
+.contact-link:hover { color: var(--text-sub); border-color: var(--text-sub); }
+
+/* Animation Classes (JS 연동) */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .meta-grid { flex-direction: column; gap: 20px; }
+  .section-grid { grid-template-columns: 1fr; gap: 20px; }
+  .concept-images { grid-template-columns: 1fr; }
+  .concept-images img:nth-child(2) { margin-top: 20px; }
+  .archive-content { grid-template-columns: 1fr; }
+  .back-btn { top: 20px; left: 20px; color: var(--text-main); mix-blend-mode: normal; }
+  .text-main { font-size: 1.4rem; }
+}
