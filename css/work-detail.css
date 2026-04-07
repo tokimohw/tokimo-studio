@@ -293,8 +293,9 @@ body {
 }
 
 .context-image img {
-  width: 100%;
+  width: 50%;
   filter: brightness(0.85);
+  margin: 0 25%;
 }
 
 .context-caption {
