@@ -281,24 +281,16 @@ body {
 }
 
 /* =========================
-   04. About & Approach
+   04. About
 ========================= */
-.about-section,
-.work-approach-section {
+.about-section {
   padding: 140px 0;
 }
 
-.about-container,
-.approach-container {
+.about-container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 5%;
-}
-
-.section-title {
-  font-size: 2.5rem;
-  margin-bottom: 40px;
-  font-family: var(--font-main);
 }
 
 .about-text {
@@ -308,34 +300,6 @@ body {
   margin-bottom: 10px;
 }
 
-.approach-list {
-  list-style: none;
-  margin-top: 40px;
-}
-
-.approach-list li {
-  position: relative;
-  padding: 20px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  font-size: 1.1rem;
-  transition: transform 0.4s ease;
-}
-
-.approach-list li:hover {
-  transform: translateX(10px);
-}
-
-.process-text {
-  margin-top: 30px;
-  font-size: 0.9rem;
-  opacity: 0.6;
-  line-height: 1.8;
-}
-
-.jp-approach {
-  display: inline; 
-  margin: 0 0 0 8px;
-}
 
 /* =========================
    05. Lookbook Section
