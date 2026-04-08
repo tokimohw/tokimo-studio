@@ -80,11 +80,23 @@
   margin-left: 5px;
 }
 
+.kr-sub {
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-size: 10px;
+  line-height: 1.5;
+  /* color: rgba(0, 0, 0, 0.35); */
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  margin-top: 2px;
+}
+
 /* 모바일 대응: 일본어 텍스트가 너무 작아지지 않게 */
 @media (max-width: 768px) {
   .jp-sub, .jp-q {
     font-size: 10px;
   }
+  .kr-sub {font-size: 9px;}
 }
 
 /* 영문 전용 스타일: 현대적이고 건축적인 인상 */
