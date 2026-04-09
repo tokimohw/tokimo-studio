@@ -259,35 +259,61 @@ body {
 
 .overlay {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
+  bottom: 30px;
+  left: 24px;
 
-  padding: 16px 18px;
+  padding: 18px 20px;
 
-  background: rgba(0,0,0,0.65);
-  backdrop-filter: blur(8px);
+  background: rgba(15,15,15,0.75);
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  
+  backdrop-filter: blur(6px);
 
   opacity: 0;
-  transform: translateY(10px);
-  transition: 0.4s ease;
+  transform: translateY(20px) rotate(-1deg);
+  transition: all 0.5s ease;
 }
 
+/* 🔥 카테고리 (라벨 느낌) */
 .category {
-  font-size: 10px;
-  letter-spacing: 0.4em;
-  color: var(--accent);
-
   display: inline-block;
-  padding: 6px 10px;
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  color: #ddd;
 
-  border: 1px solid rgba(255,255,255,0.2);
   margin-bottom: 10px;
+
+  border-bottom: 1px solid rgba(255,255,255,0.3);
 }
 
+/* 🔥 타이틀 */
 .overlay h4 {
-  font-size: 20px;
-  margin: 8px 0;
-  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 6px 0 10px;
+
+  letter-spacing: 0.03em;
+}
+
+.gallery-card:hover .overlay {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+
+/* 🔥 설명 */
+.overlay p {
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: 0.75;
+}
+
+/* 🔥 약간 흐트러진 느낌 */
+.overlay h4,
+.overlay p {
+  transform: translateY(6px);
+  opacity: 0;
+  transition: 0.5s;
 }
 
 .gallery-card:hover .overlay h4 {
@@ -296,14 +322,10 @@ body {
   transition-delay: 0.1s;
 }
 
-.gallery-card:hover .overlay {
-  opacity: 1;
+.gallery-card:hover .overlay p {
   transform: translateY(0);
-}
-
-.overlay p {
-  font-size: 13px;
-  color: rgba(255,255,255,0.85);
+  opacity: 1;
+  transition-delay: 0.2s;
 }
 
 /* 🔥 기본 상태에서도 살짝 보이게 (힙함 핵심) */
