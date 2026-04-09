@@ -157,13 +157,13 @@
     <div class="gallery-track">
 
       <!-- ITEM 1 -->
-      <div class="gallery-card" data-title="Soft Wool Layer" data-desc="Muted grey tone / relaxed fit" data-price="₩89,000">
+      <div class="gallery-card" data-title="Soft Wool Layer" data-desc="Muted grey tone<br>Relaxed fit<br>Worn without effort" data-price="₩89,000">
         <img src="images/fashion/full_shot.png">
 
         <div class="overlay">
           <span class="category">JACKET</span>
           <h4>Soft Wool Layer</h4>
-          <p>Muted grey tone</p>
+          <p>Muted grey tone<br/>Soft structure</p>
         </div>
       </div>
 
@@ -195,42 +195,59 @@
 
   <!-- 🔥 DETAIL MODAL -->
   <div class="editorial-modal">
+
     <div class="modal-bg"></div>
 
-    <div class="modal-content">
+    <div class="modal-content editorial-detail" data-lenis-prevent>
 
       <button class="modal-close">×</button>
 
-      <div class="modal-grid">
+      <div class="detail-grid">
 
-        <!-- 이미지 -->
-        <div class="modal-image">
+        <!-- LEFT -->
+        <div class="detail-visual">
           <img class="modal-img">
         </div>
 
-        <!-- 정보 -->
-        <div class="modal-info">
+        <!-- RIGHT -->
+        <div class="detail-info">
 
-          <h3 class="modal-title"></h3>
+          <span class="detail-label">TOKIMO SELECT</span>
 
-          <p class="modal-desc"></p>
+          <h2 class="modal-title">Soft Wool Layer</h2>
+
+          <!-- 🔥 감성 문장 (메인) -->
+          <p class="modal-desc">
+            静かなトーンの重なり。<br/>
+            Built for slow movement.
+          </p>
+
+          <!-- 🔥 한국어는 서브 -->
+          <p class="modal-sub">
+            차분한 톤과 부드러운 흐름을 위한 선택.
+          </p>
 
           <!-- 컬러 -->
-          <div class="color-row">
-            <div class="color-chip"></div>
-            <div class="color-chip"></div>
+          <div class="detail-color">
+            <span>COLOR</span>
+            <div class="color-row">
+              <div class="color-chip"></div>
+              <div class="color-chip"></div>
+            </div>
           </div>
 
           <!-- 가격 -->
-          <p class="price">₩89,000</p>
+          <div class="detail-price">
+            <span class="price">₩89,000</span>
+            <span class="price-note">Limited selection</span>
+          </div>
 
         </div>
 
       </div>
-
     </div>
-  </div>
 
+  </div>
   <!-- 🔥 CTA 하나로 통합 -->
   <section class="brand-bridge">
     <div class="container-wide">

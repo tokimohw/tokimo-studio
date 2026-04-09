@@ -181,21 +181,17 @@ body {
 
 .editorial-gallery {
   width: 100%;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-
-   overflow: hidden; /* 🔥 스크롤바 제거 */
+  overflow: hidden; /* 🔥 스크롤바 제거 */
 }
 
 .gallery-track {
   display: flex;
-  gap: 40px;
-  padding: 0 5vw;
-
+  gap: 28px;
+  padding: 0 6vw;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-
   scrollbar-width: none; /* Firefox */
+  scroll-snap-type: x proximity;
 }
 
 .gallery-track::-webkit-scrollbar {
@@ -213,20 +209,15 @@ body {
   border: 1px solid rgba(255,255,255,0.06);
   background: rgba(255,255,255,0.015);
 
-  transition: transform 0.5s ease;
-}
-
-/* 🔥 약간 랜덤 느낌 */
-.gallery-card:nth-child(odd) {
-  transform: translateY(20px);
-}
-
-.gallery-card:nth-child(even) {
-  transform: translateY(-10px);
+  transform: translateY(0);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  scroll-snap-align: center;
 }
 
 .gallery-card:hover {
-  transform: translateY(-6px) scale(1.02);
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
 }
 
 .gallery-card img {
@@ -234,6 +225,14 @@ body {
   height: 100%;
   object-fit: cover;
   transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: contrast(1.05) brightness(0.95);
+}
+
+.gallery-card:nth-child(2n) img {
+  filter: contrast(1.1) brightness(0.9);
+}
+.gallery-card:nth-child(3n) {
+  width: clamp(300px, 60vw, 460px);
 }
 
 .gallery-card:hover img {
@@ -267,7 +266,7 @@ body {
   background: rgba(15,15,15,0.75);
   border: 1px solid rgba(255,255,255,0.15);
   box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-  
+
   backdrop-filter: blur(6px);
 
   opacity: 0;
@@ -292,8 +291,8 @@ body {
   font-size: 18px;
   font-weight: 500;
   margin: 6px 0 10px;
-
   letter-spacing: 0.03em;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
 }
 
 .gallery-card:hover .overlay {
@@ -306,6 +305,7 @@ body {
   font-size: 13px;
   line-height: 1.6;
   opacity: 0.75;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
 }
 
 /* 🔥 약간 흐트러진 느낌 */
@@ -330,103 +330,160 @@ body {
 
 /* 🔥 기본 상태에서도 살짝 보이게 (힙함 핵심) */
 .gallery-card .overlay {
-  opacity: 0.15;
-  transform: translateY(10px);
+  opacity: 0.25;
+  backdrop-filter: blur(8px);
 }
 
 /* ===================== MODAL ===================== */
 
 .editorial-modal {
   position: fixed;
+  height: 100dvh; /* 최신 모바일 대응*/
   inset: 0;
+  z-index: 9999;
+
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
 }
 
 .editorial-modal.active {
   display: flex;
 }
 
+/* 배경 */
 .modal-bg {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.95);
-  backdrop-filter: blur(20px);
+
+  background: rgba(240, 240, 240, 0.92); /* 🔥 밝게 */
+  backdrop-filter: blur(18px);
+  transition: 0.4s;
 }
 
-.modal-content {
-  position: relative;
+.editorial-detail {
   width: 90vw;
   max-width: 1100px;
   max-height: 85vh;
 
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  padding: 70px 60px;
 
-  z-index: 2;
+  background: #f4f4f2;
+  color: #111;
+
+  box-shadow: 0 40px 120px rgba(0,0,0,0.25);
+  border: 1px solid rgba(0,0,0,0.06);
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+
+  opacity: 0;
+  transform: translateY(40px) scale(0.96);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.modal-img {
+.editorial-modal.active .editorial-detail {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 80px;
+}
+
+.detail-visual img {
   width: 100%;
-  height: auto;
-  max-height: 65vh;
+  max-height: 70vh;
   object-fit: contain;
 }
 
-.modal-text {
-  padding: 10px 5px;
-}
-
-.modal-text h3 {
-  font-size: clamp(20px, 3vw, 28px);
-}
-
-.modal-text p {
-  font-size: 14px;
-  opacity: 0.7;
-}
-
-/* 모달 디자인 */
-.modal-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 60px;
-}
-
-.modal-info {
+/* 오른쪽 텍스트 */
+.detail-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
+.detail-label {
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  color: rgba(0,0,0,0.4);
+  margin-bottom: 20px;
+}
+
+.modal-title {
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 500;
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+}
+
+.modal-desc {
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(0,0,0,0.8);
+}
+
+/* 컬러 */
+.detail-color {
+  margin-top: 40px;
+}
+
+.detail-color span {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  opacity: 0.5;
+}
+
 .color-row {
   display: flex;
-  gap: 10px;
-  margin: 20px 0;
+  gap: 12px;
+  margin-top: 10px;
 }
 
 .color-chip {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 2px;
+  border: 1px solid rgba(0,0,0,0.2);
+}
+
+/* 🔥 한국어 (서브 느낌) */
+.modal-sub {
+  margin-top: 10px;
+  font-size: 12px;
+  color: rgba(0,0,0,0.4);
+}
+
+/* 가격 */
+.detail-price {
+  margin-top: 40px;
 }
 
 .price {
-  font-size: 18px;
-  margin-top: 20px;
-  letter-spacing: 0.1em;
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  margin-top: 40px;
+}
+
+.price-note {
+  display: block;
+  font-size: 11px;
+  opacity: 0.4;
+  margin-top: 6px;
 }
 
 /* x 버튼*/
 .modal-close {
   position: fixed; /* 🔥 absolute → fixed */
-  top: 30px;
-  right: 30px;
+  top: 40px;
+  right: 40px;
 
-  font-size: 36px;
+  font-size: 28px;
   z-index: 100000; /* 🔥 nav보다 위 */
 
   background: none;
@@ -435,6 +492,7 @@ body {
   cursor: pointer;
 
   transition: transform 0.3s ease, opacity 0.3s;
+  mix-blend-mode: difference;
 }
 
 .modal-close:hover {
@@ -442,6 +500,20 @@ body {
   opacity: 0.7;
 }
 
+/* 창 열렸을 때 스크롤 차단 */
+body.modal-open {
+  overflow: hidden;
+  height: 100vh;
+  touch-action: none;
+}
+
+/* 🔥 모달 열렸을 때 전체 UI 숨김 */
+body.modal-open .header,
+body.modal-open .footer {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
 
 /* ===================== CAFE CONTEXT & CTA ===================== */
 
@@ -488,6 +560,23 @@ body {
     font-size: 16px;
   }
 
+  .detail-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .editorial-detail {
+    padding: 40px 20px;
+  }
+
+  .modal-title {
+    font-size: 22px;
+  }
+
+  .modal-img {
+    max-height: 50vh;
+  }
+
 }
 
 @media (max-width: 768px) {
@@ -498,7 +587,19 @@ body {
   }
 
   .overlay {
-    padding: 16px;
+    left: 16px;
+    bottom: 20px;
+    padding: 14px;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .editorial-detail {
+    padding: 40px 20px;
+    max-height: 90dvh;
   }
 
   .overlay h4 {
