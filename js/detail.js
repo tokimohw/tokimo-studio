@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (window.lenis) {
       lenis.stop();
-      lenis.scrollTo(window.scrollY, { immediate: true });
+      lenis.scrollTo(window.scrollY, { immediate: true }); // 🔥 여기
     }
   }
 
