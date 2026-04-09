@@ -152,71 +152,82 @@
   </section>
 
   <!-- GALLERY -->
-  <section class="project-gallery horizontal-gallery">
+  <section class="editorial-gallery">
+
     <div class="gallery-track">
 
-      <!-- 카드 -->
-      <div class="gallery-card" data-color="rgb(120,120,120)">
+      <!-- ITEM 1 -->
+      <div class="gallery-card" data-title="Soft Wool Layer" data-desc="Muted grey tone / relaxed fit" data-price="₩89,000">
         <img src="images/fashion/full_shot.png">
-        <div class="color-label">rgb(120,120,120)</div>
-      </div>
 
-      <div class="gallery-card" data-color="rgb(200,180,150)">
-        <img src="images/fashion/fabric_detail.png">
-        <div class="color-label">rgb(200,180,150)</div>
-      </div>
-
-      <div class="gallery-card" data-color="rgb(80,80,80)">
-        <img src="images/fashion/f-select1.png">
-        <div class="color-label">rgb(80,80,80)</div>
-      </div>
-
-      <div class="gallery-card" data-color="rgb(150,140,130)">
-        <img src="images/fashion/f-select2.jpeg">
-        <div class="color-label">rgb(150,140,130)</div>
-      </div>
-
-      <div class="gallery-card" data-color="rgb(60,60,60)">
-        <img src="images/fashion/f-select3.jpeg">
-        <div class="color-label">rgb(60,60,60)</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 🔥 모달 -->
-  <div class="gallery-modal">
-    <div class="modal-bg"></div>
-
-    <div class="modal-content editorial-layout">
-      <button class="modal-close">×</button>
-      <div class="modal-media">
-        <img class="modal-img" src="" alt="Detail View" crossorigin="anonymous">
-      </div>
-
-      <div class="modal-info">
-        <span class="info-label mono">COLOR PALETTE</span>
-        <div class="modal-palette">
-          </div>
-        
-        <div class="project-meta mt-60">
-          <span class="mono opacity-5">Archive VOL.01 / Fashion Wear</span>
-          <p class="jp-sub mt-10">空間의 공기감을 纏う。</p>
+        <div class="overlay">
+          <span class="category">JACKET</span>
+          <h4>Soft Wool Layer</h4>
+          <p>Muted grey tone</p>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- x버튼 애니메이션 -->
-  <div class="gallery-modal">
+      <!-- ITEM 2 -->
+      <div class="gallery-card" data-title="Quiet Fabric" data-desc="Soft texture / daily wear">
+        <img src="images/fashion/fabric_detail.png">
+
+        <div class="overlay">
+          <span class="category">FABRIC</span>
+          <h4>Quiet Fabric</h4>
+          <p>Soft texture</p>
+        </div>
+      </div>
+
+      <!-- ITEM 3 -->
+      <div class="gallery-card" data-title="Layered Balance" data-desc="Neutral palette / structure">
+        <img src="images/fashion/f-select1.png">
+
+        <div class="overlay">
+          <span class="category">STYLE</span>
+          <h4>Layered Balance</h4>
+          <p>Neutral palette</p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- 🔥 DETAIL MODAL -->
+  <div class="editorial-modal">
     <div class="modal-bg"></div>
 
     <div class="modal-content">
+
       <button class="modal-close">×</button>
 
-      <img class="modal-img">
+      <div class="modal-grid">
 
-      <div class="modal-palette"></div>
+        <!-- 이미지 -->
+        <div class="modal-image">
+          <img class="modal-img">
+        </div>
+
+        <!-- 정보 -->
+        <div class="modal-info">
+
+          <h3 class="modal-title"></h3>
+
+          <p class="modal-desc"></p>
+
+          <!-- 컬러 -->
+          <div class="color-row">
+            <div class="color-chip"></div>
+            <div class="color-chip"></div>
+          </div>
+
+          <!-- 가격 -->
+          <p class="price">₩89,000</p>
+
+        </div>
+
+      </div>
+
     </div>
   </div>
 

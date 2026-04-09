@@ -177,223 +177,249 @@ body {
   padding: 10px 0;
 }
 
-/* ===================== HORIZONTAL GALLERY ===================== */
+/* ===================== EDITORIAL GALLERY ===================== */
 
-.horizontal-gallery {
-  overflow: hidden;
-  padding: 120px 0;
+.editorial-gallery {
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+   overflow: hidden; /* 🔥 스크롤바 제거 */
 }
 
 .gallery-track {
   display: flex;
-  gap: 60px;
-  width: max-content;
-  will-change: transform;
+  gap: 40px;
+  padding: 0 5vw;
+
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: none; /* Firefox */
 }
 
+.gallery-track::-webkit-scrollbar {
+  display: none; /* Chrome */
+}
+
+
 .gallery-card {
-  min-width: clamp(280px, 30vw, 460px); 
-  height: clamp(380px, 50vh, 580px);
-  opacity: 0.9;
-  transition: transform 0.8s ease, opacity 0.8s ease;
+  flex: 0 0 auto;
+  width: clamp(280px, 55vw, 420px);
+  height: clamp(420px, 70vh, 600px);
+
   position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  flex-shrink: 0;
+
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.015);
+
+  transition: transform 0.5s ease;
+}
+
+/* 🔥 약간 랜덤 느낌 */
+.gallery-card:nth-child(odd) {
+  transform: translateY(20px);
+}
+
+.gallery-card:nth-child(even) {
+  transform: translateY(-10px);
 }
 
 .gallery-card:hover {
-  transform: translateY(-6px);
-  opacity: 1;
+  transform: translateY(-6px) scale(1.02);
 }
 
 .gallery-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: contrast(1.05) brightness(0.95);
-  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1s ease, opacity 0.8s ease;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .gallery-card:hover img {
-  transform: scale(1.06);
-  filter: brightness(0.92) contrast(1.08);
-  opacity: 0.9;
+  transform: scale(1.05);
 }
 
-.color-label {
+.gallery-card::after {
+  content: "";
   position: absolute;
-  top: -30px;
-  left: -10px;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  color: #fff;
-  opacity: 0;
-  transition: 0.4s;
+  inset: 0;
+
+  background: radial-gradient(
+    circle at center,
+    transparent 60%,
+    rgba(0,0,0,0.4)
+  );
+
+  opacity: 0.6;
+  pointer-events: none;
 }
 
-.gallery-card:hover .color-label {
-  opacity: 0.8;
+/* 🔥 OVERLAY */
+
+.overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+
+  padding: 16px 18px;
+
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(8px);
+
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.4s ease;
+}
+
+.category {
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  color: var(--accent);
+
+  display: inline-block;
+  padding: 6px 10px;
+
+  border: 1px solid rgba(255,255,255,0.2);
+  margin-bottom: 10px;
+}
+
+.overlay h4 {
+  font-size: 20px;
+  margin: 8px 0;
+  color: #fff;
+}
+
+.gallery-card:hover .overlay h4 {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.1s;
+}
+
+.gallery-card:hover .overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.overlay p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+}
+
+/* 🔥 기본 상태에서도 살짝 보이게 (힙함 핵심) */
+.gallery-card .overlay {
+  opacity: 0.15;
   transform: translateY(10px);
 }
 
-/* ===================== MODAL SYSTEM ===================== */
+/* ===================== MODAL ===================== */
 
-:root {
-  --modal-bg: rgba(10, 10, 10, 0.98); 
-  --text-main: #ffffff;
-  --text-sub: rgba(255, 255, 255, 0.6);
-  --border: rgba(255, 255, 255, 0.1);
-  --font-mono: 'JetBrains Mono', monospace;
-}
-
-/* 스크롤 제어 */
-body.modal-open { 
-  overflow: hidden;
-  position: fixed; /* 배경 고정 */
-  width: 100%;
-}
-
-body.modal-open nav { opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
-
-/* 모달 베이스 */
-/* 1. 모달 전체 컨테이너: 이제 여기서 중앙 정렬을 담당합니다. */
-.gallery-modal {
+.editorial-modal {
   position: fixed;
   inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
   z-index: 9999;
-  display: none; 
-  align-items: center;    
-  justify-content: center; 
-  padding: 20px; 
-  /* 모달 자체가 뷰포트를 넘지 않도록 설정 */
-  overflow: hidden; 
 }
-.gallery-modal.active {
-  display: flex; /* 핵심: active 시 flex로 띄움 */
+
+.editorial-modal.active {
+  display: flex;
 }
 
 .modal-bg {
   position: absolute;
   inset: 0;
-  z-index: 1000; /* 콘텐츠보다 낮게 */
-  background: var(--modal-bg);
+  background: rgba(0,0,0,0.95);
   backdrop-filter: blur(20px);
-  pointer-events: auto; /* 배경 클릭 시 닫기 기능을 위해 */
 }
-
-.gallery-modal.active .modal-bg { opacity: 1; }
-
-/* 🔥 통합 및 정리된 모달 콘텐츠 영역 */
-/* 2. 모달 콘텐츠: 중앙 정렬 로직을 제거하고 '자체 스크롤'에 집중 */
 
 .modal-content {
   position: relative;
   width: 90vw;
-  max-width: 1200px;
-  max-height: 85vh;/* 스크롤이 생길 수 있는 높이 제한 */
-  
-  background: #0a0a0a; /* 투명도 없는 배경색 권장 (스크롤 겹침 방지) */
-  padding: 80px 60px 60px; /* 상단 X버튼 공간 확보 */
-  
-  pointer-events: auto !important; /* 🔥 터치/휠 이벤트 강제 허용 */
-  overflow-y: auto !important;
-  overscroll-behavior: contain; /* 🔥 스크롤이 끝에 도달했을 때 배경 스크롤 방지 */
-  -webkit-overflow-scrolling: touch;
+  max-width: 1100px;
+  max-height: 85vh;
 
-  /* 🔥 변경: Grid를 유지하되 내부 흐름을 유연하게 수정 */
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 60px;
-  
-  /* 🔥 스크롤 설정 강화 */
-  overflow-x: hidden;
-  z-index: 1001;
-  
-  /* 애니메이션 */
-  opacity: 0;
-  transform: translateY(20px); /* scale보다 안정적인 위치 이동 사용 */
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.gallery-modal.active .modal-content {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* 스크롤바 디자인 */
-.modal-content::-webkit-scrollbar { width: 2px; }
-.modal-content::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); }
-
-/* 🔥 X 버튼: 가장 안전한 Absolute 배치로 수정 */
-.modal-close {
-  position: absolute;
-  top: 25px;
-  right: 25px;
-  width: 44px;
-  height: 44px;
-  background: none;
-  border: none;
-  font-size: 40px;
-  font-weight: 100; /* 얇은 선으로 감성 유지 */
-  color: #fff;
-  cursor: pointer;
-  z-index: 1000009;
-  transition: transform 0.3s ease;
-  line-height: 1;
-}
-
-.modal-close:hover { transform: rotate(90deg); }
-
-/* 좌측 미디어 영역 */
-.modal-media {
-  width: 100%;
-  /* 높이를 고정하지 않아야 내용에 따라 스크롤이 생깁니다 */
   display: flex;
   flex-direction: column;
+  gap: 20px;
+
+  z-index: 2;
 }
 
 .modal-img {
   width: 100%;
-  height: auto; /* 고정 높이 제거 */
-  max-height: 70vh; /* 이미지만 너무 커지는 것 방지 */
+  height: auto;
+  max-height: 65vh;
   object-fit: contain;
 }
 
-/* 우측 정보 영역 */
+.modal-text {
+  padding: 10px 5px;
+}
+
+.modal-text h3 {
+  font-size: clamp(20px, 3vw, 28px);
+}
+
+.modal-text p {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* 모달 디자인 */
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+}
+
 .modal-info {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
-.info-label {
-  font-size: 11px; color: var(--text-sub);
-  letter-spacing: 0.2em; margin-bottom: 40px;
+.color-row {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
 }
 
-/* 컬러칩 디자인 */
-.modal-palette {
-  display: flex; flex-direction: column; gap: 20px; width: 100%;
-}
 .color-chip {
-  display: flex; align-items: center; gap: 20px; width: 100%;
-  border-bottom: 1px solid var(--border); padding-bottom: 15px;
-}
-.color-bar {
-  width: 100px; height: 30px; border-radius: 2px;
-  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
-}
-.hex-code {
-  font-family: var(--font-mono); font-size: 13px;
-  color: var(--text-main); letter-spacing: 0.1em; font-weight: 300;
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
 }
 
-/* 유틸리티 */
-.mt-10 { margin-top: 10px; }
-.mt-20 { margin-top: 20px; }
-.mt-60 { margin-top: 60px; }
-.opacity-5 { opacity: 0.5; }
-.jp-sub { font-family: var(--font-jp); font-size: 12px; color: var(--text-sub); }
+.price {
+  font-size: 18px;
+  margin-top: 20px;
+  letter-spacing: 0.1em;
+}
+
+/* x 버튼*/
+.modal-close {
+  position: fixed; /* 🔥 absolute → fixed */
+  top: 30px;
+  right: 30px;
+
+  font-size: 36px;
+  z-index: 100000; /* 🔥 nav보다 위 */
+
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+
+  transition: transform 0.3s ease, opacity 0.3s;
+}
+
+.modal-close:hover {
+  transform: rotate(90deg);
+  opacity: 0.7;
+}
+
 
 /* ===================== CAFE CONTEXT & CTA ===================== */
 
@@ -428,23 +454,11 @@ body.modal-open nav { opacity: 0; pointer-events: none; transition: opacity 0.4s
 /* ===================== RESPONSIVE ===================== */
 
 @media (max-width: 1024px) {
-  .story-grid { grid-template-columns: 1fr; }
   .bridge-layout { grid-template-columns: 1fr; gap: 60px; }
   
-  /* 태블릿 모달 대응 */
-  .modal-content {
-    grid-template-columns: 1fr; 
-    padding: 60px 40px; 
-    gap: 40px;
-  }
 }
 
 @media (max-width: 900px) {
-
- .process-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
 
   .case-overview p,
   .case-problem p,
@@ -452,29 +466,35 @@ body.modal-open nav { opacity: 0; pointer-events: none; transition: opacity 0.4s
     font-size: 16px;
   }
 
-  /* 모바일 모달 대응 (중복 미디어 쿼리 통합) */
-  .modal-content {
-    grid-template-columns: 1fr; /* 1단 구성 */
-    padding: 70px 25px 40px;
-    gap: 40px;
-    width: 95vw;
-    /* 모바일에서는 정렬을 위로 붙여야 스크롤 시작점이 안정적입니다 */
-    align-self: flex-start; 
-    margin-top: 20px;
-  }
-  
-  .modal-img {
-    max-height: 50vh;
-  }
-  .modal-media { margin-top: 0; }
-  .modal-palette { gap: 15px; }
-  
-  /* 모바일 X 버튼 미세조정 */
-  .modal-close {
-    top: 15px; right: 15px; font-size: 28px;
-  }
 }
 
 @media (max-width: 768px) {
-  .gallery-card { min-width: 280px; height: 380px; }
+
+  .gallery-card {
+    width: 80vw;
+    height: 60vh;
+  }
+
+  .overlay {
+    padding: 16px;
+  }
+
+  .overlay h4 {
+    font-size: 16px;
+  }
+
+  .modal-content {
+    width: 92vw;
+    max-height: 80vh;
+  }
+
+  .modal-img {
+    max-height: 50vh;
+  }
+
+  .modal-close {
+    top: 20px;
+    right: 20px;
+    font-size: 28px;
+  }
 }
