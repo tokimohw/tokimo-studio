@@ -273,21 +273,6 @@ body {
   opacity: 0.6;
 }
 
-/* 텍스트 */
-.card-float {
-  position: absolute;
-  bottom: 24px;
-  left: 20px;
-
-  color: #fff;
-
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-
-  /* ❗ 박스 느낌 제거 */
-  background: none;
-}
 
 /* 🔥 카테고리 (라벨 느낌) */
 .category {
@@ -302,25 +287,75 @@ body {
   border-bottom: 1px solid rgba(255,255,255,0.3);
 }
 
-.card-float h4 {
-  font-size: 18px;
+/*  */
+/* 기본 텍스트 (항상 보임) */
+.card-base {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+
+  font-size: 16px;
   font-weight: 500;
+
+  letter-spacing: 0.05em;
 }
 
-.card-float .jp {
-  font-size: 12px;
-  opacity: 0.7;
+/* hover UI */
+.card-hover {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  padding: 30px;
+
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.75),
+    transparent 60%
+  );
+
+  opacity: 0;
+  transition: 0.4s;
 }
 
-.card-float .en {
-  font-size: 13px;
-  opacity: 0.9;
+.gallery-card:hover .card-hover {
+  opacity: 1;
 }
 
-.price {
-  margin-top: 6px;
-  font-size: 13px;
+/* 가격 */
+.price-mini {
+  margin-top: 10px;
+  font-size: 14px;
   letter-spacing: 0.1em;
+}
+
+/* 🔥 애니메이션용 클론 이미지 */
+.image-clone {
+  position: fixed;
+  z-index: 999999;
+  pointer-events: none;
+
+  object-fit: cover;
+
+  transition: 
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    width 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    top 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 모달 이미지 처음엔 안보이게 */
+.editorial-modal .modal-img {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.editorial-modal.active .modal-img {
+  opacity: 1;
 }
 
 
@@ -418,6 +453,39 @@ body {
   color: rgba(0,0,0,0.8);
 }
 
+.modal-lead {
+  font-size: 18px;
+  margin: 20px 0;
+  opacity: 0.9;
+}
+
+/* 에디토리얼 텍스트 */
+.modal-editorial {
+  margin-top: 40px;
+}
+
+.modal-editorial .jp {
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.modal-editorial .en {
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.modal-editorial .kr {
+  font-size: 11px;
+  opacity: 0.4;
+  margin-top: 8px;
+}
+
+/* 가격 강조 */
+.detail-price .price {
+  font-size: 22px;
+  margin-top: 30px;
+}
+
 /* 컬러 */
 .detail-color {
   margin-top: 40px;
@@ -440,13 +508,6 @@ body {
   height: 36px;
   border-radius: 2px;
   border: 1px solid rgba(0,0,0,0.2);
-}
-
-/* 🔥 한국어 (서브 느낌) */
-.modal-sub {
-  margin-top: 10px;
-  font-size: 12px;
-  color: rgba(0,0,0,0.4);
 }
 
 /* 가격 */

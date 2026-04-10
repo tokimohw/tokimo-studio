@@ -59,6 +59,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 나머지 코드 그대로
   const cards = document.querySelectorAll(".gallery-card");
+
+  cards.forEach(card => {
+  const price = card.dataset.price;
+  const priceEl = card.querySelector(".price-mini");
+
+  if (priceEl && price) {
+    priceEl.textContent = price;
+  }
+  });
+
   const modalImg = modal.querySelector(".modal-img");
   const modalTitle = modal.querySelector(".modal-title");
   const modalDesc = modal.querySelector(".modal-desc");
@@ -113,11 +123,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const imgEl = card.querySelector("img");
     const imgSrc = imgEl.src;
 
+    // 🔥 1. 위치 가져오기
+    const rect = imgEl.getBoundingClientRect();
+
+    // 🔥 2. 클론 생성
+    const clone = imgEl.cloneNode();
+    clone.classList.add("image-clone");
+
+    clone.style.top = rect.top + "px";
+    clone.style.left = rect.left + "px";
+    clone.style.width = rect.width + "px";
+    clone.style.height = rect.height + "px";
+
+    document.body.appendChild(clone);
+
+    // 🔥 기존 데이터 세팅
     modalImg.src = imgSrc;
     modalTitle.textContent = card.dataset.title;
     modalDesc.innerHTML = card.dataset.desc;
     priceEl.textContent = card.dataset.price || "₩—";
 
+    // 🔥 색상 추출 (기존 그대로 유지)
     const tempImg = new Image();
     tempImg.crossOrigin = "Anonymous";
     tempImg.src = imgSrc;
@@ -136,8 +162,23 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     };
 
-    modal.classList.add("active");
-    openModal();
+    // 🔥 3. 강제 리플로우 (애니메이션 시작 준비)
+    clone.getBoundingClientRect();
+
+    // 🔥 4. 중앙으로 이동
+    clone.style.top = "50%";
+    clone.style.left = "50%";
+    clone.style.transform = "translate(-50%, -50%) scale(1.1)";
+    clone.style.width = "70vw";
+    clone.style.height = "70vh";
+
+    // 🔥 5. 애니메이션 끝나면 모달 열기
+    setTimeout(() => {
+      modal.classList.add("active");
+      openModal();
+
+      clone.remove(); // 🔥 클론 제거
+    }, 500);
   });
 
   closeBtn.addEventListener("click", closeModal);

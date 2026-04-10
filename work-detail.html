@@ -155,9 +155,8 @@
   <section class="editorial-gallery">
 
     <div class="gallery-track">
-
-      <!-- ITEM 1 -->
-      <div class="gallery-card"
+            <!-- ITEM 1 -->
+      <div class="gallery-card" 
         data-title="Soft Wool Layer"
         data-desc="Muted grey tone<br>Relaxed silhouette<br>Built for layering"
         data-price="₩89,000"
@@ -165,18 +164,19 @@
 
         <img src="images/fashion/full_shot.png">
 
-        <!-- 🔥 텍스트 (항상 보이지만 자연스럽게) -->
-        <div class="card-float">
+        <!-- 항상 보이는 최소 텍스트 -->
+        <div class="card-base">
+          <h4>Soft Wool Layer</h4>
+        </div>
 
+        <!-- hover 전용 -->
+        <div class="card-hover">
           <span class="category">JACKET</span>
 
-          <h4>Soft Wool Layer</h4>
+          <p class="line-en">Quiet layering</p>
+          <p class="line-jp">静かな重なり</p>
 
-          <p class="jp">静かな重なり</p>
-          <p class="en">Quiet layering</p>
-
-          <span class="price">₩89,000</span>
-
+          <span class="price-mini">₩89,000</span>
         </div>
 
       </div>
@@ -190,19 +190,20 @@
 
         <img src="images/fashion/fabric_detail.png">
 
-        <!-- 🔥 텍스트 (항상 보이지만 자연스럽게) -->
-        <div class="card-float">
+        <!-- 항상 보이는 최소 텍스트 -->
+        <div class="card-base">
+          <h4>Quiet Fabric</h4>
+        </div>
 
+        <!-- hover 전용 -->
+        <div class="card-hover">
           <span class="category">FABRIC</span>
 
-          <h4>Quiet Fabric</h4>
+          <p class="line-en">Soft presence</p>
+          <p class="line-jp">柔らかな存在</p>
 
-          <p class="jp">柔らかな存在</p>
-          <p class="en">Soft presence</p>
-
-          <span class="price">₩39,000</span>
-
-        </div>
+          <span class="price-mini">₩39,000</span>
+        </div>        
 
       </div>
 
@@ -215,19 +216,20 @@
 
         <img src="images/fashion/f-select3.jpeg">
 
-        <!-- 🔥 텍스트 (항상 보이지만 자연스럽게) -->
-        <div class="card-float">
-
-          <span class="category">STYLE</span>
-
+        <!-- 항상 보이는 최소 텍스트 -->
+        <div class="card-base">
           <h4>Layered Balance</h4>
-
-          <p class="jp">整った静けさ</p>
-          <p class="en">Balanced silence</p>
-
-          <span class="price">₩72,000</span>
-
         </div>
+
+        <!-- hover 전용 -->
+        <div class="card-hover">
+          <span class="category">FABRIC</span>
+
+          <p class="line-en">Balanced silence</p>
+          <p class="line-jp">整った静けさ</p>
+
+          <span class="price-mini">₩72,000</span>
+        </div>    
       </div>
 
       <!-- ITEM 4 접시 -->
@@ -239,19 +241,20 @@
 
         <img src="images/fashion/f-select5.jpeg">
 
-        <!-- 🔥 텍스트 (항상 보이지만 자연스럽게) -->
-        <div class="card-float">
+        <!-- 항상 보이는 최소 텍스트 -->
+        <div class="card-base">
+          <h4>Minimal Plate</h4>
+        </div>
 
+        <!-- hover 전용 -->
+        <div class="card-hover">
           <span class="category">OBJECT</span>
 
-          <h4>Minimal Plate</h4>
+          <p class="line-en">Table silence</p>
+          <p class="line-jp">静かな食卓</p>
 
-          <p class="jp">静かな食卓</p>
-          <p class="en">Table silence</p>
-
-          <span class="price">₩28,000</span>
-
-        </div>
+          <span class="price-mini">₩28,000</span>
+        </div>  
       </div>
 
       <!-- ITEM 5 -->
@@ -263,20 +266,22 @@
 
         <img src="images/fashion/f-select6.jpeg">
 
-        <!-- 🔥 텍스트 (항상 보이지만 자연스럽게) -->
-        <div class="card-float">
+        <!-- 항상 보이는 최소 텍스트 -->
+        <div class="card-base">
+          <h4>Daily Glass</h4>
+        </div>
 
+        <!-- hover 전용 -->
+        <div class="card-hover">
           <span class="category">OBJECT</span>
 
-          <h4>Daily Glass</h4>
+          <p class="line-en">Light moment</p>
+          <p class="line-jp">光の余白</p>
 
-          <p class="jp">光の余白</p>
-          <p class="en">Light moment</p>
-
-          <span class="price">₩18,000</span>
-
-        </div>
+          <span class="price-mini">₩18,000</span>
+        </div>  
       </div>
+    </div>
   </section>
 
   <!-- 🔥 DETAIL MODAL -->
@@ -300,18 +305,28 @@
 
           <span class="detail-label">TOKIMO SELECT</span>
 
-          <h2 class="modal-title">Soft Wool Layer</h2>
+          <h2 class="modal-title"></h2>
 
-          <!-- 🔥 감성 문장 (메인) -->
-          <p class="modal-desc">
-            静かなトーンの重なり。<br/>
-            Built for slow movement.
+          <!-- 🔥 핵심 문장 -->
+          <p class="modal-lead">
+            Built around silence and balance.
           </p>
 
-          <!-- 🔥 한국어는 서브 -->
-          <p class="modal-sub">
-            차분한 톤과 부드러운 흐름을 위한 선택.
-          </p>
+          <!-- 🔥 디테일 설명 -->
+          <div class="modal-desc"></div>
+
+          <!-- 🔥 감성 텍스트 -->
+          <div class="modal-editorial">
+            <p class="jp">
+              静けさの中にある形。
+            </p>
+            <p class="en">
+              A piece that exists quietly in space.
+            </p>
+            <p class="kr">
+              공간 안에서 조용히 존재하는 옷.
+            </p>
+          </div>
 
           <!-- 컬러 -->
           <div class="detail-color">
@@ -324,16 +339,15 @@
 
           <!-- 가격 -->
           <div class="detail-price">
-            <span class="price">₩89,000</span>
-            <span class="price-note">Limited selection</span>
+            <span class="price"></span>
           </div>
 
         </div>
-
       </div>
     </div>
 
   </div>
+
   <!-- 🔥 CTA 하나로 통합 -->
   <section class="brand-bridge">
     <div class="container-wide">
