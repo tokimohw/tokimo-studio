@@ -193,9 +193,15 @@
 /* 각 아이템별 개별 회전 및 위치값 */
 .collage-item:nth-child(1) { width: 480px; height: 600px; top: 0; left: 6%; transform: rotate(-1.5deg); }
 .collage-item:nth-child(2) { width: 360px; height: 440px; top: 140px; right: 6%; transform: rotate(1deg); }
-.collage-item:nth-child(3) { width: 300px; height: 370px; top: 680px; left: 22%; transform: rotate(-1deg); }
+.collage-item:nth-child(3) { width: 320px; height: 430px; top: 680px; left: 22%; transform: rotate(-1deg); }
 .collage-item:nth-child(4) { width: 480px; height: 600px; top: 780px; right: 8%; transform: rotate(1.5deg); }
-
+.collage-item:nth-child(5) {
+  width: 320px;
+  height: 400px;
+  top: 1380px;
+  left: 12%;
+  transform: rotate(0.8deg);
+}
 
 /* =========================
    CTA Section Styles
