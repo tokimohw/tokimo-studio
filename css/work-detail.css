@@ -309,7 +309,7 @@ body {
   flex-direction: column;
   justify-content: flex-end;
 
-  padding: 30px;
+  padding: 30px 30px 45px 30px;
 
   background: linear-gradient(
     to top,
@@ -381,7 +381,7 @@ body {
   position: absolute;
   inset: 0;
 
-  background: rgba(240, 240, 240, 0.92); /* 🔥 밝게 */
+  /* background: rgba(240, 240, 240, 0.92); */
   backdrop-filter: blur(18px);
   transition: 0.4s;
 }
