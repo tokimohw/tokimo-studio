@@ -106,7 +106,7 @@ body {
   color: #f1f1f1;
   line-height: 0.95;
   letter-spacing: -0.04em; /* 글자 간격을 좁혀 밀도감 형성 */
-  margin-bottom: 24px;
+  margin-bottom: 10px;
   text-transform: uppercase;
 }
 
@@ -119,6 +119,16 @@ body {
   opacity: 0.8;
   letter-spacing: 0.02em;
   margin-top: 5px;
+}
+
+.cover-sub-title {
+  font-size: 18px;
+  font-family: var(--font-main);
+  color: #f1f1f1;
+  line-height: 0.95;
+  letter-spacing: -0.04em; /* 글자 간격을 좁혀 밀도감 형성 */
+  margin-bottom: 24px;
+  text-transform: uppercase;
 }
 
 .hero-description {
@@ -297,7 +307,6 @@ body {
   font-size: 1.1rem;
   line-height: 1.4;
   max-width: 540px;
-  margin-bottom: 10px;
 }
 
 
@@ -435,8 +444,14 @@ body {
 .p-section-desc {
   font-size: 0.95rem;
   opacity: 0.7;
+}
+
+.p-section-note {
+  font-size: 0.95rem;
+  opacity: 0.7;
   margin-bottom: 40px;
 }
+
 
 .archive-grid {
   display: grid;
@@ -1072,6 +1087,11 @@ body {
     letter-spacing: -0.02em;
   }
   
+  .cover-sub-title {
+      font-size: 15px;
+      letter-spacing: -0.02em;
+  }
+
   .hero-description {
     font-size: 0.85rem;
     padding: 0 10%;
