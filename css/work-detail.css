@@ -192,6 +192,7 @@ body {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none; /* Firefox */
   scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
 }
 
 .gallery-track::-webkit-scrollbar {
@@ -208,6 +209,8 @@ body {
   display: flex;
   flex-direction: column;
 
+  will-change: transform;
+
   border: 1px solid rgba(255,255,255,0.06);
   background: rgba(255,255,255,0.015);
 
@@ -222,6 +225,13 @@ body {
 .gallery-card:hover {
   transform: translateY(-10px) scale(1.02);
   box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.gallery-card::before {
+  content: "ENTER";
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  opacity: 0;
 }
 
 .gallery-card img {
@@ -291,13 +301,19 @@ body {
 /* 기본 텍스트 (항상 보임) */
 .card-base {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
+  bottom: 24px;
+  left: 24px;
 
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
 
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
+
+  opacity: 0.85;
+}
+
+.card-base h4 {
+  font-weight: 500;
 }
 
 /* hover UI */
@@ -313,16 +329,49 @@ body {
 
   background: linear-gradient(
     to top,
-    rgba(0,0,0,0.75),
-    transparent 60%
+    rgba(0,0,0,0.85),
+    rgba(0,0,0,0.25),
+    transparent
   );
 
   opacity: 0;
-  transition: 0.4s;
+  transform: translateY(20px);
+  transition: 
+    opacity 0.4s ease,
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* 텍스트 움직임 */
 .gallery-card:hover .card-hover {
   opacity: 1;
+  transform: translateY(0);
+}
+
+.card-hover * {
+  transform: translateY(12px);
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.gallery-card:hover .card-hover * {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.gallery-card:hover .category { transition-delay: 0.05s; }
+.gallery-card:hover .line-en { transition-delay: 0.1s; }
+.gallery-card:hover .line-jp { transition-delay: 0.15s; }
+.gallery-card:hover .price-mini { transition-delay: 0.2s; }
+
+/*  */
+.gallery-track:hover .gallery-card {
+  opacity: 0.35;
+  transform: scale(0.96);
+}
+
+.gallery-track:hover .gallery-card:hover {
+  opacity: 1;
+  transform: scale(1.04);
 }
 
 /* 가격 */
@@ -381,8 +430,8 @@ body {
   position: absolute;
   inset: 0;
 
-  /* background: rgba(240, 240, 240, 0.92); */
-  backdrop-filter: blur(18px);
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
   transition: 0.4s;
 }
 
@@ -396,6 +445,7 @@ body {
   background: #f4f4f2;
   color: #111;
 
+  backdrop-filter: blur(10px);
   box-shadow: 0 40px 120px rgba(0,0,0,0.25);
   border: 1px solid rgba(0,0,0,0.06);
 
