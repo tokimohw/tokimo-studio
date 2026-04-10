@@ -4,9 +4,11 @@
 
 /* 1. BASE STRUCTURE (기본 구조) */
 .collage-container {
+  height: auto;
+  overflow: visible;
   max-width: 1400px;
   margin: 0 auto;
-  padding-top: 100px;
+  padding: 100px 6% 0;
   display: flex;
   flex-direction: column;
 }
@@ -14,6 +16,7 @@
 .collage-grid {
   position: relative;
   /* 데스크탑에서 absolute 아이템들을 담기 위한 충분한 높이 */
+  height: auto;
   min-height: 1700px; 
   padding-bottom: 200px;
   transition: min-height 0.5s ease;
@@ -68,14 +71,111 @@
   margin-top: 10px;
 }
 
+/* CATEGORY/카테고리 */
+.project-category {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin: 0 0 40px 20px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+}
+
+.project-category span {
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.project-category span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 1px;
+  background: #000;
+  transition: 0.3s ease;
+}
+
+.project-category span:hover::after {
+  width: 100%;
+}
+
+.project-category .active::after {
+  width: 100%;
+}
+
+.project-category span:hover {
+  opacity: 1;
+}
+
+.project-category .active {
+  opacity: 1;
+  border-bottom: 1px solid #000;
+  padding-bottom: 2px;
+}
+
+
+/* 정렬 모드 */
+.collage-grid.filtered {
+  position: relative;
+  height: auto !important;
+  min-height: auto;
+  display: grid;
+  padding: 0;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  justify-items: center;
+  align-items: start;
+}
+
+/* 필터 모드에서는 카드 스타일 단순화 */
+.collage-grid.filtered .collage-item {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+
+  width: 100% !important;
+  max-width: 320px;
+  height: 420px !important;
+
+  transform: none !important;
+}
+
+/* 카테고리로 인한 수정 */
+.collage-container.filtered {
+  height: auto;
+  min-height: 0;
+}
+
+.collage-container:not(.filtered) {
+  min-height: 1400px;
+}
+
+.collage-grid:not(.filtered) {
+  position: relative;
+  min-height: 1600px;
+  height: auto;
+}
+
+
 /* 3. CARD & IMAGE SYSTEM (카드 및 이미지 레이어) */
 .collage-item {
   position: absolute;
   overflow: hidden;
   border-radius: 8px;
   background-color: #e0ddd5;
-  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), filter 0.6s ease;
-  will-change: transform;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  will-change: opacity, transform;
+}
+
+.collage-item.hide {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  pointer-events: none;
 }
 
 /* 이미지 배경 처리 */
@@ -193,12 +293,12 @@
 /* 각 아이템별 개별 회전 및 위치값 */
 .collage-item:nth-child(1) { width: 480px; height: 600px; top: 0; left: 6%; transform: rotate(-1.5deg); }
 .collage-item:nth-child(2) { width: 360px; height: 440px; top: 140px; right: 6%; transform: rotate(1deg); }
-.collage-item:nth-child(3) { width: 320px; height: 430px; top: 680px; left: 22%; transform: rotate(-1deg); }
-.collage-item:nth-child(4) { width: 480px; height: 600px; top: 780px; right: 8%; transform: rotate(1.5deg); }
+.collage-item:nth-child(3) {width: 320px;height: 430px;top: 680px;left: 18%;transform: rotate(-1deg);}
+.collage-item:nth-child(4) {width: 480px;height: 600px;top: 780px;right: 5%;transform: rotate(1.5deg);}
 .collage-item:nth-child(5) {
   width: 320px;
   height: 400px;
-  top: 1380px;
+  top: 1280px;
   left: 12%;
   transform: rotate(0.8deg);
 }
