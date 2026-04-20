@@ -237,6 +237,72 @@
   transition: transform 0.1s linear; /* 부드러운 패럴랙스 */
 }
 
+
+/* --- Presence Section --- */
+
+.presence-section {
+  padding: 150px 0; /* 위아래 넉넉한 여백으로 신뢰감 형성 */
+  background-color: var(--bg-color, #f2f2f2); /* 기본 배경색 유지 */
+  border-top: 1px solid rgba(0, 0, 0, 0.05); /* 미세한 경계선으로 구분 */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.presence-section .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.presence-grid {
+  display: grid;
+  grid-template-columns: 30% 1fr; /* 라벨과 컨텐츠의 비대칭 레이아웃 */
+  align-items: start;
+  gap: 40px;
+}
+
+/* 왼쪽 메타 라벨 */
+.label-column .meta-label {
+  font-family: var(--font-label, sans-serif); /* 라벨용 폰트 */
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: #888;
+  position: relative;
+  display: inline-block;
+  padding-left: 40px;
+}
+
+.label-column .meta-label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 30px;
+  height: 1px;
+  background-color: #888; /* 라벨 옆 가느다란 선 */
+}
+
+/* 오른쪽 본문 영역 */
+.content-column {
+  max-width: 800px;
+}
+
+.presence-title {
+  font-size: clamp(24px, 3vw, 32px); /* 반응형 폰트 크기 */
+  font-weight: 500;
+  line-height: 1.3;
+  margin-bottom: 30px;
+  color: #1a1a1a;
+  word-break: keep-all; /* 한글 줄바꿈 예쁘게 */
+}
+
+.presence-desc {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #444;
+  word-break: keep-all;
+  opacity: 0.9;
+}
+
 /* -------------------------
    반응형 디테일
 ------------------------- */
@@ -263,5 +329,33 @@
   }
   .philo-block {
     margin-bottom: 15vh; /* 모바일은 여백을 조금 줄임 */
+  }
+
+  /*  */
+    .presence-section {
+    padding: 100px 0;
+  }
+
+  .presence-grid {
+    grid-template-columns: 1fr; /* 모바일에서는 수직 배열 */
+    gap: 30px;
+  }
+
+  .label-column .meta-label {
+    padding-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .label-column .meta-label::before {
+    display: none; /* 모바일에서는 선 제거하여 깔끔하게 */
+  }
+
+  .presence-title {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .presence-desc {
+    font-size: 15px;
   }
 }

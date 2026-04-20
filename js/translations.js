@@ -22,7 +22,7 @@ const i18nData = {
     "idx-about-p1": "서울과 도쿄를 오가며, 브랜드와 공간을 위한 차분하고 의도적인 디지털 경험을 만듭니다.",
     "idx-about-p2": "무드와 리듬, 절제된 인터랙션을 중심으로 과하지 않고 자연스럽게 느껴지는 경험을 지향합니다.",
     "idx-about-p3": "빛, 공간, 그리고 정적인 분위기를 웹으로 옮기는 작업에 관심이 있습니다.",
-
+    
     // Project 섹션
     "proj-header-title": "Selected Projects",
     "proj-header-desc": "구조, 브랜딩, 그리고 디지털 경험에 집중합니다.",
@@ -78,6 +78,10 @@ const i18nData = {
     "about-note-quote": "\"기술은 보이지 않을 때 가장 아름답습니다.\"",
     "about-note-desc": "TOKIMO는 웹사이트 제작을 넘어, 장기적으로 일본 현지에서 카페와 패션 브랜드를 직접 운영하려는 계획을 품고 있습니다. 공간의 여백과 사물의 질감을 디지털로 번역하는 '디지털 제작자'의 자세로 모든 프로젝트에 임합니다.",
     "about-signature": "TOKIMO / 디렉터 현우",
+
+    "about-presence-title": "현지 대응 및 로컬라이징",
+    "about-presence-desc": "서울과 도쿄를 기반으로 활동하며, 일본 현지 비즈니스 매너에 맞춘 긴밀한 소통이 가능합니다. 단순한 번역을 넘어 브랜드의 공기감을 일본 시장에 맞게 재설계합니다.",
+
 
     // project 페이지
     "page-title": "PROJECTS | TOKIMO ARCHIVE",
@@ -137,6 +141,14 @@ const i18nData = {
     "c-btn-submit": "문의 보내기",
     "c-toast": "메시지가 성공적으로 전송되었습니다.",
 
+    // 
+    "c-label-budget": "예산 규모",
+    "c-opt-budget-default": "예산 범위를 선택해 주세요",
+    "c-label-timeline": "희망 일정",
+    "c-opt-time-default": "일정을 선택해 주세요",
+    "c-opt-time-1": "긴급 (1개월 이내)",
+    "c-opt-time-2": "보통 (1-3개월)",
+    "c-opt-time-3": "유연함 / 기획 단계",
   },
   jp: {
     // index
@@ -213,6 +225,10 @@ const i18nData = {
     "about-note-desc": "TOKIMOは単にウェブサイトを作ることを超え、長期的に日本国内でカフェやファッションブランドを自ら運営するという計画を抱いています。空間の余白と物の質感をデジタルに翻訳する「デジタル職人」の姿勢で、すべてのプロジェクトに臨みます。",
     "about-signature": "TOKIMO / ディレクター ヒョンウ",
 
+    "about-presence-title": "現地対応とローカライズ",
+    "about-presence-desc": "ソウルと東京を拠点に活動しており、日本独自のビジネス慣行とコミュニケーションマナーを遵守しています。 単なる翻訳にとどまらず、ブランドが持つ「空気感」を日本市場に最適化します。",
+
+
     // project 페이지
     "page-title": "PROJECTS | TOKIMO ARCHIVE",
     "archive-title": "WORK SELECTED",
@@ -257,6 +273,13 @@ const i18nData = {
     "c-btn-submit": "送信する",
     "c-toast": "メッセージを送信しました。",
 
+    "c-label-budget": "予算規模",
+    "c-opt-budget-default": "予算範囲を選択してください",
+    "c-label-timeline": "希望納期",
+    "c-opt-time-default": "納期を選択してください",
+    "c-opt-time-1": "お急ぎ (1ヶ月以内)",
+    "c-opt-time-2": "通常 (1-3ヶ月)",
+    "c-opt-time-3": "柔軟 / 企画段階",
   },
   en: {
     // index
@@ -333,6 +356,9 @@ const i18nData = {
     "about-note-quote": "\"Technology is most beautiful when invisible.\"",
     "about-note-desc": "Beyond building websites, TOKIMO plans to operate a physical cafe and fashion brand in Japan. I approach every project as a 'Digital Craftsman', translating the void of space and the texture of objects into digital form.",
     "about-signature": "TOKIMO / DIRECTOR HYUNWOO",
+    
+    "about-presence-title": "Local Presence",
+    "about-presence-desc": "Based in Seoul and Tokyo, I provide seamless communication tailored to Japanese business etiquette. Beyond translation, I re-engineer your brand's atmosphere for the Japanese market.",
 
     // project 페이지
     "page-title": "PROJECTS | TOKIMO ARCHIVE",
@@ -376,6 +402,14 @@ const i18nData = {
     "c-opt-others": "Others",
     
     "c-btn-submit": "Send Inquiry",
-    "c-toast": "Message Sent Successfully."
+    "c-toast": "Message Sent Successfully.",
+
+    "c-label-budget": "Estimated Budget",
+    "c-opt-budget-default": "Select budget range",
+    "c-label-timeline": "Desired Timeline",
+    "c-opt-time-default": "Select timeline",
+    "c-opt-time-1": "Urgent (Within 1 month)",
+    "c-opt-time-2": "Standard (1-3 months)",
+    "c-opt-time-3": "Flexible / Planning stage"
   }
 };
