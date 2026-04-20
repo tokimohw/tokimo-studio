@@ -33,11 +33,22 @@
   <div class="menu-trigger" id="menu-trigger">
     <span></span><span></span><span></span>
   </div>
-  <nav class="nav">
-    <a href="about.html">Architecture</a>
-    <a href="project.html" class="active">Repositories</a>
-    <a href="connect.html">Connect</a>
-  </nav>
+
+  <div class="header-right">
+    <nav class="lang-switcher">
+      <button class="lang-btn is-active" data-lang="ko">KR</button>
+      <span class="sep">/</span>
+      <button class="lang-btn" data-lang="jp">JP</button>
+      <span class="sep">/</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </nav>
+
+    <nav class="nav">
+      <a href="about.html" class="active">Architecture</a>
+      <a href="project.html">Repositories</a>
+      <a href="connect.html">Connect</a>
+    </nav>
+  </div>
 </header>
 
 <div class="mobile-menu-overlay" id="mobile-menu">
@@ -61,10 +72,10 @@
 
     <!-- PROJECT CATEGORY -->
     <div class="project-category">
-      <span class="active">ALL</span>
-      <span>SPACE</span>
-      <span>OBJECT</span>
-      <span>IDENTITY</span>
+      <span class="active" data-i18n="cat-all">ALL</span>
+      <span data-i18n="cat-space">SPACE</span>
+      <span data-i18n="cat-object">OBJECT</span>
+      <span data-i18n="cat-identity">IDENTITY</span>
     </div>
 
     <div class="collage-grid">
@@ -77,13 +88,12 @@
           <div class="micro-note note-1">ARCHIVE 2026</div>
           <div class="micro-note note-2">TOKIMO STRUCTURE</div>
 
-          <h2 class="item-name">
+          <h2 class="item-name" data-i18n="p01-name">
             Seta Fashion Label <br><em>Digital Flagship</em>
           </h2>
 
-          <p class="item-desc">
-            도쿄 베이스 레이블의 시각적 아이덴티티와 자연광의 질감을 담은 디지털 플래그십 설계<br/>
-            <span class="jp-sub">東京ベースのファッションレーベルにおける視각的アイデンティティとデジタルの融合。</span>
+          <p class="item-desc" data-i18n="p01-desc">
+            도쿄 베이스 레이블의 시각적 아이덴티티와 자연광의 질감을 담은 디지털 플래그십 설계
           </p>
 
           <p class="item-role">Role: UI/UX Design + Frontend</p>
@@ -106,15 +116,13 @@
           <div class="micro-note note-1">ARCHIVE 2026</div>
           <div class="micro-note note-2">TOKIMO STRUCTURE</div>
 
-          <h2 class="item-name">
+          <h2 class="item-name" data-i18n="p02-name">
             Slow <br><em>Roastery</em>
           </h2>
 
-          <p class="item-desc">
+          <p class="item-desc" data-i18n="p02-desc">
             A web archive for a small local roastery.<br>
             Focused on process, texture, and quiet detail.
-            <span class="jp-sub">ローカルロースタリーのプロセスと質感にフォーカスしたウェブアーカイブ。</span>
-            <span class="kr-sub">로컬 로스터리의 과정과 질감을 담은 웹 아카이브</span>
           </p>
 
           <p class="item-role">Role: Design / Frontend</p>
@@ -136,13 +144,12 @@
           <div class="item-meta">03 / Cafe</div>
           <div class="micro-note note-1">ARCHIVE 2026</div>
           <div class="micro-note note-2">TOKIMO STRUCTURE</div>
-          <h2 class="item-name">
+          <h2 class="item-name" data-i18n="p03-name"> 
             Kissa Local <br><em>Roastery</em>
           </h2>
 
-          <p class="item-desc">
+          <p class="item-desc" data-i18n="p03-desc">
             로컬 로스터리 카페의 공간적 경험을 웹 아카이브로 번역하는 브랜딩 프로젝트
-            <span class="jp-sub">ローカルロースタリーカフェの空間体験をウェブアーカイブへと翻訳するプロジェクト。</span>
           </p>
 
           <p class="item-role">Role: Branding + Web Design</p>
@@ -164,13 +171,12 @@
           <div class="micro-note note-1">ARCHIVE 2026</div>
           <div class="micro-note note-2">TOKIMO STRUCTURE</div>
 
-          <h2 class="item-name">
+          <h2 class="item-name" data-i18n="p04-name">
             Aesthetic <br><em>Select Shop</em>
           </h2>
 
-          <p class="item-desc">
+          <p class="item-desc" data-i18n="p04-desc">
             사물의 질감과 생활감을 중심으로 한 라이프스타일 편집샵 커머스 가이드
-            <span class="jp-sub">物の質感と生活感を中心としたライフスタイルセレクトショップのECガイドライン。</span>
           </p>
 
           <p class="item-role">
@@ -197,13 +203,12 @@
           <div class="micro-note note-1">ARCHIVE 2026</div>
           <div class="micro-note note-2">TOKIMO STRUCTURE</div>
           
-          <h2 class="item-name">
+          <h2 class="item-name" data-i18n="p05-name">
             Stationery <br><em>Archive</em>
           </h2>
 
-          <p class="item-desc">
+          <p class="item-desc" data-i18n="p05-desc">
             필기 도구의 촉감과 물성을 중심으로 한 오브제 아카이브 프로젝트
-            <span class="jp-sub">ステーショナリーの触感と物性に焦点を当てたオブジェアーカイブ。</span>
           </p>
 
           <p class="item-role">
@@ -231,8 +236,8 @@
   <section class="project-cta-section reveal">
   <div class="cta-inner">
     <div class="cta-text-wrap">
-      <h3 class="cta-title">Looking for <br><em>Digital Craftsmanship?</em></h3>
-      <p class="cta-desc">
+      <h3 class="cta-title" data-i18n="p-cta-title">Looking for <br><em>Digital Craftsmanship?</em></h3>
+      <p class="cta-desc" data-i18n="p-cta-desc">
         당신의 브랜드가 가진 고유한 공기감을 디지털로 옮깁니다.<br>
         브랜딩, 웹 구축, 그리고 일본 진출에 대한 협업을 환영합니다.
       </p>
@@ -240,7 +245,7 @@
     </div>
     <div class="cta-button-wrap">
       <a href="connect.html" class="cta-button">
-        <span class="btn-text">START A PROJECT</span>
+        <span class="btn-text" data-i18n="p-cta-btn">START A PROJECT</span>
         <span class="btn-arrow">→</span>
       </a>
     </div>
@@ -266,5 +271,9 @@
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/project.js"></script>
+
+<!-- 언어 변경 js -->
+<script src="js/translations.js"></script>
+<script src="js/i18n.js"></script>
 </body>
 </html>

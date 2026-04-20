@@ -77,7 +77,41 @@ const i18nData = {
     "about-note-title": "디렉터의 메모",
     "about-note-quote": "\"기술은 보이지 않을 때 가장 아름답습니다.\"",
     "about-note-desc": "TOKIMO는 웹사이트 제작을 넘어, 장기적으로 일본 현지에서 카페와 패션 브랜드를 직접 운영하려는 계획을 품고 있습니다. 공간의 여백과 사물의 질감을 디지털로 번역하는 '디지털 제작자'의 자세로 모든 프로젝트에 임합니다.",
-    "about-signature": "TOKIMO / 디렉터 현우"
+    "about-signature": "TOKIMO / 디렉터 현우",
+
+    // project 페이지
+    "page-title": "PROJECTS | TOKIMO ARCHIVE",
+    "archive-title": "WORK SELECTED",
+    "cat-all": "ALL",
+    "cat-space": "SPACE",
+    "cat-object": "OBJECT",
+    "cat-identity": "IDENTITY",
+
+    // Project 01
+    "p01-name": `Seta Fashion Label Digital Flagship`,
+    "p01-desc": "도쿄 베이스 레이블의 시각적 아이덴티티와 자연광의 질감을 담은 디지털 플래그십 설계",
+    
+    // Project 02
+    "p02-name": `Slow Roastery`,
+    "p02-desc": "로컬 로스터리의 과정과 질감을 담은 웹 아카이브",
+    
+    // Project 03
+    "p03-name": `Kissa Local Roastery`,
+    "p03-desc": "로컬 로스터리 카페의 공간적 경험을 웹 아카이브로 번역하는 브랜딩 프로젝트",
+    
+    // Project 04
+    "p04-name": `Aesthetic Select Shop`,
+    "p04-desc": "사물의 질감과 생활감을 중심으로 한 라이프스타일 편집샵 커머스 가이드",
+    
+    // Project 05
+    "p05-name": `Stationery Archive`,
+    "p05-desc": "필기 도구의 촉감과 물성을 중심으로 한 오브제 아카이브 프로젝트",
+
+    // CTA Section
+    "p-cta-title": `Looking for Digital Craftsmanship?`,
+    "p-cta-desc": "당신의 브랜드가 가진 고유한 공기감을 디지털로 옮깁니다. 브랜딩, 웹 구축, 그리고 일본 진출에 대한 협업을 환영합니다.",
+    "p-cta-btn": "START A PROJECT"
+
   },
   jp: {
     // index
@@ -143,7 +177,7 @@ const i18nData = {
     "cta-jp-small": "静かなものづくりを、共に。",
     "cta-sub-text": "新しいプロジェクトへのインスピレーションをお待ちしております。",
 
-    // about
+    // about 페이지
     "about-hero-title": "ブランドの息吹を、デジタルの静寂へ。",
     "about-hero-sub": "ソウルと東京を拠点に、ブランドの哲学をデジタル空間に設計するフロントエンド・ディレクターです。",
     "about-philo-title": "静かな抵抗 / Structured Sensitivity",
@@ -152,7 +186,31 @@ const i18nData = {
     "about-note-title": "ディレクターズ・ノート",
     "about-note-quote": "「技術は見えない時に最も美しい。」",
     "about-note-desc": "TOKIMOは単にウェブサイトを作ることを超え、長期的に日本国内でカフェやファッションブランドを自ら運営するという計画を抱いています。空間の余白と物の質感をデジタルに翻訳する「デジタル職人」の姿勢で、すべてのプロジェクトに臨みます。",
-    "about-signature": "TOKIMO / ディレクター ヒョンウ"
+    "about-signature": "TOKIMO / ディレクター ヒョンウ",
+
+    // project 페이지
+    "page-title": "PROJECTS | TOKIMO ARCHIVE",
+    "archive-title": "WORK SELECTED",
+    "cat-all": "すべて",
+    "cat-space": "空間",
+    "cat-object": "オブジェクト",
+    "cat-identity": "アイデンティティ",
+
+    "p01-name": `Seta Fashion Label Digital Flagship`,
+    "p01-desc": "東京ベースのファッションレーベルにおける視覚的アイデンティティとデジタルの融合。",
+    "p02-name": `Slow Roastery`,
+    "p02-desc": "ローカルロースタリーのプロセスと質感にフォーカスしたウェブアーカイブ。",
+    "p03-name": `Kissa Local Roastery`,
+    "p03-desc": "ローカルロースタリーカフェの空間体験をウェブアーカイブへと翻訳するプロジェクト。",
+    "p04-name": `Aesthetic Select Shop`,
+    "p04-desc": "物の質感と生活感を中心としたライフスタイルセレクトショップのECガイドライン。",
+    "p05-name": `Stationery Archive`,
+    "p05-desc": "ステーショナリーの触感と物性に焦点を当てたオブジェアーカイブ。",
+
+    "p-cta-title": `Looking for Digital Craftsmanship?`,
+    "p-cta-desc": "貴社のブランドが持つ独自の空気感をデジタルへと翻訳します。ブランディング、ウェブ構築そして日本進出に関する協業をお待ちしております。",
+    "p-cta-btn": "プロジェクトを始める",
+
   },
   en: {
     // index
@@ -228,6 +286,29 @@ const i18nData = {
     "about-note-title": "Director’s Note",
     "about-note-quote": "\"Technology is most beautiful when invisible.\"",
     "about-note-desc": "Beyond building websites, TOKIMO plans to operate a physical cafe and fashion brand in Japan. I approach every project as a 'Digital Craftsman', translating the void of space and the texture of objects into digital form.",
-    "about-signature": "TOKIMO / DIRECTOR HYUNWOO"
+    "about-signature": "TOKIMO / DIRECTOR HYUNWOO",
+
+    // project 페이지
+    "page-title": "PROJECTS | TOKIMO ARCHIVE",
+    "archive-title": "WORK SELECTED",
+    "cat-all": "ALL",
+    "cat-space": "SPACE",
+    "cat-object": "OBJECT",
+    "cat-identity": "IDENTITY",
+
+    "p01-name": `Seta Fashion Label Digital Flagship`,
+    "p01-desc": "Visual identity and digital flagship design for a Tokyo-based label, capturing the texture of natural light.",
+    "p02-name": `Slow Roastery`,
+    "p02-desc": "A web archive focused on the process and texture of a local roastery.",
+    "p03-name": `Kissa Local Roastery`,
+    "p03-desc": "A branding project translating the spatial experience of a local cafe into a digital archive.",
+    "p04-name": `Aesthetic Select Shop`,
+    "p04-desc": "E-commerce guidelines for a lifestyle select shop focused on materiality and daily life.",
+    "p05-name": `Stationery Archive`,
+    "p05-desc": "An object archive project focusing on the tactile sensation and physical properties of stationery.",
+
+    "p-cta-title": `Looking for Digital Craftsmanship?`,
+    "p-cta-desc": "Translating your brand's unique atmosphere into digital form. Welcoming collaborations for branding, web development, and Japan market entry.",
+    "p-cta-btn": "START A PROJECT"
   }
 };
