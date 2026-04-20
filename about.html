@@ -27,11 +27,23 @@
   <div class="menu-trigger" id="menu-trigger">
     <span></span><span></span><span></span>
   </div>
-  <nav class="nav">
-    <a href="about.html" class="active">Architecture</a>
-    <a href="project.html">Repositories</a>
-    <a href="connect.html">Connect</a>
-  </nav>
+
+  <div class="header-right">
+    <nav class="lang-switcher">
+      <button class="lang-btn is-active" data-lang="ko">KR</button>
+      <span class="sep">/</span>
+      <button class="lang-btn" data-lang="jp">JP</button>
+      <span class="sep">/</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </nav>
+
+    <nav class="nav">
+      <a href="about.html" class="active">Architecture</a>
+      <a href="project.html">Repositories</a>
+      <a href="connect.html">Connect</a>
+    </nav>
+  </div>
+
 </header>
 
 <div class="mobile-menu-overlay" id="mobile-menu">
@@ -45,111 +57,50 @@
 
 <main class="manifesto-page">
   <section class="manifesto-hero reveal">
-    <h1 class="main-headline">
-      <span class="jp">ブランドの息吹を、<br>デジタルの静寂へ。</span> 
-      <span class="en italic">Architecting the breath of brands <br>into digital silence.</span>
+    <h1 class="main-headline" data-i18n="about-hero-title">
+      브랜드의 숨결을,<br>디지털의 정적으로.
     </h1>
-    <p class="hero-sub-text reveal">
-      서울과 도쿄를 기반으로 웹 디자인과 브랜드 아이덴티티를 설계하는 크리에이티브 스튜디오입니다.
-      <span class="jp-sub">ソウルと東京を拠点に、ウェブデザインとブランドアイデンティティを設計するクリエイティブスタジオです。</span>
+    <p class="hero-sub-text reveal" data-i18n="about-hero-sub">
+      서울과 도쿄를 기반으로 브랜드의 철학을 디지털 공간에 설계하는 프론트엔드 디렉터입니다.
     </p>
   </section>
 
   <section class="philosophy-grid">
     <div class="philo-block reveal" data-speed="0.05"> 
       <div class="philo-image">
-        <img src="images/all_mood/jp_street1.jpeg" alt="TOKIMO Brand Philosophy - Raw Texture">
+        <img src="images/all_mood/jp_street1.jpeg" alt="TOKIMO Brand Philosophy">
       </div>
 
       <div class="philo-text">
-        <h2 class="jp reveal">静かな抵抗 <br><span class="kr">Structured Sensitivity</span></h2> 
+        <h2 class="reveal" data-i18n="about-philo-title">정돈된 감각 / Structured Sensitivity</h2> 
 
-        <p class="kr reveal mb20">
+        <p class="reveal mb20" data-i18n="about-philo-desc1">
           서울에서 시작해 도쿄의 거리로 이어지는 여정을 준비하고 있습니다. <br>
           저에게 웹은 단순한 인터페이스가 아닌, 브랜드의 철학이 머무는 '디지털 플래그십 스토어'입니다.
         </p>
         
-        <p class="jp-sub reveal mb40">
-          ソウルで始まり、東京の街並みへと続く旅を準備しています。<br>
-          私にとってウェブは単なるインターフェースではなく、ブランドの哲学が宿る「デジタル・フラッグシップストア」です。
-        </p>
-
-        <p class="en philosophy-desc reveal">
-          Focused on clean structure, digital craftsmanship, and minimal UI. <br>
-          Currently building 'TOKIMO' — an intersection of cafe, garment, and space.
+        <p class="reveal mb40" data-i18n="about-philo-desc2">
+          불필요한 장식을 걷어내고, 여백과 질감 그리고 절제된 움직임을 통해 브랜드 본연의 가치를 전달하는 데 집중합니다.
         </p>
       </div>
-    </div>
-  </section>
-
-  <!-- work approach -->
-  <section class="work-approach-section reveal">
-    <div class="approach-container">
-      <h3 class="section-title">How I work</h3>
-
-      <ul class="approach-list">
-        <li>
-          <span>
-            I start with structure
-            <em class="jp-sub jp-approach">/ 構造から考えます</em>
-          </span>
-        </li>
-        <li>
-          <span>
-            Not too many elements
-            <em class="jp-sub jp-approach">/ 要素は多くしない</em>
-          </span>
-        </li>
-        <li>
-          <span>
-            I like slower interaction
-            <em class="jp-sub jp-approach">/ 少し遅めの動き</em>
-          </span>
-        </li>
-        <li>
-          <span>
-            Built with Japan in mind
-            <em class="jp-sub jp-approach">/ 日本向けに設計</em>
-          </span>
-        </li>
-      </ul>
-
-      <p class="process-text">
-        I try to keep things quiet.<br/>
-        Clean layout, less noise.<br/>
-        Something that feels calm when you scroll.
-        <br/><br/>
-        <span class="jp-sub">
-          静かで、整った構造。<br/>
-          スクロールした時に、落ち着く感じを大切にしています。
-        </span>
-      </p>
     </div>
   </section>
 
   <section class="director-note reveal">
     <div class="note-container">
-      <h3 class="jp">ディレクターのメモ</h3>
+      <h3 data-i18n="about-note-title">디렉터의 메모</h3>
       
-      <p class="kr">
+      <p class="quote-text" data-i18n="about-note-quote">
         "기술은 보이지 않을 때 가장 아름답습니다."
       </p>
-      <p class="jp-sub mb30">
-        「技術は見えない時に最も美しい。」
+
+      <p class="note-desc" data-i18n="about-note-desc">
+        TOKIMO는 웹사이트 제작을 넘어, 장기적으로 일본 현지에서 카페와 패션 브랜드를 직접 운영하려는 계획을 품고 있습니다. 
+        우리는 공간의 여백과 사물의 질감을 디지털로 번역하는 '디지털 제작자'의 자세로 모든 프로젝트에 임합니다.
       </p>
 
-      <p class="kr">
-        TOKIMO는 단순히 웹사이트를 만드는 것을 넘어, 장기적으로 일본 현지에서 카페와 패션 브랜드를 직접 운영하려는 원대한 계획을 품고 있습니다. 
-        우리는 공간의 여백과 사물의 질감을 디지털로 번역하는 '디지털 제작자(Digital Craftsman)'의 자세로 모든 프로젝트에 임합니다.
-      </p>
-      
-      <p class="jp-sub mt20">
-        TOKIMOは単にウェブサイトを作ることを超え、長期的に日本国内でカフェやファッションブランドを自ら運営するという大きな計画を抱いています。
-        私たちは空間の余白と物の質感をデジタルに翻訳する「デジタル職人」の姿勢で、すべてのプロジェクトに臨みます。
-      </p>
-
-      <div class="signature">
-        TOKIMO / DIRECTOR HYUNWOO
+      <div class="signature" data-i18n="about-signature">
+        TOKIMO / 디렉터 현우
       </div>
     </div>
   </section>
@@ -174,5 +125,10 @@
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/about.js"></script>
+
+<!-- 언어 변경 js -->
+<script src="js/translations.js"></script>
+<script src="js/i18n.js"></script>
+
 </body>
 </html>
