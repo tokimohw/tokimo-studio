@@ -110,7 +110,32 @@ const i18nData = {
     // CTA Section
     "p-cta-title": `Looking for Digital Craftsmanship?`,
     "p-cta-desc": "당신의 브랜드가 가진 고유한 공기감을 디지털로 옮깁니다. 브랜딩, 웹 구축, 그리고 일본 진출에 대한 협업을 환영합니다.",
-    "p-cta-btn": "START A PROJECT"
+    "p-cta-btn": "START A PROJECT",
+
+    // connect 페이지
+    "c-hero-label": "Get in Touch",
+    "c-display-title": "Start a Conversation.",
+    "c-description": "프로젝트 의뢰 및 협업 문의는 아래 양식을 통해 접수해 주세요. 확인 후 정중히 답변드립니다.",
+    
+    // Form Labels
+    "c-label-name": "성함 / 조직명",
+    "c-label-service": "문의 서비스",
+    "c-label-message": "메시지",
+    
+    // Placeholders
+    "c-ph-name": "성함을 입력해 주세요",
+    "c-ph-message": "프로젝트에 대해 알려주세요",
+    
+    // Select Options
+    "c-opt-default": "서비스를 선택해 주세요",
+    "c-opt-web": "웹 개발 / UI 디자인",
+    "c-opt-brand": "브랜드 아이덴티티 / 개인 브랜딩",
+    "c-opt-consult": "일본 진출 컨설팅",
+    "c-opt-others": "기타 문의",
+    
+    // Submit
+    "c-btn-submit": "문의 보내기",
+    "c-toast": "메시지가 성공적으로 전송되었습니다.",
 
   },
   jp: {
@@ -211,6 +236,27 @@ const i18nData = {
     "p-cta-desc": "貴社のブランドが持つ独自の空気感をデジタルへと翻訳します。ブランディング、ウェブ構築そして日本進出に関する協業をお待ちしております。",
     "p-cta-btn": "プロジェクトを始める",
 
+    // conncet 페이지
+    "c-hero-label": "Get in Touch",
+    "c-display-title": "Start a Conversation.",
+    "c-description": "プロジェクトのご依頼や協業に関するお問い合わせは、下記のフォームより受け付けております。",
+    
+    "c-label-name": "お名前 / 貴社名",
+    "c-label-service": "ご依頼内容",
+    "c-label-message": "メッセージ",
+    
+    "c-ph-name": "お名前をご記入ください",
+    "c-ph-message": "プロジェクトの概要をお聞かせください",
+    
+    "c-opt-default": "内容を選択してください",
+    "c-opt-web": "Web開発 / UIデザイン",
+    "c-opt-brand": "ブランドアイデンティティ",
+    "c-opt-consult": "日本進出コンサルティング",
+    "c-opt-others": "その他",
+    
+    "c-btn-submit": "送信する",
+    "c-toast": "メッセージを送信しました。",
+
   },
   en: {
     // index
@@ -309,6 +355,27 @@ const i18nData = {
 
     "p-cta-title": `Looking for Digital Craftsmanship?`,
     "p-cta-desc": "Translating your brand's unique atmosphere into digital form. Welcoming collaborations for branding, web development, and Japan market entry.",
-    "p-cta-btn": "START A PROJECT"
+    "p-cta-btn": "START A PROJECT",
+
+    // conncet 페이지
+    "c-hero-label": "Get in Touch",
+    "c-display-title": "Start a Conversation.",
+    "c-description": "Please submit the form below for project inquiries and collaborations. I will respond as soon as possible.",
+    
+    "c-label-name": "Name / Organization",
+    "c-label-service": "Service",
+    "c-label-message": "Message",
+    
+    "c-ph-name": "Your Name",
+    "c-ph-message": "Tell me about your project",
+    
+    "c-opt-default": "Select a service",
+    "c-opt-web": "Web Development / UI Design",
+    "c-opt-brand": "Brand Identity / Personal Branding",
+    "c-opt-consult": "Japan Entry Consulting",
+    "c-opt-others": "Others",
+    
+    "c-btn-submit": "Send Inquiry",
+    "c-toast": "Message Sent Successfully."
   }
 };

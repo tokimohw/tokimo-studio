@@ -33,11 +33,22 @@
   <div class="menu-trigger" id="menu-trigger">
     <span></span><span></span><span></span>
   </div>
-  <nav class="nav">
-    <a href="about.html">Architecture</a>
-    <a href="project.html">Repositories</a>
-    <a href="connect.html" class="active">Connect</a>
-  </nav>
+
+  <div class="header-right">
+    <nav class="lang-switcher">
+      <button class="lang-btn is-active" data-lang="ko">KR</button>
+      <span class="sep">/</span>
+      <button class="lang-btn" data-lang="jp">JP</button>
+      <span class="sep">/</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </nav>
+
+    <nav class="nav">
+      <a href="about.html" class="active">Architecture</a>
+      <a href="project.html">Repositories</a>
+      <a href="connect.html">Connect</a>
+    </nav>
+  </div>
 </header>
 
 <div class="mobile-menu-overlay" id="mobile-menu">
@@ -54,38 +65,37 @@
     <div class="section-inner">
       <div class="connect-layout">
         <div class="connect-info">
-          <span class="hero-label">Get in Touch</span>
-          <h1 class="display-title">Start a <br>Conversation.</h1>
-          <p class="description">
-            프로젝트 의뢰 및 협업 문의는 아래 양식을 통해 접수해 주세요.<br>
-            일본 현지 비즈니스 매너에 맞춰 정중히 답변드립니다.
+          <span class="hero-label" data-i18n="c-hero-label">Get in Touch</span>
+          <h1 class="display-title" data-i18n="c-display-title">Start a <br>Conversation.</h1>
+          <p class="description" data-i18n="c-description">
+            프로젝트 의뢰 및 협업 문의는 아래 양식을 통해 접수해 주세요.
           </p>
         </div>
 
         <form class="connect-form" id="contact-form">
           <div class="input-wrapper">
-            <label for="name">Name / Organization <small>お名前・貴社名</small></label>
-            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <label for="name" data-i18n="c-label-name">Name / Organization</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" data-i18n="c-ph-name" required>
           </div>
           
           <div class="input-wrapper">
-            <label for="service">Service <small>ご依頼内容</small></label>
+            <label for="service" data-i18n="c-label-service">Service</label>
             <select id="service" name="service" required>
-              <option value="" disabled selected>Select a service</option>
-              <option value="web">Web Development / UI Design</option>
-              <option value="branding">Brand Identity / Personal Branding</option>
-              <option value="consulting">Japan Entry Consulting</option>
-              <option value="others">Others</option>
+              <option value="" disabled selected data-i18n="c-opt-default">Select a service</option>
+              <option value="web" data-i18n="c-opt-web">Web Development / UI Design</option>
+              <option value="branding" data-i18n="c-opt-brand">Brand Identity / Personal Branding</option>
+              <option value="consulting" data-i18n="c-opt-consult">Japan Entry Consulting</option>
+              <option value="others" data-i18n="c-opt-others">Others</option>
             </select>
           </div>
 
           <div class="input-wrapper">
-            <label for="message">Message <small>メッセージ</small></label>
-            <textarea id="message" name="message" rows="4" placeholder="Tell me about your project" required></textarea>
+            <label for="message" data-i18n="c-label-message">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell me about your project" data-i18n="c-ph-message" required></textarea>
           </div>
 
           <button type="submit" class="submit-btn">
-            Send Inquiry <span class="arrow">→</span>
+            <span data-i18n="c-btn-submit">Send Inquiry <span class="arrow">→</span></span>
           </button>
         </form>
       </div>
@@ -108,12 +118,16 @@
   </div>
 </footer>
 
-<div id="toast" class="toast-message">
-  <span class="jp-text">送信完了.</span> Message Sent Successfully.
+<div id="toast" class="toast-message" data-i18n="c-toast">
+  <p>Message Sent Successfully.</p>
 </div>
 
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/connect.js"></script>
+
+<!-- 언어 변경 js -->
+<script src="js/translations.js"></script>
+<script src="js/i18n.js"></script>
 </body>
 </html>
