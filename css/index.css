@@ -638,8 +638,9 @@ body {
     PROCESS SECTION (협업 프로세스)
    ========================================================================== */
 .process-section {
-  padding: 140px 0;
+  padding: clamp(80px, 10vw, 140px) 0; /* 반응형 패딩 */
   background-color: #fff;
+  overflow: hidden; /* 숫자 삐져나감 방지 */
 }
 
 .process-container {
@@ -650,8 +651,9 @@ body {
 
 .process-grid {
   display: grid;
+  /* 1053px 부근에서 3열이 너무 좁다면 1fr로 떨어지게 하거나 간격을 조절해야 합니다 */
   grid-template-columns: repeat(3, 1fr);
-  gap: 60px;
+  gap: clamp(30px, 4vw, 60px); /* 간격도 화면에 따라 유연하게 */
   margin-top: 80px;
   border-top: 1px solid rgba(0,0,0,0.1);
   padding-top: 60px;
@@ -659,35 +661,47 @@ body {
 
 .process-card {
   position: relative;
+  height: auto; /* 고정 높이 절대 금지 */
+  display: flex;
+  flex-direction: column;
 }
 
 .process-num {
   font-family: var(--font-sub);
   font-style: italic;
-  font-size: 6rem;
+  font-size: clamp(4rem, 8vw, 6rem); /* 숫자 크기 유연하게 */
   line-height: 0.8;
-  color: #f0f0f0; /* 배경에 스며드는 아주 연한 그레이 */
+  color: #f0f0f0;
   position: absolute;
-  top: -40px;
+  top: -30px;
   left: -10px;
   z-index: 0;
+  user-select: none;
 }
 
 .process-name {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 500;
   margin-bottom: 20px;
   position: relative;
   z-index: 1;
+  word-break: keep-all;
 }
 
 .process-detail {
   font-size: 0.95rem;
-  line-height: 1.7;
+  line-height: 1.8; /* 일어를 위해 약간 더 넓힘 */
   color: #555;
   position: relative;
   z-index: 1;
-  word-break: keep-all;
+  word-break: keep-all; /* 한국어용 */
+}
+
+/* --- 일본어(JP) 환경에서만 적용되는 미세 조정 --- */
+html[lang="jp"] .process-detail {
+  word-break: break-all; /* 일어 문장이 박스를 뚫는 것 방지 */
+  line-height: 1.9; /* 일어 특유의 답답함 해소 */
+  font-feature-settings: "palt"; /* 일본어 자간 최적화 */
 }
 
 /* ==========================================================================
@@ -899,6 +913,13 @@ body {
 /* ==========================================================================
    RESPONSIVE DESIGN (모바일 최적화)
    ========================================================================== */
+@media (max-width: 1100px) {
+  .process-grid {
+    gap: 40px;
+    grid-template-columns: repeat(3, 1fr); /* 일단 3열 유지 */
+  }
+}
+
 @media (max-width: 1024px) {
   .process-grid {
     grid-template-columns: 1fr; /* 태블릿부터 세로로 전환하여 가독성 확보 */
@@ -1040,6 +1061,11 @@ body {
     gap: 15px;
   }
 
+  /* process */
+  .process-grid {
+    grid-template-columns: 1fr; /* 모바일/태블릿에선 1열로 전환하여 쾌적함 확보 */
+    gap: 80px; /* 세로 간격 확보 */
+  }
 }
 
 @media (max-width: 1024px) {
