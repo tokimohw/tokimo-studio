@@ -24,7 +24,7 @@
   <div class="side-info">
     <span>EST. 2026</span>
     <span class="vertical-line"></span>
-    <span class="jp-text">デジタル・クラフトマンシップ</span>
+    <span class="jp-text" data-i18n="side-craft">デジタル・クラフトマンシップ</span>
   </div>
 
   <header class="header">
@@ -32,11 +32,22 @@
     <div class="menu-trigger" id="menu-trigger">
       <span></span><span></span><span></span>
     </div>
-    <nav class="nav">
-      <a href="about.html">Architecture</a>
-      <a href="project.html">Repositories</a>
-      <a href="connect.html">Connect</a>
-    </nav>
+
+    <div class="header-right">
+      <nav class="lang-switcher">
+        <button class="lang-btn is-active" data-lang="ko">KR</button>
+        <span class="sep">/</span>
+        <button class="lang-btn" data-lang="jp">JP</button>
+        <span class="sep">/</span>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </nav>
+
+      <nav class="nav">
+        <a href="about.html" class="active">Architecture</a>
+        <a href="project.html">Repositories</a>
+        <a href="connect.html">Connect</a>
+      </nav>
+    </div>
   </header>
 
   <div class="mobile-menu-overlay" id="mobile-menu">
@@ -69,17 +80,12 @@
           <!-- hero 가운데 텍스트 -->
           <div class="hero-title-wrap"> 
             <h1 class="cover-title">TOKIMO ARCHIVE</h1>
-            <h2 class="cover-sub-title">Design-driven frontend & quiet visual storytelling</h2>
-            <p class="hero-description">
-              for cafes, small brands,<br>
-              and quiet spaces.
-              <span class="jp-sub">カフェや小さなブランドのためのウェブ制作</span>
-              <span class="kr-sub">카페와 작은 브랜드를 위한 웹사이트</span>
+            <h2 class="cover-sub-title" data-i18n="hero-sub-title">Design-driven frontend & quiet visual storytelling</h2>
+            <p class="hero-description" data-i18n="hero-desc">
+              for cafes, small brands,<br> and quiet spaces.
             </p>
-
-            <p class="hero-role">
+            <p class="hero-role" data-i18n="hero-role">
               frontend / branding / direction
-              <span class="jp-sub">フロントエンド・ブランディング</span>
             </p>
           </div>
 
@@ -93,27 +99,17 @@
           <div class="hero-side-meta">
             <div class="meta-group">
               <span class="meta-label">Role</span>
-              <span class="meta-value">
-                Frontend Developer<br>
-                <em class="jp side-jp">フロントエンド開発</em><br>
-                <small class="kr-sub">프론트엔드 개발자</small>
-              </span>
+              <span class="meta-value" data-i18n="meta-role-val">Frontend Developer</span>
             </div>
+            
             <div class="meta-group">
               <span class="meta-label">Base</span>
-              <span class="meta-value">
-                Seoul / Tokyo<br>
-                <em class="jp side-jp">ソウル・東京</em><br>
-                <small class="kr-sub">서울 / 도쿄</small>
-              </span>
+              <span class="meta-value" data-i18n="meta-base-val">Seoul / Tokyo</span>
             </div>
+            
             <div class="meta-group">
               <span class="meta-label">Status</span>
-              <span class="meta-value">
-                Available for freelance<br>
-                <em class="jp side-jp">ご依頼受付中</em><br>
-                <small class="kr-sub">작업 가능</small>
-              </span>
+              <span class="meta-value" data-i18n="meta-status-val">Available for freelance</span>
             </div>
           </div>
 
@@ -165,43 +161,21 @@
         <div class="about-right">
 
           <!-- Intro -->
-          <p class="about-text mb10">
-            I’m a design-driven frontend publisher based between Seoul and Tokyo.<br>
-            I build calm, simple websites for brands and spaces.
-          </p>
-          <p class="jp-sub">
-            ソウルと東京を拠点に、ブランドや空間のための静かで意図のあるデジタル体験を設計しています。
-          </p>
-          <p class="kr-sub mb10">
+          <p class="about-text" data-i18n="idx-about-p1">
             서울과 도쿄를 오가며, 브랜드와 공간을 위한 차분하고 의도적인 디지털 경험을 만듭니다.
           </p>
-
           <!-- Positioning -->
-          <p class="about-text">
+          <p class="about-text mb10">
             Design-driven frontend & quiet visual storytelling
           </p>
 
           <!-- Approach -->
-          <p class="about-text mb10">
-            I care about mood, spacing, and how things move —<br>
-            creating experiences that feel natural, not exaggerated.
-          </p>
-          <p class="jp-sub">
-            ムードやリズム、控えめなインタラクションを大切にし、過剰ではなく自然に感じられる体験を目指しています。
-          </p>
-          <p class="kr-sub mb10">
+          <p class="about-text mb10" data-i18n="idx-about-p2">
             무드와 리듬, 절제된 인터랙션을 중심으로 과하지 않고 자연스럽게 느껴지는 경험을 지향합니다.
           </p>
 
           <!-- Philosophy -->
-          <p class="about-text">
-            I’m interested in translating atmosphere into web —<br>
-            how light, space, and silence can exist in digital form.
-          </p>
-          <p class="jp-sub">
-            光や空間、静けさといった空気感をウェブに落とし込むことに関心があります。
-          </p>
-          <p class="kr-sub mb10">
+          <p class="about-text mb10" data-i18n="idx-about-p3">
             빛, 공간, 그리고 정적인 분위기를 웹으로 옮기는 작업에 관심이 있습니다.
           </p>
 
@@ -243,9 +217,9 @@
     <section class="project-grid-section fade-up">
       <div class="container">
         <div class="project-header">
-          <h3 class="p-section-title">Selected Projects</h3>
-          <p class="p-section-desc">Focused on structure, branding, and digital experience</p>
-          <p class="p-section-note">A selection of works exploring quiet structure and visual flow.</p>
+          <h3 class="p-section-title" data-i18n="proj-header-title">Selected Projects</h3>
+          <p class="p-section-desc" data-i18n="proj-header-desc">Focused on structure, branding, and digital experience</p>
+          <p class="p-section-note" data-i18n="proj-header-note">A selection of works exploring quiet structure and visual flow.</p>
         </div>
         <div class="archive-grid">
           <a href="work-detail.html" class="archive-item">
@@ -259,14 +233,10 @@
             
             <div class="archive-info">
               <div class="p-meta">2026 — WEB / BRAND</div>
-
-              <h3>Curated Select Shop</h3>
-
-              <p>
+              <h3 data-i18n="proj-01-title">Curated Select Shop</h3>
+              <p data-i18n="proj-01-desc-full">
                 A minimal website for a small fashion select shop.<br>
                 Focused on layout, spacing, and product flow.
-                <span class="jp-sub">セレクトショップのためのミニマルなウェブデザイン</span>
-                <span class="kr-sub">편집샵을 위한 미니멀 웹사이트</span>
               </p>
 
               <div class="p-role">
@@ -324,38 +294,37 @@
     <!-- services -->
     <section class="services-section reveal">
       <div class="services-container">
-        <h3 class="section-title">What I Do</h3>
-        <p class="services-desc">Simple websites for cafes and small brands.<br/>
+        <h3 class="section-title" data-i18n="svc-title">What I Do</h3>
+        <p class="services-desc" data-i18n="svc-desc">Simple websites for cafes and small brands.<br/>
           <span class="jp-sub">カフェや小さなブランドのためのシンプルなウェブ制作</span><br/>
           <span class="kr-sub">카페와 작은 브랜드를 위한 웹사이트 제작</span>
         </p>
-        <!-- <p class="jp-sub jp-svi">小さなカフェから個人ブランドまで、あなたの空間のためのデジタルアーカイブ。</p> -->
-        <p class="services-proof">Simple structure, calm interaction, and clear branding.</p>
+        <p class="services-proof" data-i18n="svc-proof">Simple structure, calm interaction, and clear branding.</p>
 
         <ul class="services-list">
           <li>
-            <span class="service-title">Cafe websites</span>
-            <span class="service-sub">
+            <span class="service-title" data-i18n="svc-01">Cafe websites</span>
+            <span class="service-sub" data-i18n="svc-01-sub">
               Single-page or small websites
               <span class="jp-sub">カフェ向けのシンプルなサイト</span>
             </span>
           </li>
           <li>
-            <span class="service-title">Landing pages</span>
-            <span class="service-sub">
+            <span class="service-title" data-i18n="svc-02">Landing pages</span>
+            <span class="service-sub" data-i18n="svc-02-sub">
               For small brands and projects
               <span class="jp-sub">小規模ブランド向けLP制作</span>
             </span>
           </li>
           <li>
-            <span class="service-title">Frontend</span>
+            <span class="service-title" data-i18n="svc-03">Frontend</span>
             <span class="service-sub">
               HTML / CSS / JavaScript
             </span>
           </li>
         </ul>
 
-        <p class="services-cta">
+        <p class="services-cta" data-i18n="svc-cta">
           Available for small projects.<br>
           Contact via Instagram or Email.
         </p>
@@ -367,36 +336,32 @@
       <div class="process-container">
         <header class="section-header">
           <span class="meta-label">WORKFLOW</span>
-          <h2 class="section-title">Architecture of <br><em>Work</em></h2>
-          <p class="section-desc">하나의 브랜드가 디지털 공간에 안착하기까지의 여정.</p>
-          <p class="jp-sub">一つのブランドが、デジタル空間に深く根を下ろすまでの軌跡。</p>
+          <h2 class="section-title">Architecture of <em>Work</em></h2>
+          <p class="section-desc" data-i18n="proc-sub">하나의 브랜드가 디지털 공간에 안착하기까지의 여정.</p>
         </header>
 
         <div class="process-grid">
           <div class="process-card">
             <div class="process-num">01</div>
-            <h3 class="process-name">Discovery & Mood</h3>
-            <p class="process-detail">
+            <h3 class="process-name" data-i18n="proc-01-title">Discovery & Mood</h3>
+            <p class="process-detail" data-i18n="proc-01-desc">
               브랜드의 본질과 타겟을 분석합니다. 레퍼런스 수집과 시각적 무드보드를 통해 프로젝트의 공기감을 설정하고 방향성을 합의합니다.
-              <span class="jp-sub">ブランドの本質を読み解き、ムードボードを通じて最適な視覚的アプローチを設計します。</span>
             </p>
           </div>
 
           <div class="process-card">
             <div class="process-num">02</div>
-            <h3 class="process-name">Digital Craft</h3>
-            <p class="process-detail">
+            <h3 class="process-name" data-i18n="proc-02-title">Digital Craft</h3>
+            <p class="process-detail" data-i18n="proc-02-desc">
               에디토리얼 레이아웃과 Vanilla JS를 활용한 정숙한 인터랙션을 구현합니다. 픽셀 단위의 디자인과 최적화된 프론트엔드 개발이 동시에 진행됩니다.
-              <span class="jp-sub">ピクセル単位のUI設計と、細部までこだわり抜いたフロントエンド開発を行います。</span>
             </p>
           </div>
 
           <div class="process-card">
             <div class="process-num">03</div>
-            <h3 class="process-name">Localization & Launch</h3>
-            <p class="process-detail">
+            <h3 class="process-name" data-i18n="proc-03-title">Localization & Launch</h3>
+            <p class="process-detail" data-i18n="proc-03-desc">
               일본 시장 진출을 위한 번역 최적화 및 로컬 뉘앙스를 반영합니다. QA 테스트 후 성공적인 런칭과 유지보수 가이드를 제공합니다.
-              <span class="jp-sub">日本のローカルな文脈に寄り添い、違和感のない自然なデジタル体験へと翻訳します。</span>
             </p>
           </div>
         </div>
@@ -436,27 +401,25 @@
         <div class="faq-panel">
           <header class="section-header faq-header">
             <span class="meta-label">INQUIRY</span>
-            <h2 class="section-title">Frequently Asked <br><em>Questions</em></h2>
+            <h2 class="section-title" data-i18n="faq-title">Frequently Asked <br><em>Questions</em></h2>
           </header>
 
           <div class="faq-list">
             <div class="faq-item">
-              <div class="faq-q">
+              <div class="faq-q" data-i18n="faq-q1">
                 How long does it take?
                 <span class="jp-q">制作期間は？</span>
               </div>
-              <div class="faq-a">
+              <div class="faq-a" data-i18n="faq-a1">
                 Around 3–5 weeks, depending on the project.
-                <span class="kr-sub">보통 3~5주 정도입니다.</span>
               </div>
             </div>
 
             <div class="faq-item">
-              <div class="faq-q">
+              <div class="faq-q" data-i18n="faq-q2">
                 Can I request only development?
-                <span class="jp-q">開発のみ可能？</span>
               </div>
-              <div class="faq-a">
+              <div class="faq-a" data-i18n="faq-a2">
                 Yes, if you already have a design.
               </div>
             </div>
@@ -469,15 +432,14 @@
     <!-- cta섹션-->
     <section class="cta-editorial reveal">
       <div class="cta-inner">
-        <p class="jp jp-cta">静かなものづくりを、共に。</p>
-        <h2 class="cta-main">
+        <p class="jp jp-cta" data-i18n="cta-jp-small">静かなものづくりを、共に。</p>
+        <h2 class="cta-main" data-i18n="cta-main">
           Let’s archive your <br><em>Brand Identity.</em>
         </h2>
-        <p class="cta-sub">
+        <p class="cta-sub" data-i18n="cta-sub-text">
           새로운 프로젝트에 대한 영감을 기다립니다.
-          <span class="jp-sub">新しいプロジェクトへのインスピレーションをお待ちしております。</span>
         </p>
-        <a href="connect.html" class="cta-link">Start a Conversation →</a>
+        <a href="connect.html" class="cta-link" class="cta-link-text">Start a Conversation →</a>
       </div>
     </section>
   </main>
@@ -486,7 +448,7 @@
     <div class="footer-inner">
       <div class="footer-left">
         <p class="copyright">© 2026 TOKIMO ARCHIVE.</p>
-        <p class="footer-cta">Let’s build something simple.</p>
+        <p class="footer-cta" data-i18n="cta-jp-small">Let’s build something simple.</p>
         <div class="location">Seoul — Tokyo <span id="local-time">00:00:00</span></div>
       </div>
       <div class="footer-right">
@@ -503,5 +465,8 @@
   <script src="js/main.js"></script>
   <script src="js/index.js"></script>
 
+  <!-- 언어 변경 js -->
+  <script src="js/translations.js"></script>
+  <script src="js/i18n.js"></script>
 </body>
 </html>

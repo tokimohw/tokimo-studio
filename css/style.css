@@ -508,18 +508,29 @@ body.menu-open {
 
 @media (max-width: 768px) {
 
+.lang-switcher {
+    /* 햄버거 버튼과의 간격을 위해 오른쪽 여백 확보 */
+    margin-right: 60px; 
+    margin-left: 0;
+    gap: 6px;
+    display: flex; /* 가로 나열 유지 */
+    align-items: center;
+  }
+
+  /* 2. 폰트 사이즈 미세 조정 (모바일 가독성) */
+  .lang-btn {
+    font-size: 8px; /* 모바일에서는 조금 더 작게 하여 여백 강조 */
+  }
+
+  /* 3. 헤더 전체 여백 조정 */
   .header {
     padding: calc(20px + var(--sat)) 5% 20px;
   }
-  .lang-switcher {
-    margin-left: 20px;
-    gap: 8px;
+
+  /* 4. 기존 nav(메인메뉴)는 모바일에서 숨기기 (햄버거 메뉴가 있으므로) */
+  .header-right .nav {
+    display: none; 
   }
-  .nav a {
-    margin-left: 20px;
-  }
-  
-  .header .nav { display: none; }
 
   .menu-trigger {
     display: flex !important; /* 모바일에서만 강제로 보여줌 */

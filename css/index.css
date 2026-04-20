@@ -6,7 +6,7 @@
    01. Base / Reset
 ========================= */
 :root {
-  --font-main: 'Times New Roman', serif;
+  --font-main: '-apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif';
   --font-sub: 'Georgia', serif;
   --font-mono: 'Courier New', monospace;
   --transition-vogue: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -839,7 +839,7 @@ body {
 }
 
 .cta-inner {
-  max-width: 720px;
+  max-width: 915px;
   margin: 0 auto;
   padding: 0 5%;
 }
